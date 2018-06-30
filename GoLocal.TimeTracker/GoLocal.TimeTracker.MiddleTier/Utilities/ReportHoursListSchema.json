@@ -1,0 +1,69 @@
+﻿{
+  'displayName': 'objectidentifier_reporthours',
+  'columns': [
+    {
+      'name': 'ObjectIdentifier',
+      'text': {}
+    },
+    {
+      'name': 'Date',
+      'text': {}
+    },
+    {
+      'name': 'MeetingHours',
+      'number': {}
+    },
+    {
+      'name': 'MeetingMinutes',
+      'number': {}
+    },
+    {
+      'name': 'MeetingAdjustedHours',
+      'number': {}
+    },
+    {
+      'name': 'MeetingAdjustedMinutes',
+      'number': {}
+    },
+    {
+      'name': 'EmailHours',
+      'number': {}
+    },
+    {
+      'name': 'EmailMinutes',
+      'number': {}
+    },
+    {
+      'name': 'EmailAdjustedHours',
+      'number': {}
+    },
+    {
+      'name': 'EmailAdjustedMinutes',
+      'number': {}
+    },
+    {
+      'name': 'OtherHours',
+      'number': {}
+    },
+    {
+      'name': 'OtherMinutes',
+      'number': {}
+    },
+    {
+      'name': 'OtherAdjustedHours',
+      'number': {}
+    },
+    {
+      'name': 'OtherAdjustedMinutes',
+      'number': {}
+    },
+    {
+      'name': 'AdjustedHoursReason',
+      'text': {}
+    },
+    {
+      'name': 'ItemState',
+      'text': {}
+    }
+  ]
+}

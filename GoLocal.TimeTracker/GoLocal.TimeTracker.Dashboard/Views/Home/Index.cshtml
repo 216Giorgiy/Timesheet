@@ -1,0 +1,925 @@
+﻿@model GoLocal.TimeTracker.Dashboard.ViewModels.DashBoardViewModel;
+@using GoLocal.TimeTracker.Dashboard.Resources
+
+@inject LocService SharedLocalizer
+
+@{
+	ViewData["Title"] = SharedLocalizer.GetLocalizedHtmlString("lblDashboard");
+}
+
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.min.css" />
+<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.components.min.css" />
+<script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+
+	})
+</script>
+
+
+<div class="main-panel ms-Grid">
+	<!----Page Heading---->
+	<div class="pageHeading ms-Grid ">
+		<div class="ms-Grid-row">
+			<div class=" ms-Grid">
+				<div class="ms-Grid-col ms-sm12 ms-ms-5 ms-lg7 ">
+					<h1>
+						@SharedLocalizer.GetLocalizedHtmlString("MyTimings")
+					</h1>
+				</div>
+
+				<div class="ms-Grid-col ms-sm12 ms-ms-5 ms-lg3 pull-right">
+					<div class="ms-lg5 pT25 ">
+						@if (Model.UserInfo.Fields.Manager != String.Empty)
+						{
+							<div class="ms-Persona ms-Persona--sm  ">
+								<div class="ms-Persona-imageArea">
+									<img class="ms-Persona-image" src="@Model.UserInfo.Fields.ManagerPicture" />
+								</div>
+
+								<div class="ms-Persona-details">
+									<div class="ms-Persona-primaryText font-bold AppUserName">@Model.UserInfo.Fields.Manager </div>
+									<div class="ms-Persona-secondaryText">@SharedLocalizer.GetLocalizedHtmlString("IsYourManager")</div>
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+		<!----Page Heading End---->
+		<div class="PageSextion ms-Grid">
+			<div class="ms-Grid-row">
+				<div class="col-md-12" style="margin-top:45px;">
+					<div class="col-sm-12 col-md-3 ">
+						<div class="ms-Grid-col ms-sm12 ms-lg12">
+							<div class="card ">
+								<div class="card-body pv">
+									<div class="ms-Grid-col ms-sm12 ms-lg9 pT10 pl10">
+										<div class="pb10">
+											<h2> @SharedLocalizer.GetLocalizedHtmlString("Today")</h2>
+										</div>
+										<div class="workTime pT10">
+											@Model.TodayHours@SharedLocalizer.GetLocalizedHtmlString("h")  @Model.TodayMinutes@SharedLocalizer.GetLocalizedHtmlString("m")
+										</div>
+									</div>
+									<div class="ms-Grid-col ms-sm12 ms-lg3 top15margin">
+										<img src="~/images/@(Model.TodayGoalStatus=="Overtime"?"Sad.png":"Happy.png")" style="width: 30px;margin-top: 24px;" />
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="ms-Grid-col ms-sm12 ms-lg12">
+							<div class="card">
+								<div class="card-body pv">
+									<div class="ms-Grid-col ms-sm12 ms-lg9 pT10 pl10">
+
+										<div class="pb10">
+											<h2> @SharedLocalizer.GetLocalizedHtmlString("LastWeek")</h2>
+										</div>
+										
+										@if (Model.currentWeekData == true)
+										{
+									<div class="ms-Spinner ms-Spinner--large">
+										<div class="ms-Spinner-label">
+											@SharedLocalizer.GetLocalizedHtmlString("Loading")...
+										</div>
+									</div>
+
+
+									}
+									else
+									{
+									<div class="workTime pT10">
+										@Model.LastWeek.TotalHours@SharedLocalizer.GetLocalizedHtmlString("h") @Model.LastWeek.TotalMins@SharedLocalizer.GetLocalizedHtmlString("m")
+									</div>
+									}
+										<div class="WorkDuration  pb10">
+										</div>
+									</div>
+									<div class="ms-Grid-col ms-sm12 ms-lg6">
+									</div>
+
+								</div>
+							</div>
+
+
+						</div>
+
+						<div class="ms-Grid-col ms-sm12 ms-lg12">
+							<div class="card">
+								<div class="card-body pv">
+									<div class="ms-Grid-col ms-sm12 ms-lg9 pT10 pl10">
+										<div>
+                                            @if (Model.currentWeekData == true)
+                                            {
+                                            <a href="@Url.Action("refreshData", "Home" )" id="refreshData"> </a>
+                                            }
+                                             
+										</div>
+										<div class="pb10">
+											<h2> @SharedLocalizer.GetLocalizedHtmlString("ThisMonth")</h2>
+										</div>
+										@if (Model.currentWeekData == true)
+										{
+									<div class="ms-Spinner ms-Spinner--large">
+										<div class="ms-Spinner-label">
+											@SharedLocalizer.GetLocalizedHtmlString("Loading")...
+										</div>
+									</div>
+
+
+										}
+										else
+										{
+									<div class="workTime pT10">
+										@Model.ThisMonth.TotalHours@SharedLocalizer.GetLocalizedHtmlString("h") @Model.ThisMonth.TotalMins@SharedLocalizer.GetLocalizedHtmlString("m")
+									</div>
+										}
+									<div class="WorkDuration  pb10">
+									</div>
+									</div>
+									<div class="ms-Grid-col ms-sm12 ms-lg6">
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<script>
+                        var SubmittedDate ="@Model.SubmittedOn"; 
+                var weekLbl = ["@(Convert.ToDateTime(Model.DayHours[0].HoursDate).DayOfWeek.ToString().Substring(0,3)) @(Convert.ToDateTime(Model.DayHours[0].HoursDate).ToString("MM/dd"))",
+                    "@(Convert.ToDateTime(Model.DayHours[1].HoursDate).DayOfWeek.ToString().Substring(0, 3)) @(Convert.ToDateTime(Model.DayHours[1].HoursDate).ToString("MM/dd"))",
+                    "@(Convert.ToDateTime(Model.DayHours[2].HoursDate).DayOfWeek.ToString().Substring(0, 3)) @(Convert.ToDateTime(Model.DayHours[2].HoursDate).ToString("MM/dd"))",
+                    "@(Convert.ToDateTime(Model.DayHours[3].HoursDate).DayOfWeek.ToString().Substring(0, 3)) @(Convert.ToDateTime(Model.DayHours[3].HoursDate).ToString("MM/dd"))",
+                    "@(Convert.ToDateTime(Model.DayHours[4].HoursDate).DayOfWeek.ToString().Substring(0, 3)) @(Convert.ToDateTime(Model.DayHours[4].HoursDate).ToString("MM/dd"))",
+                    "@(Convert.ToDateTime(Model.DayHours[5].HoursDate).DayOfWeek.ToString().Substring(0,3)) @(Convert.ToDateTime(Model.DayHours[5].HoursDate).ToString("MM/dd"))",
+                    "@(Convert.ToDateTime(Model.DayHours[6].HoursDate).DayOfWeek.ToString().Substring(0, 3)) @(Convert.ToDateTime(Model.DayHours[6].HoursDate).ToString("MM/dd"))"];
+
+                var colon = ":";
+
+                var arrWorkHrs = [@Model.DayHours[0].Hours,
+                                    @Model.DayHours[1].Hours,
+                                    @Model.DayHours[2].Hours,
+                                    @Model.DayHours[3].Hours,
+                                    @Model.DayHours[4].Hours,
+                                    @Model.DayHours[5].Hours,
+                                    @Model.DayHours[6].Hours];
+                var arrWorkHrsIsSubmited = [@Model.DayHours[0].IsSubmited,@Model.DayHours[1].IsSubmited,@Model.DayHours[2].IsSubmited,@Model.DayHours[3].IsSubmited,@Model.DayHours[4].IsSubmited, @Model.DayHours[5].IsSubmited,@Model.DayHours[6].IsSubmited];
+
+                var arrWorkHrsIsCurrent = [@Model.DayHours[0].IsCurrent,@Model.DayHours[1].IsCurrent,@Model.DayHours[2].IsCurrent,@Model.DayHours[3].IsCurrent,@Model.DayHours[4].IsCurrent, @Model.DayHours[5].IsCurrent,@Model.DayHours[6].IsCurrent];
+                var arrWorkHrsAdjusted = [@Model.DayHours[0].AdjHours,
+                                            @Model.DayHours[1].AdjHours,
+                                            @Model.DayHours[2].AdjHours,
+                                            @Model.DayHours[3].AdjHours,
+                                            @Model.DayHours[4].AdjHours,
+                                            @Model.DayHours[5].AdjHours,
+                                            @Model.DayHours[6].AdjHours];
+					</script>
+					<div class="col-sm-12 col-md-9 grayBorder " style="margin-bottom:10px;float:left;">
+						<div class="col-md-12 mt20">
+							<div class="col-md-4">
+								<button class="ms-Button ms-Button--primary" id="btnEditWorkHours" data-backdrop="static" @(Model.WorkHoursEditable ? "" : "disabled")>
+									<span class="ms-Button-label"> <span class="glyphicon glyphicon-pencil"></span> &nbsp; @SharedLocalizer.GetLocalizedHtmlString("EditHours") </span>
+								</button>
+							</div>
+							<div class="col-md-8">
+								<div class="ms-Grid pull-right">
+									<span class="pageLoader lnkNextPrevWeek hidden">  <img src="~/images/Loading.gif" class="" height="15" /></span>
+									@if (Model.WeekStartDay < DateTime.Now.AddMonths(-1).AddDays(1 - DateTime.Now.Day) || Model.currentWeekData == true)
+									{
+										<i class="ms-Icon ms-Icon--ChevronLeftSmall inactive" aria-hidden="true"></i>
+									}
+									else
+									{
+										<a href="@Url.Action("GetPrevNextWeek", "Home" , new { dt=Model.WeekStartDay.ToString("M/d/yyyy"), weekType="prev" })">
+											<i class="ms-Icon ms-Icon--ChevronLeftSmall" aria-hidden="true"></i>
+										</a>
+									}
+									<span class="">&nbsp;@Model.WeekStartDay.ToString("M/d/yyyy")&nbsp;-&nbsp;@Model.WeekEndDay.ToString("M/d/yyyy")&nbsp;</span>
+									@if (Model.WeekEndDay.AddDays(1) > DateTime.Now)
+									{
+										<i class="ms-Icon ms-Icon--ChevronRightSmall inactive" aria-hidden="true"></i>
+									}
+									else
+									{
+										<a href="@Url.Action("GetPrevNextWeek", "Home", new { dt = Model.WeekEndDay.ToString("M/d/yyyy"), weekType = "next"})">
+											<i class="ms-Icon ms-Icon--ChevronRightSmall" aria-hidden="true"></i>
+										</a>
+									}
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="GraphValue mt30  ms-Grid-row">
+								<div class="ms-Grid-col ms-sm12 ms-lg12">
+									<canvas id="canvas"></canvas>
+								</div>
+								<div class="ms-Grid-col ms-sm12 ms-lg12  pT25 lgd">
+									<ul class="legend">
+										<li><span class="workHours"></span> @SharedLocalizer.GetLocalizedHtmlString("CalculatedHours")</li>
+										<li><span class="submittedHours"></span> @SharedLocalizer.GetLocalizedHtmlString("SubmittedHours")</li>
+										<li><span class="adjustedHours"></span> @SharedLocalizer.GetLocalizedHtmlString("AdjustedHours")</li>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="ms-Grid-row mt20">
+							<div class=" ms-Grid pull-right">
+								<div class="docs-DialogExample-close">
+									<div class="ms-Dialog ms-Dialog--close">
+										<button class="ms-Dialog-button ms-Dialog-buttonClose">
+											<i class="ms-Icon ms-Icon--Cancel"></i>
+										</button>
+										<div class="ms-Dialog-content ">
+
+											@if (Model.SubmittedMonths != "")
+											{
+												<div class="ms-Dialog-title">@SharedLocalizer.GetLocalizedHtmlString("Confirm")</div>
+												<p>@SharedLocalizer.GetLocalizedHtmlString("DashboardSubmitHoursMsg") @Model.SubmittedMonths.<br />@SharedLocalizer.GetLocalizedHtmlString("DoYouWantToContinue")</p>
+											}
+											else
+											{
+												<p>@SharedLocalizer.GetLocalizedHtmlString("DashboardFailureSubmitHoursMsg") @Model.SubmittedMonths.</p>
+											}
+											@*<p> @SharedLocalizer.GetLocalizedHtmlString("SubmitConfirmMsg") </p>*@
+
+										</div>
+										@if (Model.SubmittedMonths != "")
+										{
+											<div class="ms-Dialog-actions">
+												<button class="ms-Button ms-Dialog-action ms-Button--primary " id="btnSubmitHrsForLastMonth">
+													<span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Continue") </span>
+												</button> &nbsp;
+												<button class="ms-Button ms-Dialog-action pl0 ">
+													<span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Cancel")</span>
+												</button>
+											</div>
+										}
+										else
+										{
+											<div class="ms-Dialog-actions">
+												<button class="ms-Button ms-Dialog-action pl0 ">
+													<span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("OK")</span>
+												</button>
+											</div>
+										}
+									</div>
+
+									@if (Model.SubmittedOn == DateTime.MinValue && Model.currentWeekData == false)
+									{
+										<img id="loadingSubmit" src="~/images/Loading.gif" class="hidden" />
+										<button class="ms-Button docs-DialogExample-button ms-Button--primary font-white " id="btnConfirmSubmitForLastMonth">
+											@SharedLocalizer.GetLocalizedHtmlString("Submit")
+										</button>
+									}
+									else
+									{
+										<button class="ms-Button docs-DialogExample-button ms-Button--primary font-white " disabled>
+											@SharedLocalizer.GetLocalizedHtmlString("Submit")
+										</button>
+									}
+
+
+									<label class="docs-DialogExample-label "></label>
+								</div>
+								@if (Model.SubmittedOn != DateTime.MinValue)
+								{
+									<p class="font12" id="SubmitOnMsg">
+										<font id="submittedOnMsg">
+											@SharedLocalizer.GetLocalizedHtmlString("SubmittedOn")
+										</font>:&nbsp;<font id="submittedDate">@Model.SubmittedOn.ToShortDateString()</font>
+									</p>
+								}
+								<p class="font12 text-danger hidden" id="FailedToSubmitMsg">
+									<font id="submittedOnMsg">
+										@SharedLocalizer.GetLocalizedHtmlString("FailedtoSubmit")
+									</font>:&nbsp;<font id="submittedDateFailed">@Model.SubmittedOn</font>
+								</p>
+								<p class="font12" id="SubmitErrMsg"></p>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		</div>
+
+		</div>
+
+
+		<!-- Modal -->
+		<div id="EditTime" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header pageHeading Noborder">
+						<button type="button" class="close" data-dismiss="modal" id="btnEditClose">&times;</button>
+						<h1 class="modal-title">
+							@SharedLocalizer.GetLocalizedHtmlString("EditWorkHours")
+							<img id="loadingEdit" src="~/images/Loading.gif" class="hidden" />
+						</h1>
+
+					</div>
+					<div class="modal-body">
+						<div class="ms-Grid-row divDispMsg">
+							<div class="alert alert-success hidden">
+								@SharedLocalizer.GetLocalizedHtmlString("EditWorkHoursUpdatedSuccessMsg")
+							</div>
+							<div class="alert alert-danger hidden" id="EditHoursErrMSg">
+								@SharedLocalizer.GetLocalizedHtmlString("EditWorkHoursUpdatedFailureMsg")
+							</div>
+						</div>
+						<div class="alert alert-danger hidden" id="TotalAdjErrMSg">
+							@SharedLocalizer.GetLocalizedHtmlString("TotalHrsExceedErrorMessage")
+						</div>
+						<div class="alert alert-danger hidden" id="TotalInputErrMSg">
+							@SharedLocalizer.GetLocalizedHtmlString("TimeBoxMaxErrorMessage")
+						</div>
+						<div class="ms-Grid pl0">
+							<div class="ms-Grid-row">
+								<fieldset id="editHrsForm">
+									<div class="ms-Grid-col ms-sm6 ms-lg12 pl0">
+
+										<div class="ms-Grid-col ms-sm12 ms-lg8 pl0">
+											@*@if (Model.UserInfo.Fields.Manager != String.Empty)
+												{
+												<div class="ms-TextField is-disabled">
+													<label class="ms-Label">
+														@SharedLocalizer.GetLocalizedHtmlString("Manager")
+													</label>
+
+													<input class="ms-TextField-field" type="text" value="@Model.UserInfo.Fields.Manager" placeholder="Manager name" disabled>
+												</div>
+												}*@
+										</div>
+
+										<div class="ms-Grid-col ms-sm6 ms-lg4">
+											<div class="ms-DatePicker">
+												<div class="ms-TextField">
+													<label class="ms-Label">@SharedLocalizer.GetLocalizedHtmlString("SelectDate")</label>
+													<i class="ms-DatePicker-event ms-Icon ms-Icon--Event"></i>
+													@Html.TextBoxFor(m => m.selectedDate, "{0:dd MMMM, yyyy}", new { @class = "ms-TextField-field txtEditHrsDate", @name = "txtEditHrsDate" })
+												</div>
+												<div class="ms-DatePicker-monthComponents">
+													<span class="ms-DatePicker-nextMonth js-nextMonth"><i class="ms-Icon ms-Icon--ChevronRight"></i></span>
+													<span class="ms-DatePicker-prevMonth js-prevMonth"><i class="ms-Icon ms-Icon--ChevronLeft"></i></span>
+													<div class="ms-DatePicker-headerToggleView js-showMonthPicker"></div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+
+									<div class="ms-Grid  GraphTimings">
+										<div class="ms-Grid-col ms-sm12 ms-lg12">
+											<h5> @SharedLocalizer.GetLocalizedHtmlString("CalculatedHours") </h5>
+										</div>
+										<div class="ms-Grid-row">
+
+											<div class="ms-Grid-col ms-sm12 ms-lg4 ">
+												<div class="ms-Grid">
+													<h2> <span class="BlueICon"> <i class="ms-Icon ms-Icon--CalendarWorkWeek" aria-hidden="true"></i> </span>@SharedLocalizer.GetLocalizedHtmlString("MeetingHours")  </h2>
+												</div>
+
+												<div class="ms-Grid">
+													<h3><font id="txtTodayMeetingHrs">@Model.TodayMeetingHours</font>@SharedLocalizer.GetLocalizedHtmlString("h") <font id="txtTodayMeetingMin">@Model.TodayMeetingMins</font>@SharedLocalizer.GetLocalizedHtmlString("m")</h3>
+												</div>
+											</div>
+											<div class="ms-Grid-col ms-sm12 ms-lg4 ">
+												<div class="ms-Grid">
+													<h2> <span class="BlueICon"><i class="ms-Icon ms-Icon--Mail" aria-hidden="true"></i>  </span>@SharedLocalizer.GetLocalizedHtmlString("EmailHours")  </h2>
+												</div>
+
+												<div class="ms-Grid">
+													<h3><font id="txtTodayEmailHrs">@Model.TodayEmailHours</font>@SharedLocalizer.GetLocalizedHtmlString("h")  <font id="txtTodayEmailMin">@Model.TodayEmailMins</font>@SharedLocalizer.GetLocalizedHtmlString("m")</h3>
+												</div>
+											</div>
+											<div class="ms-Grid-col ms-sm12 ms-lg4 ">
+												<div class="ms-Grid">
+													<h2> <span class="BlueICon"><i class="ms-Icon ms-Icon--DynamicSMBLogo" aria-hidden="true"></i>  </span>@SharedLocalizer.GetLocalizedHtmlString("OtherHours") </h2>
+												</div>
+
+												<div class="ms-Grid">
+													<h3><font id="txtTodayOtherHrs">@Model.TodayOtherHours</font>@SharedLocalizer.GetLocalizedHtmlString("h")  <font id="txtTodayOtherMin">@Model.TodayOtherMins</font>@SharedLocalizer.GetLocalizedHtmlString("m")</h3>
+												</div>
+											</div>
+
+										</div>
+										<div class="ms-Grid-row">
+											<div class="ms-Grid-col ms-sm12 ms-lg6 ">
+												<h5 style="display:inline-block;"> @SharedLocalizer.GetLocalizedHtmlString("AdjustedHours") </h5> &nbsp;&nbsp;&nbsp;&nbsp;<font class="font12">@SharedLocalizer.GetLocalizedHtmlString("InvalidTimeFormatMessage")</font>
+											</div>
+
+										</div>
+										<div class="ms-Grid-row">
+											<div class="ms-Grid-col ms-sm12 ms-lg4 ">
+												<label class="ms-Label">
+													@SharedLocalizer.GetLocalizedHtmlString("MeetingHours")
+												</label>
+												<input class="ms-TextField-field " type="text" id="txtAdjMeetingHrsMin" name="txtAdjMeetingHrsMin" value="00:00" maxlength="5">
+											</div>
+											<div class="ms-Grid-col ms-sm12 ms-lg4 ">
+												<label class="ms-Label">
+													@SharedLocalizer.GetLocalizedHtmlString("EmailHours")
+												</label>
+												<input class="ms-TextField-field" id="txtAdjEmailHrsMin" type="text" name="txtAdjEmailHrsMin" value="00:00" maxlength="5">
+											</div>
+											<div class="ms-Grid-col ms-sm12 ms-lg4 ">
+												<label class="ms-Label">
+													@SharedLocalizer.GetLocalizedHtmlString("OtherHours")
+												</label>
+												<input class="ms-TextField-field" id="txtAdjOtherWorkHrsMin" type="text" name="txtAdjOtherWorkHrsMin" value="00:00" maxlength="5">
+											</div>
+										</div>
+										<div class="ms-Grid">
+											<div class="ms-Grid-row">
+												<span>&nbsp;&nbsp;<font class="hidden" id="divTotalAdjTime">@SharedLocalizer.GetLocalizedHtmlString("TotalHours") : <font id="totAdjTime" style="display:inline;"></font> </font></span>
+											</div>
+										</div>
+
+										<div class="ms-Grid  GraphTimings">
+											<div class="ms-Grid-row">
+												<div class="ms-TextField ms-TextField--multiline">
+													<label class="ms-Label">@SharedLocalizer.GetLocalizedHtmlString("Reason") </label>
+													<textarea class="ms-TextField-field" id="txtAdjReason" name="txtAdjReason">@Model.AdjustedHoursReason</textarea>
+												</div>
+
+											</div>
+										</div>
+
+										<div class="ms-Grid ms-lg12   pT10 pull-right text-right">
+
+											<div class="ms-Grid-row">
+												<button class="ms-Button ms-Button--primary" id="btnEditHrs">
+													<span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Save")</span>
+												</button> &nbsp;
+												<button class="ms-Button" id="btnEditCancel" data-dismiss="modal">
+													<span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Close")</span>
+												</button>
+											</div>
+										</div>
+										<div class="ms-Grid pull-right ms-lg12 text-right">
+											@SharedLocalizer.GetLocalizedHtmlString("EditNotification")
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<script src="~/js/Chart.bundle.js"></script>
+		<script src="~/js/utils.js"></script>
+		<script src="~/js/barchartgraph.js" asp-append-version="true"></script>
+		<script src="~/js/barchart.js"></script>
+		<style>
+			.workTime {
+				font-size: 18px !important;
+				font-weight: normal;
+			}
+			/*h2 {
+				font-size:12px!important;
+			}*/
+			.top15margin {
+				margin-top: 15px;
+			}
+		</style>
+
+		<script type="text/javascript">
+
+						$("#EditTime").draggable({
+							handle: ".modal-header"
+						});
+		</script>
+
+		<script>
+	var postedData = "false";
+			var lastSubmittedDate = "@Model.SubmittedOn.ToShortDateString()";
+
+			var isCurrentWeek = "@Model.currentWeekData";
+
+function doEditHours() {
+    $("#divTotalAdjTime,#TotalAdjErrMSg").addClass('hidden').hide();
+    $("#TotalInputErrMSg").addClass('hidden').hide();
+    $("#loadingEdit").removeClass("hidden").show();
+    $("#btnEditCancel,#btnEditClose").attr("disabled", true);
+    $("#btnEditHrs").attr("disabled", true);
+    var getDateData = $(".txtEditHrsDate").val();
+    // var reqObj = $("#editHrsForm").serializeArray();
+    var reqObj = $("#editHrsForm").find(':input').serializeArray();
+    reqObj.push = { name: "selDate", value: $(".txtEditHrsDate").val() }
+    //var selDtMonth = new Date(reqObj.selDate).getMonth();
+    //var selDtYear = new Date(reqObj.selDate).getFullYear();
+	var selDtMonth = (new Date($(".txtEditHrsDate").val()).getMonth() + 1);
+	var selDtYear = new Date($(".txtEditHrsDate").val()).getFullYear();
+	var monthYearEdithoursdate = (new Date().getMonth() + 1).toString() + (new Date().getFullYear()).toString();
+
+    $.ajax({
+        url: "/Home/GetWorkHoursForDate/",
+        type: 'post',
+        data: reqObj,
+        success: function (res) {
+            $("#loadingEdit").addClass("hidden");
+            $("#btnEditHrs").attr("disabled", false);
+            $("#txtAdjMeetingHrsMin,#txtAdjEmailHrsMin,#txtAdjOtherWorkHrsMin,#txtAdjReason").attr("readonly", false);
+            $('#txtAdjMeetingHrsMin,#txtAdjEmailHrsMin,#txtAdjOtherWorkHrsMin,#txtAdjReason').css({ 'background-color': '' });
+            $("#btnEditCancel,#btnEditClose").attr("disabled", false);
+
+            if (res.responseCode > 0) {
+                // ToDO: Bind data
+                $("#txtTodayMeetingHrs").attr("modelId", res["data"][0].id);
+                $("#txtTodayMeetingHrs").text(fnTwoDigitsFormat(res["data"][0].fields.MeetingHours));
+                $("#txtTodayMeetingMin").text(fnTwoDigitsFormat(res["data"][0].fields.MeetingMinutes));
+                $("#txtTodayEmailHrs").text(fnTwoDigitsFormat(res["data"][0].fields.EmailHours));
+                $("#txtTodayEmailMin").text(fnTwoDigitsFormat(res["data"][0].fields.EmailMinutes));
+                $("#txtTodayOtherHrs").text(fnTwoDigitsFormat(res["data"][0].fields.OtherHours));
+                $("#txtTodayOtherMin").text(fnTwoDigitsFormat(res["data"][0].fields.OtherMinutes));
+                $("#txtAdjReason").val(res["data"][0].fields.AdjustedHoursReason);
+                /*$("#txtAdjMeetingHrsMin").val(fnTwoDigitsFormat(res["data"][0].fields.MeetingAdjustedHours) + ":" + fnTwoDigitsFormat(res["data"][0].fields.MeetingAdjustedMinutes));
+                $("#txtAdjEmailHrsMin").val(fnTwoDigitsFormat(res["data"][0].fields.EmailAdjustedHours) + ":" + fnTwoDigitsFormat(res["data"][0].fields.EmailAdjustedMinutes));
+                $("#txtAdjOtherWorkHrsMin").val(fnTwoDigitsFormat(res["data"][0].fields.OtherAdjustedHours) + ":" + fnTwoDigitsFormat(res["data"][0].fields.OtherAdjustedMinutes));*/
+                if (res["data"][0].fields.MeetingAdjustedHours > 0 || res["data"][0].fields.MeetingAdjustedMinutes > 0) {
+                    $("#txtAdjMeetingHrsMin").val(fnTwoDigitsFormat(res["data"][0].fields.MeetingAdjustedHours) + ":" + fnTwoDigitsFormat(res["data"][0].fields.MeetingAdjustedMinutes));
+                } else {
+                    $("#txtAdjMeetingHrsMin").val(fnTwoDigitsFormat(res["data"][0].fields.MeetingHours) + ":" + fnTwoDigitsFormat(res["data"][0].fields.MeetingMinutes));
+                }
+
+                if (res["data"][0].fields.EmailAdjustedHours > 0 || res["data"][0].fields.EmailAdjustedMinutes > 0) {
+                    $("#txtAdjEmailHrsMin").val(fnTwoDigitsFormat(res["data"][0].fields.EmailAdjustedHours) + ":" + fnTwoDigitsFormat(res["data"][0].fields.EmailAdjustedMinutes));
+                } else {
+                    $("#txtAdjEmailHrsMin").val(fnTwoDigitsFormat(res["data"][0].fields.EmailHours) + ":" + fnTwoDigitsFormat(res["data"][0].fields.EmailMinutes));
+                }
+
+                if (res["data"][0].fields.OtherAdjustedHours > 0 || res["data"][0].fields.OtherAdjustedMinutes > 0) {
+                    $("#txtAdjOtherWorkHrsMin").val(fnTwoDigitsFormat(res["data"][0].fields.OtherAdjustedHours) + ":" + fnTwoDigitsFormat(res["data"][0].fields.OtherAdjustedMinutes));
+                } else {
+                    $("#txtAdjOtherWorkHrsMin").val(fnTwoDigitsFormat(res["data"][0].fields.OtherHours) + ":" + fnTwoDigitsFormat(res["data"][0].fields.OtherMinutes));
+                }
+
+                // ToDO logic - to check FEB submitted, But JAN/DEC not submitted because no data - in edit scenario disable the Submit button if users selects JAN/DEC
+				if ((res["data"][0].fields.ItemState == 1) || (new Date(lastSubmittedDate) > new Date($(".txtEditHrsDate").val()) && (selDtMonth.toString()+selDtYear.toString()) != monthYearEdithoursdate  ))
+				{
+                    // Submitted - making readonly the adjusted hours tetbox and reason
+                    $("#txtAdjMeetingHrsMin,#txtAdjEmailHrsMin,#txtAdjOtherWorkHrsMin,#txtAdjReason").attr("readonly", true);
+                    $('#txtAdjMeetingHrsMin,#txtAdjEmailHrsMin,#txtAdjOtherWorkHrsMin,#txtAdjReason').css({ 'background-color': '#f6f6f6' });
+                    $("#btnEditHrs").attr("disabled", true);
+                }
+
+            }
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $("#loadingEdit").addClass("hidden");
+            $("#btnEditHrs").attr("disabled", false);
+            $("#btnEditCancel,#btnEditClose").attr("disabled", false);
+        }
+    });
+
+};
+
+function fnTwoDigitsFormat(n) {
+    return n > 9 ? "" + n : "0" + n;
+}
+
+function fnValidateTimeFormat(time, txtCntrl) {
+    var regExTime1 = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+    var regExTime2 = /^\d{1,2}$/;
+    var regExTime3 = /^([0-9][0-3]):[0-5]|[0-9]$/;
+    var regExTime4 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/;
+
+    if (time === "") {
+        txtCntrl.val("00:00");
+        return true;
+    } else if (parseInt(time) > 23) {
+        return false;
+    } else if (regExTime1.test(time)) {
+        $("#btnEditHrs").attr("disabled", false);
+        return true;
+    } else if (regExTime2.test(time)) {
+        var t = ((time.length < 2) ? fnTwoDigitsFormat(time) : time) + ":" + "00";
+        txtCntrl.val(t);
+        $("#btnEditHrs").attr("disabled", false);
+        return true;
+    } else if (!regExTime4.test(time)) {
+        return false;
+    } else if (regExTime3.test(time)) {
+        var hr = time.split(":");
+        var min = ((hr[1].length < 2) ? fnTwoDigitsFormat(hr[1]) : hr[1])
+        var t = fnTwoDigitsFormat(hr[0]) + ":" + min;
+        txtCntrl.val(t);
+        $("#btnEditHrs").attr("disabled", false);
+        return true;
+    }
+    else {
+        $("#btnEditHrs").attr("disabled", true);
+        return false;
+    }
+}
+
+function fnValidateTotalAdjTime() {
+    $("#TotalAdjErrMSg").hide();
+    $("#TotalInputErrMSg").hide();
+    var calMeetingHrs = parseInt($("#txtTodayMeetingHrs").text());
+    var calMeetingMin = parseInt($("#txtTodayMeetingMin").text());
+    var calEmailHrs = parseInt($("#txtTodayEmailHrs").text());
+    var calEmailMins = parseInt($("#txtTodayEmailMin").text());
+    var calOtherWorkHrs = parseInt($("#txtTodayOtherHrs").text());
+    var calOtherWorkMins = parseInt($("#txtTodayOtherMin").text());
+
+    var adjEmailTime = $("#txtAdjEmailHrsMin").val().split(':'); // index 0 is hrs, 1 is mins
+    var adjMeetingTime = $("#txtAdjMeetingHrsMin").val().split(':');
+    var adjOtherWorkTime = $("#txtAdjOtherWorkHrsMin").val().split(':');
+    //If adjusted hr/mins is greater than zero take adjusted else Calculated hr/mins
+    var totAdjMins = ((parseInt(adjEmailTime[0]) > 0 || parseInt(adjEmailTime[1]) > 0 ) ? parseInt(adjEmailTime[1]) : calEmailMins) +
+                    ((parseInt(adjMeetingTime[0]) > 0 || parseInt(adjMeetingTime[1]) > 0 ) ? parseInt(adjMeetingTime[1]) : calMeetingMin) +
+                    ((parseInt(adjOtherWorkTime[0]) > 0 || parseInt(adjOtherWorkTime[1]) ) ? parseInt(adjOtherWorkTime[1]) : calOtherWorkMins );
+    var totAdjHrs = ((parseInt(adjEmailTime[0]) > 0 || parseInt(adjEmailTime[1]) > 0 ) ? parseInt(adjEmailTime[0]) : calEmailHrs) +
+                    ((parseInt(adjMeetingTime[0]) > 0 || parseInt(adjMeetingTime[1]) > 0) ? parseInt(adjMeetingTime[0]) : calMeetingHrs) +
+                    ((parseInt(adjOtherWorkTime[0]) > 0 || parseInt(adjOtherWorkTime[1]) > 0) ? parseInt(adjOtherWorkTime[0]) : calOtherWorkHrs);
+    var totMins = (totAdjMins % 60);
+    var totHrs = (totAdjHrs) + parseInt(totAdjMins / 60);
+    var totAdjTime = fnTwoDigitsFormat(parseInt(totHrs)) + ":" + fnTwoDigitsFormat(parseInt(totMins));
+    $("#totAdjTime").text(totAdjTime);
+    $("#divTotalAdjTime").removeClass('text-danger');
+    $("#divTotalAdjTime").removeClass('hidden').show();
+
+    var regExTimeFormat = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+
+    if ((regExTimeFormat.test(totAdjTime) && (totHrs < 24 && totMins < 60))) {
+        $("#btnEditHrs").attr("disabled", false);
+        $("#TotalAdjErrMSg").addClass('hidden').hide();
+        $("#TotalInputErrMSg").addClass('hidden').hide();
+    } else {
+        $("#btnEditHrs").attr("disabled", true);
+        $("#divTotalAdjTime").addClass('text-danger');
+        $("#TotalAdjErrMSg").removeClass('hidden').show();
+    }
+}
+
+function validateNumber(event) {
+    var key = window.event ? event.keyCode : event.which;
+    if (event.keyCode === 8 || event.keyCode === 58) {
+        return true;
+    } else if (key < 48 || key > 57) {
+        return false;
+    } else {
+        return true;
+    }
+            };
+
+            $(window).load(function () {
+                if (isCurrentWeek === "True") {
+			        $('#refreshData')[0].click();
+		        }
+            });
+
+$(document).ready(function () {
+
+    $('#txtAdjMeetingHrsMin,#txtAdjEmailHrsMin,#txtAdjOtherWorkHrsMin').keypress(validateNumber);
+
+    $("#txtAdjMeetingHrsMin").change(function () {
+        var time = $("#txtAdjMeetingHrsMin").val();
+        var re = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+        if (!(fnValidateTimeFormat(time, $("#txtAdjMeetingHrsMin")))) {
+            $("#txtAdjMeetingHrsMin").addClass('inputError');
+            $("#btnEditHrs").attr("disabled", true);
+            $("#TotalInputErrMSg").removeClass('hidden').show();
+        } else {
+            $("#txtAdjMeetingHrsMin").removeClass('inputError');
+            if (!$("#txtAdjEmailHrsMin,#txtAdjMeetingHrsMin,#txtAdjOtherWorkHrsMin").hasClass('inputError')) {
+                fnValidateTotalAdjTime();
+            }
+        }
+
+    });
+
+    $("#txtAdjEmailHrsMin").change(function () {
+        var time = $("#txtAdjEmailHrsMin").val();
+        if (!(fnValidateTimeFormat(time, $("#txtAdjEmailHrsMin")))) {
+            $("#txtAdjEmailHrsMin").addClass('inputError');
+            $("#btnEditHrs").attr("disabled", true);
+            $("#divTotalAdjTime,#TotalAdjErrMSg").addClass('hidden').hide();
+            $("#TotalInputErrMSg").addClass('hidden').hide();
+        } else {
+            $("#txtAdjEmailHrsMin").removeClass('inputError');
+            if (!$("#txtAdjEmailHrsMin,#txtAdjMeetingHrsMin,#txtAdjOtherWorkHrsMin").hasClass('inputError')) {
+                fnValidateTotalAdjTime();
+            }
+        }
+    });
+
+    $("#txtAdjOtherWorkHrsMin").change(function () {
+        var time = $("#txtAdjOtherWorkHrsMin").val();
+        if (!(fnValidateTimeFormat(time, $("#txtAdjOtherWorkHrsMin")))) {
+            $("#txtAdjOtherWorkHrsMin").addClass('inputError');
+            $("#btnEditHrs").attr("disabled", true);
+            $("#divTotalAdjTime,#TotalAdjErrMSg").addClass('hidden').hide();
+            $("#TotalInputErrMSg").addClass('hidden').hide();
+        } else {
+            $("#txtAdjOtherWorkHrsMin").removeClass('inputError');
+            if (!$("#txtAdjEmailHrsMin,#txtAdjMeetingHrsMin,#txtAdjOtherWorkHrsMin").hasClass('inputError')) {
+                fnValidateTotalAdjTime();
+            }
+        }
+    });
+
+    // Set today is max
+    $('.txtEditHrsDate').pickadate('picker').set('max', new Date());
+    // Set min date - 3 months back
+    var minDate = new Date();
+    minDate.setDate(01);
+    minDate.setMonth(minDate.getMonth() - 3);
+    $('.txtEditHrsDate').pickadate('picker').set('min', minDate);
+
+    $("#btnEditWorkHours").click(function () {
+        $('#EditTime').modal({
+            backdrop: 'static',
+            keyboard: false
+        }).show();
+        $('#EditTime').modal('show')
+            .draggable({ handle: ".modal-header" });
+    });
+
+    $('#EditTime').on('shown.bs.modal', function () {
+        $("#txtAdjEmailHrsMin,#txtAdjMeetingHrsMin,#txtAdjOtherWorkHrsMin").removeClass('inputError');
+        $("#loadingEdit").addClass("hidden");
+        $("#btnEditHrs").attr("disabled", false);
+
+        doEditHours();
+    });
+
+    // Edit Dialog - Date change call to Controller
+    $(".txtEditHrsDate").change(function () {
+        doEditHours();
+    });
+
+    // Edit Dialog - cancel
+    $("#btnEditCancel,#btnEditClose").click(function () {
+        var pickerDateValue = $(".txtEditHrsDate").val();
+        var pickerDate = new Date(pickerDateValue);
+        var startDateStr = "@(Convert.ToDateTime(Model.DayHours[0].HoursDate).ToString("MM/dd/yyyy"))";
+        var varStartDate = new Date(startDateStr);
+        var endDateStr = "@(Convert.ToDateTime(Model.DayHours[6].HoursDate).ToString("MM/dd/yyyy"))";
+        var varEndDate = new Date(endDateStr);
+        if (postedData == "true") {
+            $("#btnSubmitHrsForLastMonth").hide();
+            window.location.reload(); // Refresh the page.
+            postedData = "false"; // Reset.
+            $("#btnSubmitHrsForLastMonth").show();
+        }
+
+    });
+
+});
+
+    $(function () {
+    var submitButton = $("#btnEditHrs");
+    var infoForm = $("#editHrsForm");
+    $(".divDispMsg").hide();
+    var btnSubmitHrsForLastMonth = $("#btnSubmitHrsForLastMonth");
+
+    //  Attach event handler to submit button
+        submitButton.click(function () {
+            
+        SubmitInfo(infoForm);
+    });
+
+    btnSubmitHrsForLastMonth.click(function () {
+        SubmitHoursForLastMonth();
+
+    });
+});
+
+	function SubmitHoursForLastMonth(formContainer) {
+		$("#btnConfirmSubmitForLastMonth").attr("disabled", true);
+    $("#loadingSubmit").removeClass("hidden").show();
+    $.ajax({
+        url: "/Home/SubmitButtonForLastMonth/",
+        type: 'post',
+        data: null,
+        success: function (data) {
+            
+            if (data.responseCode > 0) {
+                $("#loadingSubmit").addClass("hidden");
+                window.location = "/Home/";
+                $("#FailedToSubmitMsg").hide();
+                $("#SubmitOnMsg").show();
+                $("#submittedDate").text(data.submittedOnDate);
+            } else {
+                $("#loadingSubmit").addClass("hidden");
+                $("#SubmitOnMsg").hide();
+                $("#FailedToSubmitMsg").removeClass("hidden").show();
+				$("#submittedDateFailed").text(data.submittedOnDate).addClass('text-danger');
+				$("#btnConfirmSubmitForLastMonth").attr("disabled", false);
+
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO:handle error
+            $("#loadingSubmit").addClass("hidden");
+			$("#submittedDateFailed").text(errorThrown);
+			$("#btnConfirmSubmitForLastMonth").attr("disabled", false);
+        }
+    });
+}
+
+
+//  Submit the EditHrs form to Controller
+function SubmitInfo(formContainer) {
+    postedData = "true";
+    $("#loadingEdit").removeClass("hidden").show();
+    $("#btnEditHrs").attr("disabled", true);
+    //var editHrsData = formContainer.serializeArray();
+    var editHrsData = formContainer.find(':input').serializeArray();
+
+    var modelId = $("#txtTodayMeetingHrs").attr("modelId");
+    // Actual Hrs Mins
+    var emailHr = $("#txtTodayEmailHrs").text();
+    var emailMin = $("#txtTodayEmailMin").text();
+    var meetingHr = $("#txtTodayMeetingHrs").text();
+    var meetingMin = $("#txtTodayMeetingMin").text();
+    var otherHr = $("#txtTodayOtherHrs").text();
+    var otherMin = $("#txtTodayOtherMin").text();
+    var varDate = new Date('"' + $(".txtEditHrsDate").text() + '"');
+    var varStartDate = new Date('"' + @Model.WeekStartDay.ToShortDateString() + '"');
+    var varEndDate = new Date('"' + @Model.WeekEndDay.Date.ToShortDateString() + '"');
+    editHrsData.push(
+        { name: "modelId", value: modelId },
+        { name: "emailHrMin", value: emailHr + ":" + emailMin },
+        { name: "meetingHrMin", value: meetingHr + ":" + meetingMin },
+        { name: "otherHrMin", value: otherHr + ":" + otherMin }
+    );
+
+    $.ajax({
+        url: "/Home/SaveHrsByDate/",
+        type: 'post',
+        data: editHrsData,
+        success: function (data) {
+            if (data.responseCode > 0) {
+                $("#loadingEdit").addClass("hidden");
+                $(".divDispMsg").show();
+                $(".alert-success").removeClass("hidden").show();
+
+                $(".alert-success").fadeTo(2000, 500).slideUp(500, function () {
+                    $(".alert-success").slideUp(500);
+                    $("#btnEditHrs").attr("disabled", false);
+                    $(".alert-success").addClass("hidden");
+                });
+                //if ((varDate >= varStartDate && varDate <= varEndDate)) {
+
+                doEditHours(); // Refresh the box.
+
+                //}
+            } else {
+                $(".divDispMsg").show();
+                $("#loadingEdit").addClass("hidden");
+                $("#EditHoursErrMSg").removeClass("hidden").show();
+                $("#btnEditHrs").attr("disabled", false);
+
+                $("#EditHoursErrMSg").fadeTo(2000, 500).slideUp(500, function () {
+                    $("#EditHoursErrMSg").slideUp(500);
+                    $("#btnEditHrs").attr("disabled", false);
+                    $("#EditHoursErrMSg").addClass("hidden");
+                });
+
+            }
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $(".divDispMsg").show();
+            $("#loadingEdit").addClass("hidden");
+            $("#EditHoursErrMSg").removeClass("hidden").show();
+            $("#btnEditHrs").attr("disabled", false);
+
+            $("#EditHoursErrMSg").fadeTo(2000, 500).slideUp(500, function () {
+                $("#EditHoursErrMSg").slideUp(500);
+                $("#btnEditHrs").attr("disabled", false);
+                $("#EditHoursErrMSg").addClass("hidden");
+            });
+        }
+    });
+
+}
+
+		</script>
+		<script type="text/javascript">
+			var SpinnerElements = document.querySelectorAll(".ms-Spinner");
+			for (var i = 0; i < SpinnerElements.length; i++) {
+				new fabric['Spinner'](SpinnerElements[i]);
+			}
+		</script>
+

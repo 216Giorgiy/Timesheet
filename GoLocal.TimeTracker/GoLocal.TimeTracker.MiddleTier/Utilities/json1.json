@@ -1,0 +1,510 @@
+﻿{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users('5fb99779-ce17-47bf-b9fe-5261f70609a8')/messages",
+  "@odata.nextLink": "https://graph.microsoft.com/v1.0/me/messages?startDateTime=2018-02-28+00%3a00%3a00&endDateTime=2018-02-28+23%3a59%3a59&$skip=12",
+  "value": [
+    {
+      "@odata.type": "#microsoft.graph.eventMessage",
+      "@odata.etag": "W/\"DAAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAHOcMC\"",
+      "id": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEMAAAx7Zc556q2T6PRlmuo7wd4AAAHOPdiAAA=",
+      "createdDateTime": "2018-03-07T02:12:28Z",
+      "lastModifiedDateTime": "2018-03-07T02:12:28Z",
+      "changeKey": "DAAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAHOcMC",
+      "categories": [],
+      "receivedDateTime": "2018-03-07T02:12:28Z",
+      "sentDateTime": "2018-03-07T02:12:27Z",
+      "hasAttachments": false,
+      "internetMessageId": "<CY1PR13MB0551588A2F1A3CBA5DB5ABBDFED80@CY1PR13MB0551.namprd13.prod.outlook.com>",
+      "subject": "Accepted: Test Event",
+      "bodyPreview": "OK",
+      "importance": "normal",
+      "parentFolderId": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAuAAAAAAC6L4qsCEMuS7LWwqI2ozTkAQAx7Zc556q2T6PRlmuo7wd4AAAAAAEMAAA=",
+      "conversationId": "AAQkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAQAPswIUCNUZVFuNqQWuFRPNI=",
+      "isDeliveryReceiptRequested": null,
+      "isReadReceiptRequested": false,
+      "isRead": false,
+      "isDraft": false,
+      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEMAAAx7Zc556q2T6PRlmuo7wd4AAAHOPdiAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "inferenceClassification": "focused",
+      "meetingMessageType": "meetingAccepted",
+      "body": {
+        "contentType": "html",
+        "content": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n<meta content=\"text/html; charset=us-ascii\">\r\n<style type=\"text/css\" style=\"display:none\">\r\n<!--\r\np\r\n\t{margin-top:0;\r\n\tmargin-bottom:0}\r\n-->\r\n</style>\r\n</head>\r\n<body dir=\"ltr\">\r\n<div id=\"divtagdefaultwrapper\" dir=\"ltr\" style=\"font-size:12pt; color:#000000; font-family:Calibri,Helvetica,sans-serif\">\r\n<p style=\"margin-top:0; margin-bottom:0\">OK</p>\r\n</div>\r\n</body>\r\n</html>\r\n"
+      },
+      "sender": {
+        "emailAddress": {
+          "name": "Rikiya Kitakawa",
+          "address": "Rikiya@onterawe.onmicrosoft.com"
+        }
+      },
+      "from": {
+        "emailAddress": {
+          "name": "Rikiya Kitakawa",
+          "address": "Rikiya@onterawe.onmicrosoft.com"
+        }
+      },
+      "toRecipients": [
+        {
+          "emailAddress": {
+            "name": "Tsumugi Nakai",
+            "address": "Tsumugi@onterawe.onmicrosoft.com"
+          }
+        }
+      ],
+      "ccRecipients": [],
+      "bccRecipients": [],
+      "replyTo": []
+    },
+    {
+      "@odata.etag": "W/\"CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAHOhfa\"",
+      "id": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAHOO_UAAA=",
+      "createdDateTime": "2018-03-06T21:07:44Z",
+      "lastModifiedDateTime": "2018-03-06T21:07:46Z",
+      "changeKey": "CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAHOhfa",
+      "categories": [],
+      "receivedDateTime": "2018-03-06T21:07:45Z",
+      "sentDateTime": "2018-03-06T21:07:45Z",
+      "hasAttachments": false,
+      "internetMessageId": "<CY1PR13MB03310665755F8762A3985B5B9BD90@CY1PR13MB0331.namprd13.prod.outlook.com>",
+      "subject": "Notification from Time Tracker",
+      "bodyPreview": "Submitted Work Hours\r\n\r\nEmployee has submitted work hours for the month.\r\n\r\nGo to Dashboard",
+      "importance": "normal",
+      "parentFolderId": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAuAAAAAAC6L4qsCEMuS7LWwqI2ozTkAQAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAA=",
+      "conversationId": "AAQkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAQACceU-lRE6RIo9_gjqhYvdU=",
+      "isDeliveryReceiptRequested": false,
+      "isReadReceiptRequested": false,
+      "isRead": true,
+      "isDraft": false,
+      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAHOO%2BUAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "inferenceClassification": "focused",
+      "body": {
+        "contentType": "html",
+        "content": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n<meta content=\"text/html; charset=us-ascii\">\r\n</head>\r\n<body style=\"font-family:calibri\">\r\n<h2>Submitted Work Hours </h2>\r\n<p>Employee has submitted work hours for the month.</p>\r\n<table style=\"width:100%\">\r\n<tbody>\r\n<tr>\r\n<td><a href=\"#\">Go to Dashboard </a></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n</body>\r\n</html>\r\n"
+      },
+      "sender": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "from": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "toRecipients": [
+        {
+          "emailAddress": {
+            "name": "Ishiro Watanabe",
+            "address": "Ishiro@onterawe.onmicrosoft.com"
+          }
+        }
+      ],
+      "ccRecipients": [],
+      "bccRecipients": [],
+      "replyTo": []
+    },
+    {
+      "@odata.etag": "W/\"CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAHOhfX\"",
+      "id": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAHOO_TAAA=",
+      "createdDateTime": "2018-03-06T21:07:23Z",
+      "lastModifiedDateTime": "2018-03-06T21:07:26Z",
+      "changeKey": "CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAHOhfX",
+      "categories": [],
+      "receivedDateTime": "2018-03-06T21:07:25Z",
+      "sentDateTime": "2018-03-06T21:07:23Z",
+      "hasAttachments": false,
+      "internetMessageId": "<CY1PR13MB03315C1A0309B93111271DE69BD90@CY1PR13MB0331.namprd13.prod.outlook.com>",
+      "subject": "Notification from Time Tracker",
+      "bodyPreview": "Submitted Work Hours\r\n\r\nEmployee has submitted work hours for the month.\r\n\r\nGo to Dashboard",
+      "importance": "normal",
+      "parentFolderId": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAuAAAAAAC6L4qsCEMuS7LWwqI2ozTkAQAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAA=",
+      "conversationId": "AAQkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAQAK601wtYYwhMo2E_C2Gn3-Q=",
+      "isDeliveryReceiptRequested": false,
+      "isReadReceiptRequested": false,
+      "isRead": true,
+      "isDraft": false,
+      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAHOO%2BTAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "inferenceClassification": "focused",
+      "body": {
+        "contentType": "html",
+        "content": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n<meta content=\"text/html; charset=us-ascii\">\r\n</head>\r\n<body style=\"font-family:calibri\">\r\n<h2>Submitted Work Hours </h2>\r\n<p>Employee has submitted work hours for the month.</p>\r\n<table style=\"width:100%\">\r\n<tbody>\r\n<tr>\r\n<td><a href=\"#\">Go to Dashboard </a></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n</body>\r\n</html>\r\n"
+      },
+      "sender": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "from": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "toRecipients": [
+        {
+          "emailAddress": {
+            "name": "Ishiro Watanabe",
+            "address": "Ishiro@onterawe.onmicrosoft.com"
+          }
+        }
+      ],
+      "ccRecipients": [],
+      "bccRecipients": [],
+      "replyTo": []
+    },
+    {
+      "@odata.etag": "W/\"CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAHOhfU\"",
+      "id": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAHOO_SAAA=",
+      "createdDateTime": "2018-03-06T19:39:53Z",
+      "lastModifiedDateTime": "2018-03-06T19:39:55Z",
+      "changeKey": "CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAHOhfU",
+      "categories": [],
+      "receivedDateTime": "2018-03-06T19:39:54Z",
+      "sentDateTime": "2018-03-06T19:39:53Z",
+      "hasAttachments": false,
+      "internetMessageId": "<CY1PR13MB03317C8D9897AE2D65DCCE989BD90@CY1PR13MB0331.namprd13.prod.outlook.com>",
+      "subject": "Can I have tomorrow off?",
+      "bodyPreview": "",
+      "importance": "normal",
+      "parentFolderId": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAuAAAAAAC6L4qsCEMuS7LWwqI2ozTkAQAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAA=",
+      "conversationId": "AAQkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAQAMKW88qnuUVOmWqU78Nc00Y=",
+      "isDeliveryReceiptRequested": false,
+      "isReadReceiptRequested": false,
+      "isRead": true,
+      "isDraft": false,
+      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAHOO%2BSAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "inferenceClassification": "focused",
+      "body": {
+        "contentType": "html",
+        "content": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n<meta content=\"text/html; charset=iso-8859-1\">\r\n<style type=\"text/css\" style=\"display:none\">\r\n<!--\r\np\r\n\t{margin-top:0;\r\n\tmargin-bottom:0}\r\n-->\r\n</style>\r\n</head>\r\n<body dir=\"ltr\">\r\n<div id=\"divtagdefaultwrapper\" dir=\"ltr\" style=\"font-size:12pt; color:#000000; font-family:Calibri,Helvetica,sans-serif\">\r\n<p style=\"margin-top:0; margin-bottom:0\"><br>\r\n</p>\r\n</div>\r\n</body>\r\n</html>\r\n"
+      },
+      "sender": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "from": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "toRecipients": [
+        {
+          "emailAddress": {
+            "name": "Ishiro Watanabe",
+            "address": "Ishiro@onterawe.onmicrosoft.com"
+          }
+        }
+      ],
+      "ccRecipients": [],
+      "bccRecipients": [],
+      "replyTo": []
+    },
+    {
+      "@odata.etag": "W/\"CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAGhsTu\"",
+      "id": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEMAAAx7Zc556q2T6PRlmuo7wd4AAAGhhrZAAA=",
+      "createdDateTime": "2018-03-04T02:53:20Z",
+      "lastModifiedDateTime": "2018-03-04T02:53:20Z",
+      "changeKey": "CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAGhsTu",
+      "categories": [],
+      "receivedDateTime": "2018-03-04T02:53:20Z",
+      "sentDateTime": "2018-03-04T02:53:17Z",
+      "hasAttachments": true,
+      "internetMessageId": "<MWHPR13MB1277D4ACFC7BC25C1733DDD0F9DB0@MWHPR13MB1277.namprd13.prod.outlook.com>",
+      "subject": "Notification from Time Tracker",
+      "bodyPreview": "Revision Requested\r\n\r\nManager has requested revision of submitted work hours.\r\n\r\nGo to Dashboard",
+      "importance": "normal",
+      "parentFolderId": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAuAAAAAAC6L4qsCEMuS7LWwqI2ozTkAQAx7Zc556q2T6PRlmuo7wd4AAAAAAEMAAA=",
+      "conversationId": "AAQkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAQADVjhMNjhZxDkfkWejcAqec=",
+      "isDeliveryReceiptRequested": false,
+      "isReadReceiptRequested": false,
+      "isRead": false,
+      "isDraft": false,
+      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEMAAAx7Zc556q2T6PRlmuo7wd4AAAGhhrZAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "inferenceClassification": "focused",
+      "body": {
+        "contentType": "html",
+        "content": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n<meta content=\"text/html; charset=us-ascii\">\r\n</head>\r\n<body style=\"font-family:calibri\">\r\n<h2>Revision Requested </h2>\r\n<p>Manager has requested revision of submitted work hours.</p>\r\n<table style=\"width:100%\">\r\n<tbody>\r\n<tr>\r\n<td><a href=\"#\">Go to Dashboard </a></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n</body>\r\n</html>\r\n"
+      },
+      "sender": {
+        "emailAddress": {
+          "name": "Ishiro Watanabe",
+          "address": "Ishiro@onterawe.onmicrosoft.com"
+        }
+      },
+      "from": {
+        "emailAddress": {
+          "name": "Ishiro Watanabe",
+          "address": "Ishiro@onterawe.onmicrosoft.com"
+        }
+      },
+      "toRecipients": [
+        {
+          "emailAddress": {
+            "name": "Tsumugi Nakai",
+            "address": "Tsumugi@onterawe.onmicrosoft.com"
+          }
+        }
+      ],
+      "ccRecipients": [],
+      "bccRecipients": [],
+      "replyTo": []
+    },
+    {
+      "@odata.etag": "W/\"CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAGhr0j\"",
+      "id": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAGhhbxAAA=",
+      "createdDateTime": "2018-03-03T22:14:10Z",
+      "lastModifiedDateTime": "2018-03-03T22:14:12Z",
+      "changeKey": "CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAGhr0j",
+      "categories": [],
+      "receivedDateTime": "2018-03-03T22:14:11Z",
+      "sentDateTime": "2018-03-03T22:14:10Z",
+      "hasAttachments": false,
+      "internetMessageId": "<CY1PR13MB03317EFF1AAD56AC00DAC9BB9BC40@CY1PR13MB0331.namprd13.prod.outlook.com>",
+      "subject": "Notification from Time Tracker",
+      "bodyPreview": "Submitted Work Hours\r\n\r\nEmployee has submitted work hours for the month.\r\n\r\nGo to Dashboard",
+      "importance": "normal",
+      "parentFolderId": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAuAAAAAAC6L4qsCEMuS7LWwqI2ozTkAQAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAA=",
+      "conversationId": "AAQkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAQAO7E0mC21cZDqhUOkJrgl1E=",
+      "isDeliveryReceiptRequested": false,
+      "isReadReceiptRequested": false,
+      "isRead": true,
+      "isDraft": false,
+      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAGhhbxAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "inferenceClassification": "focused",
+      "body": {
+        "contentType": "html",
+        "content": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n<meta content=\"text/html; charset=us-ascii\">\r\n</head>\r\n<body style=\"font-family:calibri\">\r\n<h2>Submitted Work Hours </h2>\r\n<p>Employee has submitted work hours for the month.</p>\r\n<table style=\"width:100%\">\r\n<tbody>\r\n<tr>\r\n<td><a href=\"#\">Go to Dashboard </a></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n</body>\r\n</html>\r\n"
+      },
+      "sender": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "from": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "toRecipients": [
+        {
+          "emailAddress": {
+            "name": "Ishiro Watanabe",
+            "address": "Ishiro@onterawe.onmicrosoft.com"
+          }
+        }
+      ],
+      "ccRecipients": [],
+      "bccRecipients": [],
+      "replyTo": []
+    },
+    {
+      "@odata.etag": "W/\"CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAGhr0g\"",
+      "id": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAGhhbwAAA=",
+      "createdDateTime": "2018-03-03T22:13:54Z",
+      "lastModifiedDateTime": "2018-03-03T22:13:56Z",
+      "changeKey": "CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAGhr0g",
+      "categories": [],
+      "receivedDateTime": "2018-03-03T22:13:55Z",
+      "sentDateTime": "2018-03-03T22:13:54Z",
+      "hasAttachments": false,
+      "internetMessageId": "<CY1PR13MB03318D57182AC6C9C9B310689BC40@CY1PR13MB0331.namprd13.prod.outlook.com>",
+      "subject": "Notification from Time Tracker",
+      "bodyPreview": "Submitted Work Hours\r\n\r\nEmployee has submitted work hours for the month.\r\n\r\nGo to Dashboard",
+      "importance": "normal",
+      "parentFolderId": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAuAAAAAAC6L4qsCEMuS7LWwqI2ozTkAQAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAA=",
+      "conversationId": "AAQkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAQAMYgk7aCOgVHpK5PFMD_LJo=",
+      "isDeliveryReceiptRequested": false,
+      "isReadReceiptRequested": false,
+      "isRead": true,
+      "isDraft": false,
+      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAGhhbwAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "inferenceClassification": "focused",
+      "body": {
+        "contentType": "html",
+        "content": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n<meta content=\"text/html; charset=us-ascii\">\r\n</head>\r\n<body style=\"font-family:calibri\">\r\n<h2>Submitted Work Hours </h2>\r\n<p>Employee has submitted work hours for the month.</p>\r\n<table style=\"width:100%\">\r\n<tbody>\r\n<tr>\r\n<td><a href=\"#\">Go to Dashboard </a></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n</body>\r\n</html>\r\n"
+      },
+      "sender": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "from": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "toRecipients": [
+        {
+          "emailAddress": {
+            "name": "Ishiro Watanabe",
+            "address": "Ishiro@onterawe.onmicrosoft.com"
+          }
+        }
+      ],
+      "ccRecipients": [],
+      "bccRecipients": [],
+      "replyTo": []
+    },
+    {
+      "@odata.etag": "W/\"CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAGEk/5\"",
+      "id": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAGEeiAAAA=",
+      "createdDateTime": "2018-03-03T03:20:36Z",
+      "lastModifiedDateTime": "2018-03-03T03:25:00Z",
+      "changeKey": "CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAGEk/5",
+      "categories": [],
+      "receivedDateTime": "2018-03-03T03:20:36Z",
+      "sentDateTime": "2018-03-03T03:20:36Z",
+      "hasAttachments": false,
+      "internetMessageId": "<CY1PR13MB0331A4AC41515EA090197B9D9BC40@CY1PR13MB0331.namprd13.prod.outlook.com>",
+      "subject": "Notification from Time Tracker",
+      "bodyPreview": "Submitted Work Hours\r\n\r\nEmployee has submitted work hours for the month.\r\n\r\nGo to Dashboard",
+      "importance": "normal",
+      "parentFolderId": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAuAAAAAAC6L4qsCEMuS7LWwqI2ozTkAQAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAA=",
+      "conversationId": "AAQkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAQAO_D92cirUJJpBWcF074pfM=",
+      "isDeliveryReceiptRequested": false,
+      "isReadReceiptRequested": false,
+      "isRead": true,
+      "isDraft": false,
+      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAGEeiAAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "inferenceClassification": "focused",
+      "body": {
+        "contentType": "html",
+        "content": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n<meta content=\"text/html; charset=us-ascii\">\r\n</head>\r\n<body style=\"font-family:calibri\">\r\n<h2>Submitted Work Hours </h2>\r\n<p>Employee has submitted work hours for the month.</p>\r\n<table style=\"width:100%\">\r\n<tbody>\r\n<tr>\r\n<td><a href=\"#\">Go to Dashboard </a></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n</body>\r\n</html>\r\n"
+      },
+      "sender": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "from": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "toRecipients": [
+        {
+          "emailAddress": {
+            "name": "Ishiro Watanabe",
+            "address": "Ishiro@onterawe.onmicrosoft.com"
+          }
+        }
+      ],
+      "ccRecipients": [],
+      "bccRecipients": [],
+      "replyTo": []
+    },
+    {
+      "@odata.etag": "W/\"CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAGEk/4\"",
+      "id": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAGEeh-AAA=",
+      "createdDateTime": "2018-03-03T03:20:08Z",
+      "lastModifiedDateTime": "2018-03-03T03:25:00Z",
+      "changeKey": "CQAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAGEk/4",
+      "categories": [],
+      "receivedDateTime": "2018-03-03T03:20:21Z",
+      "sentDateTime": "2018-03-03T03:20:17Z",
+      "hasAttachments": false,
+      "internetMessageId": "<CY1PR13MB03318F70CA1629E754AE1A169BC40@CY1PR13MB0331.namprd13.prod.outlook.com>",
+      "subject": "Notification from Time Tracker",
+      "bodyPreview": "Submitted Work Hours\r\n\r\nEmployee has submitted work hours for the month.\r\n\r\nGo to Dashboard",
+      "importance": "normal",
+      "parentFolderId": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAuAAAAAAC6L4qsCEMuS7LWwqI2ozTkAQAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAA=",
+      "conversationId": "AAQkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAQAG_SjfitdXhBlmCs3KlNXwg=",
+      "isDeliveryReceiptRequested": false,
+      "isReadReceiptRequested": false,
+      "isRead": true,
+      "isDraft": false,
+      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEJAAAx7Zc556q2T6PRlmuo7wd4AAAGEeh%2FAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "inferenceClassification": "focused",
+      "body": {
+        "contentType": "html",
+        "content": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n<meta content=\"text/html; charset=us-ascii\">\r\n</head>\r\n<body style=\"font-family:calibri\">\r\n<h2>Submitted Work Hours </h2>\r\n<p>Employee has submitted work hours for the month.</p>\r\n<table style=\"width:100%\">\r\n<tbody>\r\n<tr>\r\n<td><a href=\"#\">Go to Dashboard </a></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n</body>\r\n</html>\r\n"
+      },
+      "sender": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "from": {
+        "emailAddress": {
+          "name": "Tsumugi Nakai",
+          "address": "Tsumugi@onterawe.onmicrosoft.com"
+        }
+      },
+      "toRecipients": [
+        {
+          "emailAddress": {
+            "name": "Ishiro Watanabe",
+            "address": "Ishiro@onterawe.onmicrosoft.com"
+          }
+        }
+      ],
+      "ccRecipients": [],
+      "bccRecipients": [],
+      "replyTo": []
+    },
+    {
+      "@odata.type": "#microsoft.graph.eventMessage",
+      "@odata.etag": "W/\"DAAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAEXpOF\"",
+      "id": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEMAAAx7Zc556q2T6PRlmuo7wd4AAAEXnK-AAA=",
+      "createdDateTime": "2018-03-01T17:53:04Z",
+      "lastModifiedDateTime": "2018-03-01T18:28:24Z",
+      "changeKey": "DAAAABYAAAAx7Zc556q2T6PRlmuo7wd4AAAEXpOF",
+      "categories": [],
+      "receivedDateTime": "2018-03-01T17:53:04Z",
+      "sentDateTime": "2018-03-01T17:53:02Z",
+      "hasAttachments": false,
+      "internetMessageId": "<CY1PR13MB0331EBBF68C1F1A7F3800449FDC60@CY1PR13MB0331.namprd13.prod.outlook.com>",
+      "subject": "Accepted: Test Event",
+      "bodyPreview": "",
+      "importance": "normal",
+      "parentFolderId": "AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAuAAAAAAC6L4qsCEMuS7LWwqI2ozTkAQAx7Zc556q2T6PRlmuo7wd4AAAAAAEMAAA=",
+      "conversationId": "AAQkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwAQAPswIUCNUZVFuNqQWuFRPNI=",
+      "isDeliveryReceiptRequested": null,
+      "isReadReceiptRequested": false,
+      "isRead": false,
+      "isDraft": false,
+      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADFlZDliZjNiLWYzMDUtNDY3MC05OTVkLWY3Mjc0ZGU0Y2MyNwBGAAAAAAC6L4qsCEMuS7LWwqI2ozTkBwAx7Zc556q2T6PRlmuo7wd4AAAAAAEMAAAx7Zc556q2T6PRlmuo7wd4AAAEXnK%2FAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "inferenceClassification": "focused",
+      "meetingMessageType": "meetingAccepted",
+      "body": {
+        "contentType": "html",
+        "content": ""
+      },
+      "sender": {
+        "emailAddress": {
+          "name": "Shouji Yoshii",
+          "address": "Shouji@onterawe.onmicrosoft.com"
+        }
+      },
+      "from": {
+        "emailAddress": {
+          "name": "Shouji Yoshii",
+          "address": "Shouji@onterawe.onmicrosoft.com"
+        }
+      },
+      "toRecipients": [
+        {
+          "emailAddress": {
+            "name": "Tsumugi Nakai",
+            "address": "Tsumugi@onterawe.onmicrosoft.com"
+          }
+        }
+      ],
+      "ccRecipients": [],
+      "bccRecipients": [],
+      "replyTo": []
+    }
+  ]
+}

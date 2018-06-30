@@ -1,0 +1,57 @@
+﻿@using GoLocal.TimeTracker.Dashboard.Resources
+@inject LocService SharedLocalizer
+@model ErrorViewModel
+@{
+    ViewData["Title"] = " Admin consent Error";
+}
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ConsentError</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+
+
+        <div class="ms-Grid">
+            <div class="ms-Grid-row">
+                <div class="ms-Grid-col ms-sm6 ms-md5 ms-lg8 errorbg ms-hiddenSm">
+                    
+
+                </div>
+                <div class="ms-Grid-col ms-sm12 ms-md5 ms-lg4 contentBox ">
+                    <h1>  @SharedLocalizer.GetLocalizedHtmlString("CannotAccessApp") </h1>
+                    <p>  @SharedLocalizer.GetLocalizedHtmlString("AdminConsentError") :</p>
+
+                    <div class="ErrorText" id="p1">
+                        @Model.ErrorMessage
+                    </div>
+                    <button onclick="copyToClipboard('#p1')" class="ms-Button ms-Button--primary">
+                        <span class="ms-Button-label">  @SharedLocalizer.GetLocalizedHtmlString("Copyurl")</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+    }
+</body>
+</html>
+
+
+<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.3.0/css/fabric.min.css">
+<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.components.min.css" />
+<link href="~/css/ConsentError.css" rel="stylesheet" />
+<script src="~/js/ConsentError.js"></script>
+

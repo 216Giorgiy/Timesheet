@@ -1,0 +1,89 @@
+﻿{
+  'displayName': '03e871c9-a5c4-4f49-be4b-33484389b35b_workhours',
+  'columns': [
+    {
+      "name": "ObjectIdentifier",
+      "text": {}
+    },
+    {
+      "name": "Date",
+      "text": {}
+    },
+    {
+      "name": "MeetingHours",
+      "number": {}
+    },
+    {
+      "name": "MeetingMinutes",
+      "number": {}
+    },
+    {
+      "name": "MeetingAdjustedHours",
+      "number": {}
+    },
+    {
+      "name": "MeetingAdjustedMinutes",
+      "number": {}
+    },
+    {
+      "name": "EmailHours",
+      "number": {}
+    },
+    {
+      "name": "EmailMinutes",
+      "number": {}
+    },
+    {
+      "name": "EmailAdjustedHours",
+      "number": {}
+    },
+    {
+      "name": "EmailAdjustedMinutes",
+      "number": {}
+    },
+    {
+      "name": "OtherHours",
+      "number": {}
+    },
+    {
+      "name": "OtherMinutes",
+      "number": {}
+    },
+    {
+      "name": "OtherAdjustedHours",
+      "number": {}
+    },
+    {
+      "name": "OtherAdjustedMinutes",
+      "number": {}
+    },
+    {
+      "name": "AdjustedHoursReason",
+      "text": {}
+    },
+    {
+      "name": "TeamHoursItemState",
+      "text": {}
+    },
+    {
+      "name": "TeamHoursSubmittedDate",
+      "dateTime": {}
+    },
+    {
+      "name": "TeamHoursItemState",
+      "text": {}
+    },
+    {
+      "name": "TeamHoursSubmittedDate",
+      "dateTime": {}
+    },
+    {
+      "name": "ItemState",
+      "text": {}
+    },
+    {
+      "name": "SubmittedDate",
+      "dateTime": {}
+    }
+  ]
+}

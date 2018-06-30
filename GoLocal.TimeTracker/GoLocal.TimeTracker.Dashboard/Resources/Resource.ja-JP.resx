@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>輸出する</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>先月</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>先週</value>
+  </data>
+  <data name="lblDashboard" xml:space="preserve">
+    <value>ダッシュボード</value>
+  </data>
+  <data name="lblMonthlyHours" xml:space="preserve">
+    <value>月の時間</value>
+  </data>
+  <data name="lblMyTeamHours" xml:space="preserve">
+    <value>私のチームの勤務時間</value>
+  </data>
+  <data name="PercentageofEmployees" xml:space="preserve">
+    <value>従業員の割合</value>
+  </data>
+  <data name="NoOvertimeReported" xml:space="preserve">
+    <value>過労を報告した従業員はいません</value>
+  </data>
+  <data name="NoofEmployees" xml:space="preserve">
+    <value>従業員の数</value>
+  </data>
+  <data name="lblNotification" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="lblWeeklyHours" xml:space="preserve">
+    <value>メッセージ</value>
+  </data>
+  <data name="MyTeamsHours" xml:space="preserve">
+    <value>私のチームの時間</value>
+  </data>
+  <data name="MyTimings" xml:space="preserve">
+    <value>勤務時間</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>このデータを印刷する</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>セーブ</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>サーチ</value>
+  </data>
+  <data name="SubmitToHR" xml:space="preserve">
+    <value>人事部に提出する</value>
+  </data>
+  <data name="TeamMonthlyHours" xml:space="preserve">
+    <value>毎月の時間</value>
+  </data>
+  <data name="TeamWeeklyHours" xml:space="preserve">
+    <value>週の時間</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>今月</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>タイムシート</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>昨日</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>アクション</value>
+  </data>
+  <data name="AdjustedHours" xml:space="preserve">
+    <value>調整された時間</value>
+  </data>
+  <data name="AuthenticatedSuccessfully" xml:space="preserve">
+    <value>認証が成功しました</value>
+  </data>
+  <data name="ComputedHours" xml:space="preserve">
+    <value>時間を計算する</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日付</value>
+  </data>
+  <data name="EditHours" xml:space="preserve">
+    <value>時間の編集</value>
+  </data>
+  <data name="EditTime" xml:space="preserve">
+    <value>編集時間</value>
+  </data>
+  <data name="EmailHours" xml:space="preserve">
+    <value>メールの時間</value>
+  </data>
+  <data name="EmployeeID" xml:space="preserve">
+    <value>従業員ID</value>
+  </data>
+  <data name="EmployeeName" xml:space="preserve">
+    <value>従業員名</value>
+  </data>
+  <data name="FRI" xml:space="preserve">
+    <value>金曜日</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="MON" xml:space="preserve">
+    <value>月曜日</value>
+  </data>
+  <data name="SAT" xml:space="preserve">
+    <value>土曜日</value>
+  </data>
+  <data name="SignINmethodcalled" xml:space="preserve">
+    <value>SignINメソッドが呼び出されました</value>
+  </data>
+  <data name="SUN" xml:space="preserve">
+    <value>日曜日</value>
+  </data>
+  <data name="THU" xml:space="preserve">
+    <value>木曜日</value>
+  </data>
+  <data name="TUE" xml:space="preserve">
+    <value>火曜日</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>ユーザー</value>
+  </data>
+  <data name="WED" xml:space="preserve">
+    <value>水曜日</value>
+  </data>
+  <data name="Week1" xml:space="preserve">
+    <value>週1</value>
+  </data>
+  <data name="Week2" xml:space="preserve">
+    <value>週2</value>
+  </data>
+  <data name="Week3" xml:space="preserve">
+    <value>週3</value>
+  </data>
+  <data name="Week4" xml:space="preserve">
+    <value>週4</value>
+  </data>
+  <data name="Week5" xml:space="preserve">
+    <value>週5</value>
+  </data>
+  <data name="WorkingHours" xml:space="preserve">
+    <value>労働時間</value>
+  </data>
+  <data name="DashboardSubmitHoursMsg" xml:space="preserve">
+    <value>あなたはその月の就業時間を提出しようとしています。</value>
+  </data>
+  <data name="EditEmailHours" xml:space="preserve">
+    <value>メールの時間を編集する</value>
+  </data>
+  <data name="EditMeetingHours" xml:space="preserve">
+    <value>会議時間の編集</value>
+  </data>
+  <data name="EditOtherHours" xml:space="preserve">
+    <value>他の時間を編集する</value>
+  </data>
+  <data name="EditWorkHours" xml:space="preserve">
+    <value>勤務時間の編集</value>
+  </data>
+  <data name="Goal" xml:space="preserve">
+    <value>ゴール</value>
+  </data>
+  <data name="Hrs" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="LastSubmitted" xml:space="preserve">
+    <value>最終提出日</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>マネージャー</value>
+  </data>
+  <data name="ManagerName" xml:space="preserve">
+    <value>マネージャ名</value>
+  </data>
+  <data name="MeetingHours" xml:space="preserve">
+    <value>会合時間</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>月</value>
+  </data>
+  <data name="Ontime" xml:space="preserve">
+    <value>定刻</value>
+  </data>
+  <data name="OtherHours" xml:space="preserve">
+    <value>その他の時間</value>
+  </data>
+  <data name="OverWorked" xml:space="preserve">
+    <value>過労</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>理由</value>
+  </data>
+  <data name="h" xml:space="preserve">
+    <value>h</value>
+  </data>
+  <data name="m" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="RegularHrs" xml:space="preserve">
+    <value>正規の時間</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>今日</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="Overtime" xml:space="preserve">
+    <value>時間とともに</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="AdminConsentError" xml:space="preserve">
+    <value>タイムトラッカーは、組織内の管理者のみが許可するリソースにアクセスするためのアクセス許可が必要です。このアプリケーションに許可を与えるには、組織の管理者に連絡してください。組織の管理者に次のURLを入力してアクセスをリクエストする</value>
+  </data>
+  <data name="CannotAccessApp" xml:space="preserve">
+    <value>このアプリケーションにアクセスすることはできません</value>
+  </data>
+  <data name="Copyurl" xml:space="preserve">
+    <value>URLをコピー</value>
+  </data>
+  <data name="HaveAdminAccount" xml:space="preserve">
+    <value>管理者アカウントをお持ちですか？権限を与えるにはこのURLにアクセスしてください</value>
+  </data>
+  <data name="DevMode" xml:space="preserve">
+    <value>開発モード</value>
+  </data>
+  <data name="DevModeEnable" xml:space="preserve">
+    <value>デプロイされたアプリケーションでは、開発環境を有効にしないでください。エンドユーザーに表示される例外の機密情報が表示される可能性があります。ローカルデバッグの場合は、ASPNETCORE_ENVIRONMENT環境変数をDevelopmentに設定し、アプリケーションを再起動することで開発環境を有効にすることができます</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>エラー</value>
+  </data>
+  <data name="ErrorOccurred" xml:space="preserve">
+    <value>リクエストの処理中にエラーが発生しました</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>メッセージ</value>
+  </data>
+  <data name="RequestId" xml:space="preserve">
+    <value>リクエストID</value>
+  </data>
+  <data name="SwappingToDev" xml:space="preserve">
+    <value>開発環境にスワップすると、発生したエラーに関する詳細情報が表示されます</value>
+  </data>
+  <data name="SubmittedOn" xml:space="preserve">
+    <value>- に提出</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>持続する</value>
+  </data>
+  <data name="DoYouWantToContinue" xml:space="preserve">
+    <value>続けたいですか？</value>
+  </data>
+  <data name="EditWorkHoursUpdatedFailureMsg" xml:space="preserve">
+    <value>作業時間の更新に失敗しました。もう一度お試しください。</value>
+  </data>
+  <data name="EditWorkHoursUpdatedSuccessMsg" xml:space="preserve">
+    <value>勤務時間が更新されました。</value>
+  </data>
+  <data name="FailedtoSubmit" xml:space="preserve">
+    <value>送信に失敗しました</value>
+  </data>
+  <data name="IsYourManager" xml:space="preserve">
+    <value>あなたのマネージャー</value>
+  </data>
+  <data name="NotSubmittedHours" xml:space="preserve">
+    <value>提出されていない時間</value>
+  </data>
+  <data name="SubmittedHours" xml:space="preserve">
+    <value>投稿時間</value>
+  </data>
+  <data name="WorkHours" xml:space="preserve">
+    <value>勤務時間</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="RequestRevision" xml:space="preserve">
+    <value>リビジョンをリクエストする</value>
+  </data>
+  <data name="Revise" xml:space="preserve">
+    <value>修正</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="EditNotification" xml:space="preserve">
+    <value>変更を保持するには、[保存]をクリックしてから新しい日付を選択してください</value>
+  </data>
+  <data name="SubmitConfirmMsg" xml:space="preserve">
+    <value>あなたは時間を提出しようとしている、あなたは続行したいですか?</value>
+  </data>
+  <data name="MyTeamReviseFailureMsg" xml:space="preserve">
+    <value>時間の改訂に失敗しました。もう一度お試しください。</value>
+  </data>
+  <data name="MyTeamReviseSuccessMsg" xml:space="preserve">
+    <value>改訂のために送信された時間。</value>
+  </data>
+  <data name="NoNotifications" xml:space="preserve">
+    <value>通知がありません</value>
+  </data>
+  <data name="InvalidTimeFormatMessage" xml:space="preserve">
+    <value>時間をhh：mm形式で入力します（例：01：05）</value>
+  </data>
+  <data name="SelectedMonth" xml:space="preserve">
+    <value>選択した月</value>
+  </data>
+  <data name="SelectedWeek" xml:space="preserve">
+    <value>月の週</value>
+  </data>
+  <data name="TotalHrsExceedErrorMessage" xml:space="preserve">
+    <value>1日の合計時間は24時間未満にする必要があります</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>数</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>日付を選択</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>アクション</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>従業員</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>毎月</value>
+  </data>
+  <data name="MyTeams" xml:space="preserve">
+    <value>私のチーム</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>ステージ</value>
+  </data>
+  <data name="TotalHours" xml:space="preserve">
+    <value>合計時間</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>毎週</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>金曜日</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>月曜</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>土曜日</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>日曜日</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>木曜日</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>火曜日</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>水曜日</value>
+  </data>
+  <data name="DashboardFailureSubmitHoursMsg" xml:space="preserve">
+    <value>提出する勤務時間はありません</value>
+  </data>
+  <data name="SubmitTeamHours" xml:space="preserve">
+    <value>あなたはチームの時間を提出しようとしています</value>
+  </data>
+  <data name="NotSubmitWorkHours1" xml:space="preserve">
+    <value>月の勤務時間の提出</value>
+  </data>
+  <data name="NotRequestWorkHoursRevision2" xml:space="preserve">
+    <value>あなたのマネージャーから提供された理由は、再度審査する必要があります</value>
+  </data>
+  <data name="NotSubmitTeamHours" xml:space="preserve">
+    <value>マネージャーは月の勤務時間を提出しています</value>
+  </data>
+  <data name="NotRequestWorkHoursRevision1" xml:space="preserve">
+    <value>今月の勤務時間</value>
+  </data>
+  <data name="CalculatedEmailHours" xml:space="preserve">
+    <value>計算されたメールの時間</value>
+  </data>
+  <data name="CalculatedMeetingHours" xml:space="preserve">
+    <value>計算された会議時間</value>
+  </data>
+  <data name="CalculatedOtherHours" xml:space="preserve">
+    <value>計算された他の時間</value>
+  </data>
+  <data name="TimeBoxMaxErrorMessage" xml:space="preserve">
+    <value>時間は23:59を超えてはなりません</value>
+  </data>
+  <data name="RevisionReason" xml:space="preserve">
+    <value>時間の変更が必要 -</value>
+  </data>
+  <data name="CalculatedHours" xml:space="preserve">
+    <value>計算時間</value>
+  </data>
+  <data name="SubmitSuccess" xml:space="preserve">
+    <value>成功を提出</value>
+  </data>
+  <data name="Analytics" xml:space="preserve">
+    <value>アナリティクス</value>
+  </data>
+  <data name="ReportHours" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>読み込み中</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="Analyticslegend" xml:space="preserve">
+    <value>過労した従業員％</value>
+  </data>
+  <data name="lblAnalytics" xml:space="preserve">
+    <value>アナリティクス</value>
+  </data>
+  <data name="lblexport" xml:space="preserve">
+    <value>輸出する</value>
+  </data>
+  <data name="lblPrint" xml:space="preserve">
+    <value>印刷</value>
+  </data>
+  <data name="lblReportHours" xml:space="preserve">
+    <value>報告時間</value>
+  </data>
+</root>

@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>Last Month</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>Last Week</value>
+  </data>
+  <data name="lblDashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="lblMonthlyHours" xml:space="preserve">
+    <value>Monthly Hours</value>
+  </data>
+  <data name="lblReportHours" xml:space="preserve">
+    <value>Report Hours</value>
+  </data>
+  <data name="NoOvertimeReported" xml:space="preserve">
+    <value>No employees reported overtime in</value>
+  </data>
+  <data name="lblAnalytics" xml:space="preserve">
+    <value>Analytics</value>
+  </data>
+  <data name="lblMyTeamHours" xml:space="preserve">
+    <value>My Team Hours</value>
+  </data>
+  <data name="lblNotification" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="lblWeeklyHours" xml:space="preserve">
+    <value>Weekly Hours</value>
+  </data>
+  <data name="PercentageofEmployees" xml:space="preserve">
+    <value>% Employees</value>
+  </data>
+  <data name="NoofEmployees" xml:space="preserve">
+    <value># Employees</value>
+  </data>
+  <data name="MyTeamsHours" xml:space="preserve">
+    <value>My Team Hours</value>
+  </data>
+  <data name="MyTimings" xml:space="preserve">
+    <value>Work Hours</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SubmitToHR" xml:space="preserve">
+    <value>Submit to HR</value>
+  </data>
+  <data name="TeamMonthlyHours" xml:space="preserve">
+    <value>Monthly Hours</value>
+  </data>
+  <data name="TeamWeeklyHours" xml:space="preserve">
+    <value>Weekly Hours</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>This Month</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Timesheet</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="AdjustedHours" xml:space="preserve">
+    <value>Adjusted Hours</value>
+  </data>
+  <data name="ComputedHours" xml:space="preserve">
+    <value>Computed Hours</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="EditHours" xml:space="preserve">
+    <value>Edit Hours</value>
+  </data>
+  <data name="EditTime" xml:space="preserve">
+    <value>Edit Time</value>
+  </data>
+  <data name="EmailHours" xml:space="preserve">
+    <value>Email Hours</value>
+  </data>
+  <data name="EmployeeID" xml:space="preserve">
+    <value>Employee ID</value>
+  </data>
+  <data name="EmployeeName" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
+  <data name="FRI" xml:space="preserve">
+    <value>FRI</value>
+  </data>
+  <data name="Goal" xml:space="preserve">
+    <value>Goal</value>
+  </data>
+  <data name="Hrs" xml:space="preserve">
+    <value>Hrs</value>
+  </data>
+  <data name="LastSubmitted" xml:space="preserve">
+    <value>Last Submitted</value>
+  </data>
+  <data name="ManagerName" xml:space="preserve">
+    <value>Manager Name</value>
+  </data>
+  <data name="MeetingHours" xml:space="preserve">
+    <value>Meeting Hours</value>
+  </data>
+  <data name="MON" xml:space="preserve">
+    <value>MON</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Ontime" xml:space="preserve">
+    <value>On Time</value>
+  </data>
+  <data name="OtherHours" xml:space="preserve">
+    <value>Other Hours</value>
+  </data>
+  <data name="OverTime" xml:space="preserve">
+    <value>Overtime</value>
+  </data>
+  <data name="OverWorked" xml:space="preserve">
+    <value>OverWorked</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="Revise" xml:space="preserve">
+    <value>Revise</value>
+  </data>
+  <data name="RequestRevision" xml:space="preserve">
+    <value>Request Revision</value>
+  </data>
+  <data name="RejectReason" xml:space="preserve">
+    <value>Reject Reason</value>
+  </data>
+  <data name="SAT" xml:space="preserve">
+    <value>SAT</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>Select Date</value>
+  </data>
+  <data name="SelectMonth" xml:space="preserve">
+    <value>Select Month</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Sign Out</value>
+  </data>
+  <data name="Submittedtomanager" xml:space="preserve">
+    <value>Submitted to manager</value>
+  </data>
+  <data name="SUN" xml:space="preserve">
+    <value>SUN</value>
+  </data>
+  <data name="THU" xml:space="preserve">
+    <value>THU</value>
+  </data>
+  <data name="TimeAdjusted" xml:space="preserve">
+    <value>Time adjusted</value>
+  </data>
+  <data name="TotalHours" xml:space="preserve">
+    <value>Total Hours</value>
+  </data>
+  <data name="TUE" xml:space="preserve">
+    <value>TUE</value>
+  </data>
+  <data name="WED" xml:space="preserve">
+    <value>WED</value>
+  </data>
+  <data name="Week1" xml:space="preserve">
+    <value>Week1</value>
+  </data>
+  <data name="Week2" xml:space="preserve">
+    <value>Week2</value>
+  </data>
+  <data name="Week3" xml:space="preserve">
+    <value>Week3</value>
+  </data>
+  <data name="Week4" xml:space="preserve">
+    <value>Week4</value>
+  </data>
+  <data name="Week5" xml:space="preserve">
+    <value>Week5</value>
+  </data>
+  <data name="WorkingHours" xml:space="preserve">
+    <value>Working Hours</value>
+  </data>
+  <data name="AuthenticatedSuccessfully" xml:space="preserve">
+    <value>Authenticated Successfully</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SignINmethodcalled" xml:space="preserve">
+    <value>SignIN method called</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="DashboardSubmitHoursMsg" xml:space="preserve">
+    <value>You are about to submit work hours to your manager for the month(s) of</value>
+  </data>
+  <data name="EditEmailHours" xml:space="preserve">
+    <value>Edit Email Hours</value>
+  </data>
+  <data name="AdjustMeetingHours" xml:space="preserve">
+    <value>Adjust Meeting Hours</value>
+  </data>
+  <data name="EditOtherHours" xml:space="preserve">
+    <value>Edit Other Hours</value>
+  </data>
+  <data name="EditWorkHours" xml:space="preserve">
+    <value>Edit Work Hours</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>Manager</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="h" xml:space="preserve">
+    <value>h</value>
+  </data>
+  <data name="m" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="RegularHrs" xml:space="preserve">
+    <value>Regular Hrs</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="AdminConsentError" xml:space="preserve">
+    <value>Time Tracker needs permission to access the resources in your organization that only an admin can grant. Contact your organization admin to grant permission to this application. Provide the below URL to your organization admin to request access</value>
+  </data>
+  <data name="CannotAccessApp" xml:space="preserve">
+    <value>You cannot access this application</value>
+  </data>
+  <data name="Copyurl" xml:space="preserve">
+    <value>Copy url</value>
+  </data>
+  <data name="DevMode" xml:space="preserve">
+    <value>Development Mode</value>
+  </data>
+  <data name="DevModeEnable" xml:space="preserve">
+    <value>Development environment should not be enabled in deployed applications, as it can result in sensitive information from exceptions being displayed to end users. For local debugging, development environment can be enabled by setting the ASPNETCORE_ENVIRONMENT environment variable to Development, and restarting the application.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorOccurred" xml:space="preserve">
+    <value>An error occurred while processing your request</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="RequestId" xml:space="preserve">
+    <value>Request ID</value>
+  </data>
+  <data name="SwappingToDev" xml:space="preserve">
+    <value>Swapping to Development environment will display more detailed information about the error that occurred</value>
+  </data>
+  <data name="SubmittedOn" xml:space="preserve">
+    <value>Submitted On</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="DoYouWantToContinue" xml:space="preserve">
+    <value>Do you want to continue?</value>
+  </data>
+  <data name="EditWorkHoursUpdatedFailureMsg" xml:space="preserve">
+    <value>Update of Work hours failed. Please try again.</value>
+  </data>
+  <data name="EditWorkHoursUpdatedSuccessMsg" xml:space="preserve">
+    <value>Work Hours have been updated successfully.</value>
+  </data>
+  <data name="FailedtoSubmit" xml:space="preserve">
+    <value>Failed to Submit</value>
+  </data>
+  <data name="IsYourManager" xml:space="preserve">
+    <value>is your manager</value>
+  </data>
+  <data name="NotSubmittedHours" xml:space="preserve">
+    <value>Not Submitted Hours</value>
+  </data>
+  <data name="SubmittedHours" xml:space="preserve">
+    <value>Submitted Hours</value>
+  </data>
+  <data name="WorkHours" xml:space="preserve">
+    <value>Work Hours</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="EditNotification" xml:space="preserve">
+    <value>To retain your changes, click Save before selecting a new date</value>
+  </data>
+  <data name="SubmitConfirmMsg" xml:space="preserve">
+    <value>You are about to submit, do you want to continue?</value>
+  </data>
+  <data name="MyTeamReviseFailureMsg" xml:space="preserve">
+    <value>Revision of hours failed. Please try again.</value>
+  </data>
+  <data name="MyTeamReviseSuccessMsg" xml:space="preserve">
+    <value>Hours sent for revision successfully.</value>
+  </data>
+  <data name="NoNotifications" xml:space="preserve">
+    <value>You have no notifications</value>
+  </data>
+  <data name="InvalidTimeFormatMessage" xml:space="preserve">
+    <value>Enter time in hh:mm format (eg:01:05)</value>
+  </data>
+  <data name="TotalHrsExceedErrorMessage" xml:space="preserve">
+    <value>Total Hours for the day should be less than 24 hours</value>
+  </data>
+  <data name="SelectedMonth" xml:space="preserve">
+    <value>Selected Month</value>
+  </data>
+  <data name="SelectedWeek" xml:space="preserve">
+    <value>Week</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>Week</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+  <data name="MyTeams" xml:space="preserve">
+    <value>My Teams</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>Weekly</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Wednesday</value>
+  </data>
+  <data name="DashboardFailureSubmitHoursMsg" xml:space="preserve">
+    <value>No work hours available to submit</value>
+  </data>
+  <data name="SubmitTeamHours" xml:space="preserve">
+    <value>You are about to submit team hours for </value>
+  </data>
+  <data name="NotSubmitWorkHours1" xml:space="preserve">
+    <value>Work hours submission for the month of</value>
+  </data>
+  <data name="NotRequestWorkHoursRevision2" xml:space="preserve">
+    <value>requires to be reviewed again, the reason provided by your manager is</value>
+  </data>
+  <data name="NotSubmitTeamHours" xml:space="preserve">
+    <value>Manager has submitted work hours for the month of</value>
+  </data>
+  <data name="NotRequestWorkHoursRevision1" xml:space="preserve">
+    <value>The work hours for the month of</value>
+  </data>
+  <data name="CalculatedHours" xml:space="preserve">
+    <value>Calculated Hours</value>
+  </data>
+  <data name="TimeBoxMaxErrorMessage" xml:space="preserve">
+    <value>Time input must not exceed 23:59</value>
+  </data>
+  <data name="RevisionReason" xml:space="preserve">
+    <value>Time changes needed -</value>
+  </data>
+  <data name="SubmitSuccess" xml:space="preserve">
+    <value>Submit Success</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Analyticslegend" xml:space="preserve">
+    <value>% Employees Overworked</value>
+  </data>
+  <data name="lblexport" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="lblPrint" xml:space="preserve">
+    <value>Print</value>
+  </data>
+</root>

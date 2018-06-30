@@ -1,0 +1,194 @@
+﻿@using GoLocal.TimeTracker.Dashboard.Resources
+@model GoLocal.TimeTracker.Dashboard.ViewModels.NotificationViewModel
+@using Newtonsoft.Json
+
+@inject LocService SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer.GetLocalizedHtmlString("lblNotification");
+}
+
+<div class="main-panel ms-Grid  ">
+    <div class="pageHeading ms-Grid-col ms-md12 ms-lg12 ">
+        <div class="pl0">
+			<h1>
+				@SharedLocalizer.GetLocalizedHtmlString("Notifications")
+				
+			</h1>
+        </div>
+    </div>
+
+    <div class="ms-Grid">
+        <div class="ms-Grid-row">
+            <div class=" mailNotofication ms-Grid ">
+                <div class="LeftNoticationPanel ms-Grid-col ms-sm12 ms-md4 ms-lg3 mt30 pl0">
+                    <div class="NotificationSearch">
+                       
+                        <div class="NotfyMail pt10 pb10">
+                            @if (Model.MyUserNotifications != null)
+                            {
+                                if (Model.MyUserNotifications.Count == 0)
+                                {
+
+                                   <h5>@SharedLocalizer.GetLocalizedHtmlString("NoNotifications")</h5>
+                                }
+                                else
+                                {
+                                    foreach (var item in Model.MyUserNotifications.Select((value, i) => new { i, value }))
+                                    {
+                                    <div class="NotifyItem" id="@item.value.Notifications.Id" listId ="@item.value.Notifications.ListId" index="@item.i">
+
+                                        <div class="ms-Persona Notifibox">
+                                            
+                                            <div class="ms-Persona-details notfyText">
+                                                <div class="ms-Persona-primaryText @(item.value.IsRead ? "isread" : "isnotread") " id="@string.Concat(item.value.Notifications.Id,"_",item.value.Notifications.ListId)">@((item.value.Notifications.Fields.SentFromName != null) ? item.value.Notifications.Fields.SentFromName : item.value.Notifications.Fields.SentFromMail)</div>
+                                                <div class="ms-Persona-secondaryText notydetails">@item.value.Notifications.Fields.MessageBody <span class="pull-right">   </span></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+            }
+
+                                }
+
+
+                             }
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="RightNotificationPanel ms-Grid-col ms-sm12 ms-lg9">
+
+                    <div class="MailConntent">
+						
+                        <div class="col-md-12 pT25">
+                            <div class="col-md-10">
+                                <div class="ms-Persona">
+                                     <div class="ms-Persona-details notfyText ">
+                                        <div class="ms-Persona-primaryText" id="dispSentToMail"></div>
+                        
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="dateWegits pull-right">
+                                <span id="dipSentDate"></span><br /><span id="dipSentTime" class="hidden"></span>
+                            </div>
+                        </div>
+                       
+
+                        <div class="col-md-12">
+                            <div class="emailContent" id="notificationMsg">
+                                
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    var notifications = @Html.Raw(JsonConvert.SerializeObject(Model.MyUserNotifications));
+    $(document).ready(function () {
+       
+        if (notifications.length == 0) {
+            $(".notificationUnReadCount").hide();
+        } else {
+            var newMsgCnt = $.grep(notifications, function (n, i) {
+                return notifications[i].IsRead == false;
+            });
+            if (newMsgCnt.length > 0) {
+                $(".notificationUnReadCount").text(newMsgCnt.length).show();
+            } else {
+                $(".notificationUnReadCount").hide();
+            }
+
+        }
+        
+        $(".NotifyItem").click(function () {
+            var selId = $(this).attr("id");
+            var selIndex = $(this).attr("index");
+            var selListId = $(this).attr("listId");
+            var selNotification = $.grep(notifications, function (n, i) {
+                if (i == selIndex) return notifications[i];
+                //return notifications[i]["Notifications"].id == selId;
+            });
+            if (selNotification) {
+                var sentFrom = (selNotification[0].Notifications.Fields["SentFromName"] != null) ? selNotification[0].Notifications.Fields["SentFromName"] : selNotification[0].Notifications.Fields["SentFromMail"];
+                $("#dispSentToMail").text(sentFrom);
+                var dispDate = selNotification[0].Notifications.Fields["SentDate"].split("T");
+                var dispSendTime = dispDate[1].split("+");
+                $("#dipSentDate").text(getFormattedDate(new Date(dispDate[0])));
+       
+                $("#notificationMsg").text(selNotification[0].Notifications.Fields["MessageBody"]);
+                
+                if (selNotification[0].Notifications.Fields["ReadDate"] == "0001-01-01T00:00:00") {
+                    //Mark as read
+                    var selNotificationId = "#" + selNotification[0].Notifications.id + "_" + selNotification[0].Notifications.listId;
+                    console.log(selNotificationId);
+                    if ($(selNotificationId).hasClass('isnotread')) {
+                        $(selNotificationId).removeClass('isnotread').addClass('isread');
+                    }
+                    
+                    var notificationReadObj = JSON.stringify(selNotification[0].Notifications);
+                    var notiReadObj = {
+                        "Fields": {
+                            "SentToMail": selNotification[0].Notifications.Fields["SentToMail"],
+                            "SentToName": selNotification[0].Notifications.Fields["SentToName"],
+                            "SentDate": selNotification[0].Notifications.Fields["SentDate"],
+                            "ReadDate": selNotification[0].Notifications.Fields["ReadDate"],
+                            "MessageBody": selNotification[0].Notifications.Fields["MessageBody"]
+                        },
+                        "id": selId,
+                        "listId": selListId
+                    }
+       
+                    $.ajax({
+                        url: "/Home/NotificationMarkAsRead/",
+                        type: 'post',
+                        data: notiReadObj,
+                        success: function (data) {
+                            // window.location = "/Home/Notifications/";
+                            $.ajax({
+                                url: "/Home/NotificationsUnReadCount/",
+                                type: 'get',
+                                success: function (data) {
+                                    if (data.unReadCount > 0) {
+                                        $(".notificationUnReadCount").text(data.unReadCount).show();
+                                    } else {
+                                        $(".notificationUnReadCount").hide();
+                                    }
+                                },
+                                error: function (err) {
+                                }
+                            });
+                        },
+                        error: function (err) {
+                        }
+                    });
+
+                }
+
+            }
+
+        });
+
+    });
+
+    function getFormattedDate(date) {
+        var year = date.getFullYear();
+        var month = (1 + date.getMonth()).toString();
+        month = month.length > 1 ? month : '0' + month;
+        var day = (1 + date.getDate()).toString();
+        day = day.length > 1 ? day : '0' + day;
+        return month + '-' + day + '-' + year;
+    }
+</script>

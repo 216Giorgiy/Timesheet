@@ -1,0 +1,21 @@
+﻿{
+  'displayName': 'objectidentifier_notifications',
+  'columns': [
+    {
+      'name': 'ToObjectIdentifier',
+      'text': {}
+    },
+    {
+      'name': 'SentDate',
+      'dateTime': {}
+    },
+    {
+      'name': 'ReadDate',
+      'dateTime': {}
+    },
+    {
+      'name': 'MessageBody',
+      'text': {}
+    }
+  ]
+}

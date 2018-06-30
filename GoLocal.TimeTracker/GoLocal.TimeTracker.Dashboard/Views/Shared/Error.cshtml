@@ -1,0 +1,52 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+@{
+    ViewData["Title"] = SharedLocalizer.GetLocalizedHtmlString("lblDashboard");
+}
+
+@using GoLocal.TimeTracker.Dashboard.Resources
+@inject LocService SharedLocalizer
+
+
+<div class="main-panel ms-Grid ErrorPageMain">
+    <div class="whitepanel ErrorPageSub">
+        <div class="ms-Grid-row">
+            <div class="ms-Grid-col ms-sm12 ms-md12 ms-lg3 ErrorMessageOffset pT10">
+                <i class="ms-Icon ms-Icon--ErrorBadge font60  " aria-hidden="true"></i>
+            </div>
+
+            <div class="ms-Grid-col ms-sm12 ms-md12 ms-lg8 pT25 pl20 ">
+                <h1> 500 @SharedLocalizer.GetLocalizedHtmlString("Error ") </h1>
+                <h2> @SharedLocalizer.GetLocalizedHtmlString("ErrorOccurred")</h2>
+
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="messagePlaceholder pT25">
+                        <strong> @SharedLocalizer.GetLocalizedHtmlString("Message") :</strong> <code>@Model.ErrorMessage</code>
+                    </div>
+                }
+
+                @if (Model.ShowRequestId)
+                {
+                    <div class="messagePlaceholder pT25">
+                        <strong> @SharedLocalizer.GetLocalizedHtmlString("RequestId"): </strong><span class="text-info"> @Model.RequestId </span>
+                    </div>
+                }
+
+                <h3> @SharedLocalizer.GetLocalizedHtmlString("DevMode")</h3>
+                <div class="ErrorMessageDetails">
+                    <p>
+                        @SharedLocalizer.GetLocalizedHtmlString("SwappingToDev") 
+                    </p>
+                    <p>
+                        @SharedLocalizer.GetLocalizedHtmlString("DevModeEnable")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

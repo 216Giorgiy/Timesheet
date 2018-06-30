@@ -1,0 +1,182 @@
+﻿@using GoLocal.TimeTracker.Dashboard.Resources
+@model GoLocal.TimeTracker.Dashboard.ViewModels.MyMonthlyHoursViewModel
+@inject LocService SharedLocalizer
+@{
+    ViewBag.Title = @SharedLocalizer.GetLocalizedHtmlString("lblAnalytics");
+}
+<link href="~/css/MonthPicker.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+<script src="~/js/MonthPicker.min.js"></script>
+<link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="~/js/LineChartGraph.js" asp-append-version="true"></script>
+<div class="main-panel ms-Grid">
+    <div class="pageHeading ms-Grid-col ms-md12 ms-lg12 ">
+        <div class="pl0">
+            <h1>
+                @SharedLocalizer.GetLocalizedHtmlString("lblAnalytics")
+
+            </h1>
+        </div>
+    </div>
+    <div class="ms-Grid whitepanel">
+
+        <div class="searchPanel  ms-Grid-row pT25 pb5  ">
+            <div class=" ms-Grid-col ms-sm12 ms-md12 ms-lg12">
+
+                <div class="ms-Grid-col ms-lg5 ms-sm5">
+                    <div class="ms-TextField">
+                        <label class="ms-Label">@SharedLocalizer.GetLocalizedHtmlString("Month") </label>
+                        <input class="ms-TextField-field txtMonthlyDate" type="text" name="txtMonthlyDate" style="width:50%" value="" id="txtMonthlyDate">
+                        @* @Html.TextBoxFor(m => m.SelectedDate, "{0:MMM, yyyy}", new { @class = "ms-TextField-field txtMonthlyDate", @id = "txtMonthlyDate", @name = "txtMonthlyDate" })*@
+                    </div>
+                </div>
+                <div class="ms-Grid-col ms-sm12 ms-md4 ms-lg3 pull-right pr5">
+                    <button class="ms-Button ms-Dialog-action ms-Button--primary pull-right mt20" style="display:none;" id="btnUpdateAnalytics">
+                        <span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Update") </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="ms-Grid-col ms-sm12 ms-lg12  pT25 ">
+
+        </div>
+        <div class="weeklyviewTable ms-font-m">
+            <div class="ms-Grid-col ms-sm12 ms-lg12">
+                <span class="Reported" style="display:none;text-align:center;">@SharedLocalizer.GetLocalizedHtmlString("NoOvertimeReported")</span>
+            </div>
+            <div class="ms-Grid-col ms-sm12 ms-lg12" id="canvas">
+                <div class="Linechart pl20" style="width:100%;">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<script src="~/js/Chart.min.js"></script>
+<script type="text/javascript">
+    var Overtimeemployees = [];
+    $(document).ready(function () {
+        $('#txtMonthlyDate').MonthPicker({
+            MaxMonth: -1,
+            Button: false,
+            MonthFormat: 'M, yy',
+            OnAfterChooseMonth: function () {
+                //GetLinechart($(this).val());
+                $('#canvas').css("display", "none");
+                $('.Reported').css("display", "none");
+                GetResult($(this).val());
+            }
+        });
+
+        $("#btnUpdateAnalytics").click(function () {
+            $.ajax({
+                type: 'GET',
+                url: "/Analytics/UpdateAnalyticsRequest/",
+                success: function (data) {
+                    alert("success");
+                },
+                error: function (err) {
+                    alert("error");
+                }
+            });
+        })
+
+    });
+    function GetResult(Month) {
+        $('#canvas').css("display", "block");
+        var pos1 = 4; var pos2 = 7;
+        var labels = []; var result = [];
+        $.ajax({
+            type: 'GET',
+            url: "/Analytics/AnalyticsRequest/?dt=" + Month,
+            success: function (data) {
+                if (data != null) {
+                    $.each(data, function (i, e) {
+                        i = [i.slice(0, pos1), '-', i.slice(pos1)].join('');
+                        i = [i.slice(0, pos2), '-', i.slice(pos2)].join('');
+                        labels.push(i);
+                        result.push(e.percentOfOTUsers);
+                        Overtimeemployees.push(e.otUserCount);
+                    });
+                    if (result.length == 0 && Overtimeemployees.length == 0) {
+                        var data = {
+                            labels: labels,
+                            datasets: [{
+                                label: "@SharedLocalizer.GetLocalizedHtmlString("Analyticslegend")",
+                                fill: false,
+                                borderWidth: 1,
+                                borderColor: "#2a809f",
+                                backgroundColor: "rgba(42, 128, 159, 1)",
+                                data: result,
+                            }, {
+                                display: false,
+                                label: "",
+                                fill: false,
+                                borderColor: "#fff",
+                                backgroundColor: "transparent",
+                                borderWidth: 0,
+                                data: Overtimeemployees,
+                            }]
+                        };
+                        var ctx = document.getElementById('myChart');
+                        var LoginHistoryChart = new Chart(ctx, {
+                            type: 'line',
+                            data: data,
+                            options: {
+                                animation: false,
+                                tooltips: {
+                                    enabled: true,
+                                    mode: 'single',
+                                    custom: function (tooltip) {
+                                        if (!tooltip) return;
+                                        // disable displaying the color box;
+                                        tooltip.displayColors = false;
+                                    },
+                                    callbacks: {
+                                        //title: function(tooltipItem, data) {
+                                        // return "Login History";
+
+                                        //}, // This returns the hour range for the tool tip, and - Now for the current hour
+                                        title: function (tooltipItems, data) {
+                                            var tooltipItem = tooltipItems[0];
+                                            if (tooltipItem.index == 23) {
+                                                return data.labels[tooltipItem.index] + " - Now";
+                                            } else {
+                                                return data.labels[tooltipItem.index];
+                                            }
+                                        },
+                                        // This sets the label for the tool tip for the number of either successfully logged on users
+                                        // or failed users
+                                        label: function (tooltipItem, data) {
+                                            var successCount = data.datasets[0].data[tooltipItem.index];
+                                            var failCount = data.datasets[1].data[tooltipItem.index];
+                                            var msg = "@SharedLocalizer.GetLocalizedHtmlString("PercentageofEmployees"):" + successCount + "%" + "     @SharedLocalizer.GetLocalizedHtmlString("NoofEmployees"):"+ failCount;
+                                            return msg;
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        $('#canvas').css("display", "none");
+                        $('.Reported').css("display", "block");
+                        $('.Reported').append(" " + Month);
+                    }
+                }
+                else { alert("Error Occured"); }
+            },
+            error: function (err) {
+            }
+        })
+
+    }
+    function GetDataTip(t, e) {
+        debugger;
+        var ot = Overtimeemployees;
+    }
+</script>
+@*<script src="~/js/Chart.min.js"></script>*@

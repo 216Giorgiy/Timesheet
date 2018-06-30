@@ -1,0 +1,1017 @@
+body {
+    background: #e7e7e7;
+}
+
+.pl0 {
+    padding-left: 0px;
+}
+
+.pl10 {
+    padding-left: 10px;
+}
+
+.pl20 {
+    padding-left: 20px !important;
+}
+
+.pr0 {
+    padding-right: 0px !important;
+}
+
+.ml0 {
+    margin-left: 0px;
+}
+
+.mr0 {
+    margin-right: 0px;
+}
+
+/*---------Font Size--------*/
+.font12 {
+    font-size: 12px;
+}
+
+.mb3 {
+    margin-bottom: 3px !important;
+}
+
+.font16 {
+    font-size: 16px;
+}
+
+.font20 {
+    font-size: 20px;
+}
+
+.labelInfo {
+    position: absolute;
+    top: -3px;
+    left: 32px;
+    min-width: 21px;
+    height: 18px;
+    border-radius: .8em;
+}
+
+.GraphTimings {
+    width: 100%;
+    float: left;
+}
+
+
+
+.labelInfo-2 {
+    min-width: 23px;
+    height: 20px;
+    border-radius: .8em;
+    font-size: 12px;
+    margin: 5px 0 0 0;
+    padding-top: 4px;
+    /* padding: 2px 0 0 0;*/
+}
+
+
+.font30 {
+    font-size: 30px;
+}
+
+.font24 {
+    font-size: 24px;
+}
+
+.font60 {
+    font-size: 60px;
+}
+
+
+
+
+/*---------padding --------*/
+.pT5 {
+    padding-top: 5px;
+}
+
+.pb5 {
+    padding-bottom: 5px;
+}
+
+.pt30 {
+    padding-top: 30px !important;
+}
+
+.pT10 {
+    padding-top: 10px !important;
+}
+
+.pT14 {
+    padding-top: 14px !important;
+}
+
+.pb10 {
+    padding-bottom: 10px !important;
+}
+
+.pT25 {
+    padding-top: 25px;
+}
+
+.pr22 {
+    padding-right: 22px;
+}
+
+.pr15 {
+    padding-right: 15px;
+}
+
+.pr5 {
+    padding-right: 5px;
+}
+
+.mt20 {
+    margin-top: 20px !important;
+}
+
+.mt30 {
+    margin-top: 30px !important;
+}
+
+.mt35 {
+    margin-top: 35px !important;
+}
+
+.mt60 {
+    margin-top: 60px !important;
+}
+
+.mt50 {
+    margin-top: 50px !important;
+}
+
+
+.ml10 {
+    margin-left: 10px;
+}
+
+.mr20 {
+    margin-right: 20px !important;
+}
+
+.GraphTimings h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2A809F;
+}
+
+.AdjustedTime {
+    font-size: 12px;
+    float: left;
+    padding: 0 20px 0 20px;
+    width: 14%;
+    text-align: center;
+}
+
+.overTime {
+    font-size: 12px;
+    float: left;
+    padding: 0 20px 0 20px;
+    width: 14%;
+    text-align: center;
+}
+
+.ms-SearchBox-field {
+    border: 1px solid #c8c8c8 !important;
+    width: 268px !important;
+    height: 30px !important;
+}
+
+.notificationSearch {
+    width: 100% !important;
+}
+
+.notfySearchBox {
+    width: 100% !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    border: 1px solid #69afe5;
+    outline: 1px solid transparent;
+    font-weight: 300;
+    font-size: 14px;
+    color: #000;
+    height: 31px;
+    padding: 6px 3px 7px 15px;
+    width: 208px;
+    background-color: transparent;
+    z-index: 5;
+    transition: padding-left .167s;
+    border: 1px solid #c8c8c8;
+}
+
+#printTable_length select {
+    height: 31px;
+    padding: 6px 3px 7px 15px;
+}
+
+/*.notydetails {
+    width: 200px !important;
+}*/
+
+.notfyText {
+    padding-left: 0px !important;
+}
+
+.ms-SearchBox-clear .ms-CommandButton-button {
+    height: 32px !important;
+}
+
+.ms-Dropdown-truncator {
+    display: none !important;
+}
+
+.ms-Dropdown .ms-Label {
+    display: inline-block;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+}
+
+.TableHead-Color th {
+    font-weight: 400;
+    text-align: left;
+    border-bottom: 1px solid #eaeaea;
+    background: #2a809f !important;
+    height: 42px !important;
+    color: #fff !important;
+}
+
+/*---Data Table Styling*/
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    color: #fff !important;
+    border: none !important;
+    background-color: #000 !important;
+    background: #2a809f !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+    outline: none;
+    background-color: #2b2b2b;
+    background: #2a809f !important;
+    color: #fff !important;
+}
+
+table.dataTable thead .sorting_asc {
+    background-image: url(../images/sort_asc.png);
+    background: #2a809f !important;
+    color: #fff !important;
+    /* margin-top: 15px; */
+}
+
+table.dataTable thead .sorting {
+    background-image: url(../images/sort_both.png);
+    background: #2a809f !important;
+    color: #fff !important;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 15px !important;
+}
+
+.dataTables_wrapper {
+    background: #fff !important;
+    padding: 15px;
+}
+
+
+/*---Data Table Styling End*/
+
+.searchbuttonRight {
+    min-width: 55px !important;
+    margin: 3px 0px 0 8px !important;
+    padding: 0 0 0 0 !important;
+}
+
+.ms-SearchBox-label {
+    height: 32px !important;
+    line-height: 29px !important;
+}
+
+.ms-SearchBox {
+    height: 30px !important;
+}
+
+.fullWidth {
+    width: 100% !important;
+}
+
+.actionRaw {
+    width: 100%;
+    float: left;
+}
+
+.bottomborder {
+    border-bottom: 1px solid #D7D7D7;
+}
+
+.WhitePanel {
+    background: #fff;
+    padding: 10px;
+    width: 100%;
+}
+
+.mailNotofication {
+    background: #fff;
+    float: left;
+    width: 100%;
+}
+
+.LeftNoticationPanel {
+    float: left;
+}
+
+.NotfyMail {
+    width: 100%;
+    float: left;
+}
+
+.RightNotificationPanel {
+}
+
+.NotifyItem:hover {
+    background: #ccc;
+}
+
+.whitepanel {
+    background: #fff;
+    width: 100%;
+    float: left;
+}
+
+.weeklyviewTable, .ms-Persona {
+    width: auto !important;
+}
+
+.Notifibox {
+    width: 100% !important;
+}
+
+.weeklyviewTable td {
+    padding: 13px 14px !important;
+}
+
+.weeklyviewTable th {
+    font-weight: bold !important;
+}
+
+.NotifyItem {
+    padding: 15px 15px;
+    cursor: pointer;
+}
+
+
+.MailConntent {
+    border-left: 1px solid #ccc;
+    min-height: 700px;
+}
+
+.UserPhotoDropdown {
+    position: absolute;
+    right: 0;
+    left: -75px;
+}
+
+.navbar-white {
+    background: #fff;
+}
+
+li.link-active[_ngcontent-c1] a[_ngcontent-c1], li.link-active[_ngcontent-c1] a[_ngcontent-c1]:hover, li.link-active[_ngcontent-c1] a[_ngcontent-c1]:focus {
+    background-color: #2a809f !important;
+    color: white;
+}
+
+.navbar[_ngcontent-c43] li[_ngcontent-c43] {
+    margin: 0px !important;
+}
+
+.navbar[_ngcontent-c1] li[_ngcontent-c1] a[_ngcontent-c1] {
+    border-radius: 0px !important;
+}
+
+
+.navbar[_ngcontent-c1] li[_ngcontent-c1] a[_ngcontent-c1] {
+    padding: 10px 16px !important;
+    border-radius: 0px !important;
+}
+
+.navbar[_ngcontent-c1] li[_ngcontent-c1] {
+    margin: 0px !important;
+}
+
+.px-navbar-image {
+    /* position: relative; */
+    top: 21px;
+    /* display: block; */
+    /* float: left; */
+    height: 30px;
+    /* margin: -12px 0 0; */
+    border-radius: 999px;
+}
+
+    .px-navbar-image ~ span {
+        display: inline-block;
+    }
+
+.ItemHeading {
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+.ItemValue {
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.font-white {
+    color: #fff !important;
+}
+
+.iconLightBlue {
+    color: #3AA7D1;
+}
+
+.pageHeading h1 {
+    font-size: 25px;
+    color: #2A809F;
+}
+
+.grayBorder {
+    border: 1px solid #e5e5e5;
+}
+
+.Greenbar {
+    background: #139314;
+    width: 100px;
+    height: 4px;
+    margin-bottom: 5px;
+}
+
+.redbar {
+    background: #f16b6b;
+    width: 100px;
+    height: 4px;
+    margin-bottom: 5px;
+}
+
+
+.workTime {
+    font-size: 20px;
+    color: #2A809F;
+    padding-bottom: 15px;
+    font-weight: bold;
+}
+
+.TimeBox {
+    margin: 10px;
+    width: 23%;
+}
+
+.GraphTimings h2 {
+    margin: 0px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.BlueICon {
+    color: #3AA7D1;
+}
+
+
+.topNav {
+    background: #000;
+}
+
+.mb30px {
+    margin-bottom: 30px;
+}
+
+.ms-Dialog {
+    width: 400px !important;
+}
+
+.PageSextion {
+    width: 100%;
+    background: #fff;
+    float: left;
+}
+
+.card {
+    position: relative;
+    /* border-radius: 3px; */
+    background-color: #fff;
+    color: #4f5256;
+    border: 1px solid rgba(0,0,0,.12);
+    margin-bottom: 8px;
+    float: left;
+    width: 100%;
+}
+
+card .card-body {
+    position: relative;
+    padding: 16px;
+}
+
+.pv {
+    padding: 10px;
+}
+
+    .pv h2 {
+        font-weight: 400;
+        font-size: 14px;
+        padding: 0px;
+        margin: 0px;
+        color:#000;
+    }
+
+.NavName {
+    color: #fff !important;
+}
+
+.ms-Grid-col {
+    float: left;
+}
+
+.movRight {
+    float: right;
+    width: auto;
+}
+
+.Ms-RightAlignSection {
+    float: right;
+    width: 30%;
+}
+
+.ms-SearchBox.ms-SearchBox--commandBar {
+    width: 100% !important;
+}
+
+.ms-SearchBox.ms-SearchBox--commandBar {
+    background-color: #fff;
+    border-right: 0 !important;
+}
+
+.Pointer {
+    cursor: pointer;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;
+    display: none;
+}
+
+.modal-dialog {
+    /* width: 600px;*/
+    margin: 94px auto;
+}
+
+.margin16 {
+    margin: 16px;
+}
+
+/*.modal-lg {
+    width: 900px;
+}*/
+
+.Noborder {
+    border: 0px !important;
+}
+
+.modal-content {
+    border-radius: 0 !important;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    padding: 8px 5px;
+}
+
+.dropdown-header {
+    display: block;
+    padding: .5rem 1.5rem;
+    margin-bottom: 0;
+    font-size: .875rem;
+    color: #6c757d;
+    white-space: nowrap;
+}
+
+.dropdown-divider {
+    height: 0;
+    margin: .5rem 0;
+    overflow: hidden;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Error Page */
+
+.ErrorPageMain {
+    height: auto !important;
+}
+
+.ErrorPageSub {
+    min-height: 90%;
+    padding-top: 5% !important;
+}
+
+.ErrorMessageOffset {
+    padding-left: 20% !important;
+}
+
+.ErrorPageSub h1 {
+    padding: 0px;
+    margin: 0px;
+}
+
+.ErrorPageSub h2 {
+    font-size: 30px;
+    margin: 15px 0 0 0;
+}
+
+.ErrorPageSub h3 {
+    font-size: 25px;
+    margin: 15px 0 0 0;
+}
+
+.messagePlaceholder {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+
+.ErrorMessageDetails {
+    margin-top: 10px;
+    border-left: 6px solid #e03a35;
+}
+
+    .ErrorMessageDetails p {
+        font-size: 14px;
+        padding-left: 20px;
+    }
+
+/* Graph Legend titles */
+/* basic positioning */
+
+.flot-text {
+
+    font-size: 14px !important;
+}
+
+.legend {
+    list-style: none;
+}
+
+    .legend li {
+        float: left;
+        margin-right: 10px;
+        font-size: 14px;
+    }
+
+    .legend span {
+        border: 1px solid #ccc;
+        float: left;
+        width: 15px;
+        height: 15px;
+        margin: 2px;
+    }
+
+    .legend .workHours {
+        background-color: rgb(54, 162, 235);
+    }
+
+    .legend .submittedHours {
+        background-color: #E5E4E2;
+    }
+
+    .legend .notSubmittedHours {
+        background-color: #98AFC7;
+    }
+
+    .legend .adjustedHours {
+        background-color: rgb(51, 198, 215);
+    }
+
+.ms-DatePicker-day--disabled {
+    color: #a6a6a6 !important;
+    cursor: not-allowed !important;
+}
+
+.inactive {
+    color: #e3e3e3;
+    pointer-events: none;
+}
+
+.dayPicker {
+    box-sizing: border-box;
+    border-right: none !important;
+    width: 220px;
+    margin: -10px 0;
+    padding: 10px 0;
+}
+
+.ms-DatePicker-dayPicker {
+    border-right: none !important;
+}
+
+.isread {
+    color: #999 !important;
+    /*width: 190px !important;*/
+}
+
+.isnotread {
+    font-weight: bolder !important;
+    color: #000 !important;
+    /*width: 190px !important;*/
+}
+
+.AppUserName {
+    /*width: 190px !important;*/
+}
+
+.ms-DatePicker-day--highlighted:hover, .ms-DatePicker-picker--focused .ms-DatePicker-day--highlighted {
+    color: #000;
+    background: none !important;
+}
+
+.ms-DatePicker-day--today {
+    cursor: not-allowed !important;
+    color: #a6a6a6 !important;
+    background: none !important;
+}
+
+.ms-DatePicker-day--today {
+    position: relative;
+    cursor: not-allowed !important;
+    color: #a6a6a6 !important;
+    background: none !important;
+}
+
+.ms-Button.ms-Button--primary:disabled {
+    background-color: #f4f4f4;
+    border-color: #f4f4f4;
+    color: #333 !important;
+}
+
+.ms-DatePicker-holder {
+    width: auto !important;
+    min-width: 0 !important;
+}
+
+.ms-DatePicker-monthPicker, .ms-DatePicker-yearPicker {
+    display: none !important;
+}
+
+.ms-DatePicker-day--infocus:hover, .ms-DatePicker-day--outfocus:hover {
+    cursor: pointer;
+    color: #000;
+    background: none !important;
+}
+
+.ms-DatePicker-table th {
+    text-align: center !important;
+}
+
+/* Disable Action link - MyTeams Page*/
+.icon-noaction {
+    pointer-events: none;
+    color: #c7c3c3;
+}
+
+.ms-Icon--Help:before {
+    content: '\E897'
+}
+
+/* Month Picker*/
+
+.icon {
+    vertical-align: bottom;
+    margin-top: 2px;
+    margin-bottom: 3px;
+    cursor: pointer;
+}
+
+    .icon:active {
+        opacity: .5;
+    }
+
+.ui-button-text {
+    padding: .4em .6em;
+    line-height: 0.8;
+}
+
+.month-year-input {
+    width: 60px;
+    margin-right: 2px;
+}
+
+.pulllbuttonExample {
+    background-color: transparent !important;
+    border: none !important;
+    min-width: 0px !important;
+}
+
+.activeLink {
+}
+
+    .activeLink:hover {
+        background: #2a809f;
+    }
+
+.helpLink {
+    padding-bottom: 19px;
+    padding-top: 9px;
+}
+
+.ms-Panel-headerText {
+    margin-top: 0 !important;
+}
+
+.ms-Panel-closeButton {
+    top: 30px !important;
+}
+
+.rightPanel {
+    margin: 0px;
+    padding: 0px;
+}
+
+.rightPanel {
+    margin: 0px;
+    padding: 0px;
+}
+
+    .rightPanel li {
+        padding: 10px 0 10px 0;
+        list-style: none;
+    }
+
+        .rightPanel li a {
+            color: #0062af;
+            font-size: 12px;
+        }
+
+/*-----Month Picker----*/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    /* border: 1px solid #d3d3d3; */
+    background: #e6e6e6 !important;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    background-color: #333 !important;
+    color: #fff !important;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+    border-bottom-right-radius: 0px !important;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius: 0px !important;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-right-radius: 0px !important;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius: 0px !important;
+}
+
+.ui-widget-content {
+    border: 1px solid #dcdcdc !important;
+}
+    /*-----Month And Date pciker  Picker----*/
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+        /* border: 1px solid #d3d3d3; */
+        background: #e6e6e6 !important;
+        border: 1px solid #ffffff !important;
+        padding: 5px 1px;
+    }
+
+    .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+        background-color: #333 !important;
+        color: #e7e6e6 !important;
+    }
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+    border-bottom-right-radius: 0px !important;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius: 0px !important;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-right-radius: 0px !important;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius: 0px !important;
+}
+
+.ui-widget-content {
+    border: 1px solid #dcdcdc !important;
+}
+
+.month-picker-year-table .ui-button {
+    height: auto !important;
+}
+
+.ui-widget .ui-widget {
+    font-size: 12px !important;
+}
+
+.ui-widget-header {
+    border: none !important;
+    background: none !important;
+    color: #222222;
+    font-weight: normal !important;
+}
+
+    .ui-state-hover, .ui-widget-content, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+        border: 1px solid #fdfdfd !important;
+        background: #ffffff !important;
+    }
+
+.ui-widget {
+    font-family: Segoe UI WestEuropean,Segoe UI,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+    font-size: 12px;
+}
+
+#MonthPicker_txtMonthlyDate {
+    border: 1px solid #ccc !important;
+}
+
+#MonthPicker_txtTeamMonthlyDate {
+    border: 1px solid #ccc !important;
+}
+
+.month-picker table {
+    padding: 5px !important;
+}
+
+#ui-datepicker-div {
+    border: 1px solid #dcdcdc !important;
+}
+
+.ui-datepicker th {
+    font-weight: normal !important;
+}
+
+.myteamSearch, .ms-SearchBox-field {
+    width: 100% !important;
+    height: 30px !important;
+}
+
+.myteamsaerchButton {
+    min-width: auto !important;
+    height: 30px !important;
+}
+/* Data table search disable */
+.dataTables_length {
+    display: none;
+}
+
+.dataTables_filter {
+    display: none;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+    background: #2a809f !important;
+    color: #fff !important;
+}
+
+.searchlabel {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Input error class*/
+.inputError {
+    border-color: red;
+}

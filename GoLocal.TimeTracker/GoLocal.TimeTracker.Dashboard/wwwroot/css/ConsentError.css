@@ -1,0 +1,52 @@
+﻿
+html {
+    height: 100%;
+}
+body {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: #fff;
+    font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.errorbg {
+    background: url(../../images/Error-image.png);
+    min-height:800px;
+    background-size:contain;
+
+}
+.errorbg img {
+    max-width: 90%;
+    float: right;
+}
+
+h1 {
+    font-size: 25px;
+    font-weight: normal;
+}
+
+p {
+    font-size: 16px;
+}
+
+.ErrorText {
+    padding-top: 10px;
+    color: #0faae9;
+    padding-bottom: 10px;
+}
+
+.contentBox {
+    padding-left: 20px;
+    padding-top: 70px;
+    padding-right: 40px;
+}
+
+.ms-Grid-col {
+    float: left;
+}
+@media only screen and (max-width: 500px) {
+    .errorbg {
+        display: none;
+    }
+}

@@ -1,0 +1,14 @@
+﻿{
+  "compilerOptions": {
+    "allowJs": true,
+    "noEmit": true
+
+  },
+  "include": [
+    "wwwroot/js"
+  ],
+
+  "exclude": [
+    "node_modules"
+ ]
+}

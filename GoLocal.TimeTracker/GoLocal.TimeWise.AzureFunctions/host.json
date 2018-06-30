@@ -1,0 +1,91 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "AzureWebJobsDashboard": "UseDevelopmentStorage=true"
+  },
+  "AzureAd": {
+    "Instance": "https://login.microsoftonline.com/",
+    "ClientId": "<to be updated>",
+    "CallbackPath": "/signin-oidc",
+    "BaseUrl": "<to be updated>",
+    "ClientSecret": "<to be updated>",
+    "Scopes": "openid email profile offline_access",
+    "GraphResourceId": "https://graph.microsoft.com/",
+    "GraphScopes": "email, profile, Calendars.Read, Mail.Read, opened, Sites.Read.All, User.Read.All, Mail.Send, Sites.Manage.All, Sites.ReadWrite.All, Group.Read.All Mail.Send",
+    "ApiUrl": "https://localhost:44376/",
+    "TenantId": "<to be updated>"
+  },
+  "TimeTracker": {
+    "DayHours": "8",
+    "WeekHours": "0",
+    "MonthHours": "0",
+
+    "FirstDayWeek": "Monday",
+    "TimeZone": "Pacific Standard Time", 
+    "CutoffDayEmployee": "0 0 20 * *",
+    "CutoffDayManager": "0 0 21 * *",
+    "DaysHistory": "360",
+
+    "ReceivedEmailTime": "3",
+    "SentEmailTime": "5",
+    "TaskTime": "30",
+
+    "WorkHoursCacheMinutes": "2",
+    "NotificationsCacheMinutes": "4",
+    "UserProfileCacheMinutes": "30",
+
+    "ExcludedCategories": [ "Personal", "Vacation" ],
+    "ExcludedShowAs": [ "Tentative" ],
+    "AllDayCountHours": "0",
+
+    "WorkHoursEditable": "true",
+    "TeamHoursEditable": "true",
+
+    "AdminGroup": "TimeTracker Administrator",
+    "HrGroup": "Human Resources",
+    "HrNotificationMail": "<to be updated>",
+    "HrNotificationAlerts": "true",
+
+    "SharePointSiteId": "<to be updated>",
+    "SharePointSiteName": "Timesheet",
+    "SharePointGroupId": "GroupMembership",
+    "SharePointUsersList": "TimeTrackerUsers",
+    "SharePointTotalHoursList": "DailyTotalHours",
+
+    "ReportHoursListPrefix": "reporthours_",
+    "TeamHoursListPrefix": "teamhours_",
+    "WorkHoursListPrefix": "workhours_",
+    "NotificationsListPrefix": "notifications_",
+
+    "GraphRequestUrl": "https://graph.microsoft.com/v1.0/",
+    "GraphBetaRequestUrl": "https://graph.microsoft.com/beta/"
+  },
+    "Logging": {
+      "IncludeScopes": false,
+      "Debug": {
+        "LogLevel": {
+          "Microsoft": "Trace",
+          "Default": "Debug"
+        }
+      },
+      "Console": {
+        "LogLevel": {
+          "Microsoft.AspNetCore": "Warning",
+          "Microsoft": "Debug",
+          "Default": "Information"
+        }
+      },
+      "EventLog": {
+        "LogLevel": {
+          "Default": "Information"
+        }
+      },
+      "LogLevel": {
+        "Default": "Information"
+      }
+    },
+    "ApplicationInsights": {
+      "InstrumentationKey": "<to be updated>"
+    }
+  }

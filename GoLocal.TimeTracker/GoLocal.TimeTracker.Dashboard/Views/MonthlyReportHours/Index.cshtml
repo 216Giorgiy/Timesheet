@@ -1,0 +1,394 @@
+﻿@model GoLocal.TimeTracker.Dashboard.ViewModels.MyMonthlyHoursViewModel
+@using GoLocal.TimeTracker.Dashboard.Resources
+@using GoLocal.TimeTracker.MiddleTier.Helpers
+
+@using Newtonsoft.Json
+
+@inject LocService SharedLocalizer
+@{
+    ViewBag.Title = @SharedLocalizer.GetLocalizedHtmlString("Monthly");
+}
+
+<link href="~/css/MonthPicker.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://cdn.rawgit.com/digitalBush/jquery.maskedinput/1.4.1/dist/jquery.maskedinput.min.js"></script>
+
+<script src="~/js/MonthPicker.min.js"></script>
+<link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+<div class="main-panel ms-Grid">
+    <div class="pageHeading ms-Grid-col ms-md12 ms-lg12  ">
+        <div class=" pl0">
+            <h1>
+                @SharedLocalizer.GetLocalizedHtmlString("TeamMonthlyHours")
+
+            </h1>
+        </div>
+    </div>
+
+    <div class="whitepanel ms-Grid">
+
+        <div class="searchPanel  ms-Grid-row pT25 pb5  ">
+            <div class=" ms-Grid-col ms-sm12 ms-md12 ms-lg12">
+                <div class="ms-Grid-col ms-sm6 ms-md4 ms-lg6">
+                    <div class="ms-Grid-col ms-lg5 ms-sm5">
+                        <div class="ms-TextField">
+                            <label class="ms-Label">@SharedLocalizer.GetLocalizedHtmlString("Month") </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="ms-Grid-col ms-sm6 ms-md4 ms-lg3 pull-right">
+                    <label class="ms-Label searchlabel">Search</label>
+                    <div class="ms-SearchBox">
+
+                        <input class="ms-SearchBox-field" type="text" value="">
+
+                        <label class="ms-SearchBox-label">
+                            <i class="ms-SearchBox-icon ms-Icon ms-Icon--Search"></i>
+                          
+                        </label>
+                        <div class="ms-CommandButton ms-SearchBox-clear ms-CommandButton--noLabel">
+                            <button class="ms-CommandButton-button">
+                                <span class="ms-CommandButton-icon"><i class="ms-Icon ms-Icon--Clear"></i></span>
+                                <span class="ms-CommandButton-label"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+            </div>
+
+        <div class="weeklyviewTable bottomborder ms-font-m">
+
+            <table id="tblMyMonthly" class="display ms-Table" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>@SharedLocalizer.GetLocalizedHtmlString("Employee")</th>
+                        <th>@SharedLocalizer.GetLocalizedHtmlString("Manager")</th>
+                        <th>@SharedLocalizer.GetLocalizedHtmlString("Week1")</th>
+                        <th>@SharedLocalizer.GetLocalizedHtmlString("Week2")</th>
+                        <th>@SharedLocalizer.GetLocalizedHtmlString("Week3")</th>
+                        <th>@SharedLocalizer.GetLocalizedHtmlString("Week4")</th>
+                        <th>@SharedLocalizer.GetLocalizedHtmlString("Week5")</th>
+                        <th>@SharedLocalizer.GetLocalizedHtmlString("TotalHours")</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+
+
+        </div>
+
+        <div class=" ms-Grid pull-right mt30  ">
+
+            <div class="docs-DialogExample-close">
+                <div class="ms-Dialog ms-Dialog--close">
+                    <button class="ms-Dialog-button ms-Dialog-buttonClose">
+                        <i class="ms-Icon ms-Icon--Cancel"></i>
+                    </button>
+                    <div class="ms-Dialog-title">@SharedLocalizer.GetLocalizedHtmlString("Confirm")</div>
+                    <div class="ms-Dialog-content mt30">
+                        <p> @SharedLocalizer.GetLocalizedHtmlString("SubmitConfirmMsg") </p>
+
+                    </div>
+                    <div class="ms-Dialog-actions">
+                        <button class="ms-Button ms-Dialog-action ms-Button--primary " id="btnSubmitHrsForMyTeam">
+                            <span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Continue") </span>
+                        </button> &nbsp;
+                        <button class="ms-Button ms-Dialog-action pl0 ">
+                            <span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Cancel")</span>
+                        </button>
+
+
+                    </div>
+                </div>
+                <img id="loadingSubmit" src="~/images/Loading.gif" class="hidden" height="20" />
+
+                @if (Model.IsSubmitted)
+                {
+                    <button class="ms-Button docs-DialogExample-button ms-Button--primary font-white  " disabled="true" id="SubmitToHR">@SharedLocalizer.GetLocalizedHtmlString("SubmitToHR")</button>
+                    <p class="font12" id="SubmitOnMsg">
+                        <font id="submittedOnMsg">
+                            @SharedLocalizer.GetLocalizedHtmlString("SubmittedOn")
+                        </font>:&nbsp;<font id="submittedDate">@Model.SubmittedDate</font>
+                    </p>
+                }
+                else
+                {
+                    <button class="ms-Button docs-DialogExample-button ms-Button--primary font-white  " id="SubmitToHR">@SharedLocalizer.GetLocalizedHtmlString("SubmitToHR")</button>
+                    <p class="font12" id="SubmitOnMsg">
+                        <font id="submittedOnMsg">
+                            @SharedLocalizer.GetLocalizedHtmlString("SubmittedOn")
+                        </font>:&nbsp;<font id="submittedDate"></font>
+                    </p>
+                }
+                <label class="docs-DialogExample-label "></label>
+            </div>
+
+            <p class="font12 text-danger hidden" id="FailedToSubmitMsg">
+                <font id="submittedOnMsg">
+                    @SharedLocalizer.GetLocalizedHtmlString("FailedtoSubmit")
+                </font>:&nbsp;<font id="submittedDateFailed"></font>
+            </p>
+            <p class="font12" id="SubmitErrMsg"></p>
+        </div>
+    </div>
+
+    <div id="EditTime" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header noBorder">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">@SharedLocalizer.GetLocalizedHtmlString("EditTime")</h4>
+                    <img id="loadingEditHrs" src="~/images/Loading.gif" class="hidden" height="20" />
+                </div>
+                <div class="modal-body">
+                    <div class="ms-Grid-row divDispMsg">
+                        <div class="alert alert-success hidden">
+                            @SharedLocalizer.GetLocalizedHtmlString("EditWorkHoursUpdatedSuccessMsg")
+                        </div>
+                        <div class="alert alert-danger hidden">
+                            @SharedLocalizer.GetLocalizedHtmlString("EditWorkHoursUpdatedFailureMsg")
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="dispEmpNameImg">
+                        </div>
+                        <div class="col-md-12">
+                            <div class="ms-TextField pT25">
+                                <label class="ms-Label">@SharedLocalizer.GetLocalizedHtmlString("AdjustedHours")</label>
+                                <input class="ms-TextField-field timepicker5" type="text" name="timepicker5" value="" placeholder="01:00" id="txtAdjHrs">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer noBorder">
+                    <div class="ms-Grid-row">
+                        <button class="ms-Button ms-Button--primary btnEditAdjHrs">
+                            <span class="ms-Button-label"> @SharedLocalizer.GetLocalizedHtmlString("Save")</span>
+                        </button> &nbsp;
+
+                        <button class="ms-Button ">
+                            <span class="ms-Button-label" data-dismiss="modal">@SharedLocalizer.GetLocalizedHtmlString("Cancel") </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 pb10 mt30">
+
+                <a class="ms-Button ms-Button--primary pull-right pb10 Exportbutton " id="export">
+                    <span class="ms-Button-label"> <i class="ms-Icon ms-Icon--Page" aria-hidden="true"> </i> @SharedLocalizer.GetLocalizedHtmlString("Export")  </span>
+                </a>
+                <a class="ms-Button ms-Button--primary pull-right pb10 mr20 printbuttonData">
+                    <span class="ms-Button-label"> <i class="ms-Icon ms-Icon--Print" aria-hidden="true"></i> @SharedLocalizer.GetLocalizedHtmlString("Print")  </span>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#tblMyMonthly').dataTable({
+            "processing": false,
+            "serverSide": true,
+            "info": false,
+            "stateSave": false,
+            "pagingType": "simple",
+            "paging": true,
+            "lengthMenu": [[10], [10]],
+            "ajax":{
+                "url": "/MonthlyReportHours/MonthlyHoursLoadRequest/",
+                "type": "GET"
+            },
+            "columns": [
+                { "data": "empname", "orderable": false },
+                { "data": "managername", "orderable": false },
+                { "data": "week1totalhrmns", "orderable": false },
+                { "data": "week2totalhrmns", "orderable": false },
+                { "data": "week3totalhrmns", "orderable": false },
+                { "data": "week4totalhrmns", "orderable": false },
+                { "data": "week5totalhrmns", "orderable": false },
+                { "data": "monthlytotalhrmns", "orderable": false }
+            ],
+            "order": [[0, "asc"]]
+        });
+    });
+
+        var myMonthlyHrs = @Html.Raw(JsonConvert.SerializeObject(Model.MonthlyHrs));
+        console.log(myMonthlyHrs);
+	var btnSubmitHrsForMyTeam = $("#btnSubmitHrsForMyTeam");
+    $(document).ready(function () {
+        $(".divDispMsg").hide();
+       
+        $('#tblMyMonthly tbody').on('click', '.editHrs', function () {
+            var data = teamsTbl.row($(this).parents('tr')).data();
+            $("#dispEmpNameImg").html(data[0]);
+            var adjHrs = data[2].replace('h', '').replace('m', '').split(' ');
+            var adjTime = parseInt(adjHrs[0]) + ':' + parseInt(adjHrs[1]);
+            $('#txtAdjHrs').timepicki({ start_time: [parseInt(adjHrs[0]), parseInt(adjHrs[1])], show_meridian: false });
+
+            $("#txtAdjHrs").val(adjTime);
+            $("#txtAdjHrs").attr("objIdentifier", data[3]);
+            $('#EditTime').modal('show');
+
+        });
+
+        $('#tblMyMonthly tbody').on('click', '.recheckHrs', function () {
+            var data = teamsTbl.row($(this).parents('tr')).data();
+            $("#recheckEmpNameImg").html(data[0]);
+            $("#wrkHrs").text(data[3]);
+            $("#txtRequestReason").attr("objIdentifier", data[3]); // Setting employee identifier
+            $("#txtRequestReason").val(); // clear value in textarea before opening the popup
+            $('#ReCheck').modal('show');
+
+        });
+
+        // MyTeamRevisionRequest - MyTeams
+        $(".btnReviseRequest").click(function () {
+            $("#loadingEdit").removeClass("hidden").show();
+            var reviseRequestObj = {
+				"selDate": ($("#txtTeamMonthlyDate").val() == "") ? new Date().toUTCString() : $("#txtTeamMonthlyDate").val(),
+				"dateNotSelected": ($("#txtTeamMonthlyDate").val() == "") ,
+                "reason": $("#txtRequestReason").val(),
+                "objIdentifier": $("#txtRequestReason").attr('objIdentifier')
+            };
+            $("#loadingEdit").removeClass("hidden").show();
+            $(".btnReviseRequest").attr("disabled", true);
+            $.ajax({
+                url: "/Home/MyTeamRevisionRequest/",
+                type: 'post',
+                data: reviseRequestObj,
+                success: function (data) {
+                    if (data.responseCode > 0) {
+                        $(".btnReviseRequest").attr("disabled", true);
+                        $("#loadingEdit").addClass("hidden");
+                        $(".divDispMsg").show();
+                        $(".alert-success").removeClass("hidden").show();
+
+                        $(".alert-success").fadeTo(2000, 500).slideUp(500, function () {
+                            $(".alert-success").slideUp(500);
+                            $(".alert-success").addClass("hidden");
+                        });
+                    } else {
+                        $(".divDispMsg").show();
+                        $("#loadingEdit").addClass("hidden");
+                        $(".alert-danger").removeClass("hidden").show();
+                        $("#btnEditHrs").attr("disabled", false);
+                        $(".btnReviseRequest").attr("disabled", false);
+
+                        $(".alert-danger").fadeTo(2000, 500).slideUp(500, function () {
+                            $(".alert-danger").slideUp(500);
+                            $("#btnEditHrs").attr("disabled", false);
+                            $(".alert-danger").addClass("hidden");
+                        });
+
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $(".divDispMsg").show();
+                    $("#loadingEdit").addClass("hidden");
+                    $(".alert-danger").removeClass("hidden").show();
+                    $("#btnEditHrs").attr("disabled", false);
+                    $(".btnReviseRequest").attr("disabled", false);
+
+                    $(".alert-danger").fadeTo(2000, 500).slideUp(500, function () {
+                        $(".alert-danger").slideUp(500);
+                        $("#btnEditHrs").attr("disabled", false);
+                        $(".alert-danger").addClass("hidden");
+                    });
+                }
+            });
+        });
+
+        $(".btnReviseRequestClose").click(function () {
+            $('#ReCheck').modal('hide');
+            if ($(".btnReviseRequest").attr("disabled")) {
+                window.location = "/Home/MyTeams/";
+            }
+        });
+
+        $('#txtTeamMonthlyDate').MonthPicker({
+            MaxMonth: -1,
+            Button: false,
+            MonthFormat: 'M, yy',
+            OnAfterChooseMonth: function () {
+                //$("#loadingSearch").removeClass("hidden").show();
+                fnGetTeamsByMonth();
+            }
+        });
+
+        //set requested date in datepicker
+        var selDt = getParameterByName('selMonthDt');
+        if (selDt) {
+            $("#txtTeamMonthlyDate").val(selDt);
+            $('#selMonthYear').text(selDt);
+            $("#DisplayMonthYear").show();
+        } else {
+            var selectedDate = "@Model.SearchDate.ToString("MMM, yyyy")";
+            $("#txtTeamMonthlyDate").val(selectedDate);
+            $('#selMonthYear').text(selectedDate);
+            $("#DisplayMonthYear").show();
+        }
+
+
+        function fnGetTeamsByMonth() {
+            var selDt = $("#txtTeamMonthlyDate").val();
+            var monthRequest = [{ name: "dt", value: selDt }];
+            window.location = '?date=' + selDt;
+
+        }
+
+        //  Attach event handler to submit button
+        btnSubmitHrsForMyTeam.click(function () {
+            SubmitHoursForMyTeam();
+        });
+        function SubmitHoursForMyTeam() {
+            var submiMonth = {
+                "selDate": ($("#txtTeamMonthlyDate").val() == "") ? new Date().toUTCString() : $("#txtTeamMonthlyDate").val()
+            };
+
+            $("#loadingSubmit").removeClass("hidden").show();
+            var selId = $(this).attr("id");
+            $("#SubmitToHR").attr("disabled", true);
+            $.ajax({
+                url: "/Home/SubmitButtonForMyTeamHours/",
+                type: 'post',
+                data: submiMonth,
+                success: function (data) {
+                    if (data.responseCode > 0) {
+                        $("#loadingSubmit").addClass("hidden");
+                        $("#FailedToSubmitMsg").hide();
+                        $("#SubmitOnMsg").show();
+                        $("#SubmitToHR").attr("disabled", true);
+                        $("#submittedDate").text(data.submittedOnDate);
+                    } else {
+                        $("#SubmitToHR").attr("disabled", false);
+                        $("#loadingSubmit").addClass("hidden");
+                        $("#SubmitOnMsg").hide();
+                        $("#FailedToSubmitMsg").removeClass("hidden").show();
+                        $("#submittedDateFailed").text(data.submittedOnDate).addClass('text-danger');
+
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#loadingSubmit").addClass("hidden");
+                    //TODO:handle error
+                    $("#SubmitErrMsg").text(errorThrown);
+                }
+            });
+        }
+    });
+
+    </script>
+
+

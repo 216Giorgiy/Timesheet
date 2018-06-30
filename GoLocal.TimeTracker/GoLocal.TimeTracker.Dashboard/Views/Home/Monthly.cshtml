@@ -1,0 +1,367 @@
+﻿@using GoLocal.TimeTracker.Dashboard.Resources
+@model GoLocal.TimeTracker.Dashboard.ViewModels.MyMonthlyHoursViewModel;
+@inject LocService SharedLocalizer
+@{
+	ViewBag.Title = @SharedLocalizer.GetLocalizedHtmlString("Monthly");
+}
+
+<link href="~/css/MonthPicker.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://cdn.rawgit.com/digitalBush/jquery.maskedinput/1.4.1/dist/jquery.maskedinput.min.js"></script>
+
+<script src="~/js/MonthPicker.min.js"></script>
+<link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    div.dt-buttons {
+        position: relative !important;
+        float: left !important;
+        padding-top: 0.25em;
+    }
+</style>
+
+<div class="main-panel ms-Grid">
+    <div class="pageHeading ms-Grid-col ms-md12 ms-lg12 ">
+        <div class="pl0">
+            <h1>
+                @SharedLocalizer.GetLocalizedHtmlString("TeamMonthlyHours")
+
+            </h1>
+        </div>
+    </div>
+
+    <div class="ms-Grid whitepanel">
+
+        <div class="searchPanel  ms-Grid-row pT25 pb5  ">
+            <div class=" ms-Grid-col ms-sm12 ms-md12 ms-lg12">
+                    <div class="ms-Grid-col ms-lg5 ms-sm5">
+                        <div class="ms-TextField">
+                            <label class="ms-Label">@SharedLocalizer.GetLocalizedHtmlString("Month") </label>
+                            @Html.TextBoxFor(m => m.SelectedDate, "{0:MMM, yyyy}", new { @class = "ms-TextField-field txtMonthlyDate", @id = "txtMonthlyDate", @name = "txtMonthlyDate" })
+                        </div>
+                    </div>
+                    <div class="ms-Grid-col ms-sm12 ms-md4 ms-lg3 pull-right pr5">
+                        <label class="ms-Label searchlabel">Search</label>
+
+
+                        <div class="ms-SearchBox myteamSearch pull-right">
+
+                            <input class="ms-SearchBox-field" type="text" value="" id="txtMonthlySearch">
+
+                            <label class="ms-SearchBox-label">
+                                <i class="ms-SearchBox-icon ms-Icon ms-Icon--Search"></i>
+
+                            </label>
+                            <div class="ms-CommandButton ms-SearchBox-clear ms-CommandButton--noLabel">
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+              
+
+            </div>
+            
+
+        </div>
+    </div>
+
+    <div class="weeklyviewTable bottomborder ms-font-m">
+
+        <table id="tblMyMonthly" class="display ms-Table" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("Employee")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("Manager")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("Week1")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("Week2")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("Week3")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("Week4")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("Week5")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("TotalHours")</th>
+
+                </tr>
+            </thead>
+
+        </table>
+
+    </div>
+
+    
+
+
+</div>
+
+<!--Modal-->!>
+<div id="EditTime" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header pageHeading Noborder">
+                <button type="button" class="close" data-dismiss="modal" id="btnEditClose">&times;</button>
+                <h1 class="modal-title">
+                    Week Hours Coming Soon
+                </h1>
+
+            </div>
+            <div class="modal-body">
+                <div class="ms-Grid pl0">
+                    <div class="ms-Grid-row">
+                        <fieldset id="editHrsForm">
+                           
+                        </fieldset>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    <!-- Scripts ----------------------------------------------------------- -->
+
+    <script type='text/javascript'>
+        $("#EditTime").draggable({
+            handle: ".modal-header"
+        });
+        function Getmodel(element) {
+                $('#EditTime').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                }).show();
+        }
+    $(document).ready(function ()
+    {
+        $("#loadingSearch").addClass("hidden");
+        $('#tblMyMonthly').dataTable({
+            "processing": false,
+            "serverSide": false,
+            "info": false,
+            "stateSave": true,
+            "pagingType": "simple",
+            "paging": true,
+            "lengthMenu": [[10], [10]],
+            "ajax": {
+                "url": "/MonthlyReportHours/MonthlyHoursLoadRequest/",
+                "type": "GET",
+                "data": function (d) {
+                    var selDt = $("#txtMonthlyDate").val(); d.date = selDt;
+                },
+                // "success": function (resp) { debugger; console.log(resp); }
+            },
+            "columns": [
+                { "data": "empName", "orderable": false },
+                { "data": "managerName", "orderable": false},
+                { "data": "week1TotalHrMns", "orderable": false },
+                { "data": "week2TotalHrMns", "orderable": false},
+                { "data": "week3TotalHrMns", "orderable": false },
+                { "data": "week4TotalHrMns", "orderable": false },
+                { "data": "week5TotalHrMns", "orderable": false },
+                { "data": "monthlyTotalHrMns", "orderable": false }
+                //"render": function (data, type, row, meta) { return data = '<a href="#" onclick=Getmodel($(this))  style=color:#337ab7>' + data + '</a>'; }
+            ],
+            "order": [[0, "asc"]],
+            "dom": 'frtipB',
+            "buttons": [
+                {
+                    "extend": 'csv',
+                    "text": '@SharedLocalizer.GetLocalizedHtmlString("Export")',
+                },
+                {
+                    "extend": 'print',
+                    "text": '@SharedLocalizer.GetLocalizedHtmlString("lblPrint")'
+                }
+            ]
+        });
+
+        $(document).on("keypress", "#txtMonthlySearch", function (e) {
+            if (e.which == 13) {
+                $("#tblMyMonthly").dataTable().fnDestroy();
+                $('#tblMyMonthly tbody').empty();
+                $("#tblMyMonthly").dataTable({
+                    "processing": false,
+                    "serverSide": false,
+                    "info": false,
+                    "stateSave": true,
+                    "pagingType": "simple",
+                    "paging": true,
+                    "lengthMenu": [[10], [10]],
+                    "ajax": {
+                        "url": "/MonthlyReportHours/MonthlyHoursLoadRequest/",
+                        "type": "GET",
+                        "data": {
+                            "date": $("#txtMonthlyDate").val(),
+                            "searchtext": $(this).val(),
+                        }
+                    },
+                    "columns": [
+                        { "data": "empName", "orderable": false },
+                        { "data": "managerName", "orderable": false },
+                        { "data": "week1TotalHrMns", "orderable": false },
+                        { "data": "week2TotalHrMns", "orderable": false },
+                        { "data": "week3TotalHrMns", "orderable": false },
+                        { "data": "week4TotalHrMns", "orderable": false },
+                        { "data": "week5TotalHrMns", "orderable": false },
+                        { "data": "monthlyTotalHrMns", "orderable": false }
+                    ],
+                    "order": [[0, "asc"]],
+                    "dom": 'frtipB',
+                    "buttons": [
+                        {
+                            "extend": 'csv',
+                            "text": '@SharedLocalizer.GetLocalizedHtmlString("Export")',
+                        },
+                        {
+                            "extend": 'print',
+                            "text": '@SharedLocalizer.GetLocalizedHtmlString("lblPrint")',
+                        }
+                    ]
+                }).search($(this).val()).draw();
+
+            }
+        });
+
+    });
+
+    function doUpdateHours() {
+        var dateData = $(".txtMonthlyDate").val();
+        var updateMonthlyData = [{ name: "dt", value: $(".txtMonthlyDate").val() }];
+        window.location = '/Home/Monthly/?dt=' + dateData;
+    }
+
+    $(document).ready(function () {
+        $('#printTable')
+            .on('init.dt', function () {
+                $("#loadingSearch").addClass("hidden");
+            }).DataTable({
+                "scrollY": 600,
+                "scrollX": false
+            });
+
+
+        $("#DisplayMonthYear").hide();
+
+        $('#txtMonthlyDate').MonthPicker({
+            MaxMonth: -1,
+            Button: false,
+            MonthFormat: 'M, yy',
+            OnAfterChooseMonth: function () {
+                //$("#loadingSearch").removeClass("hidden").show();
+               doUpdateHours();
+            }
+        });
+
+        //set requested date in datepicker
+        var selDt = getParameterByName('dt');
+        if (selDt) {
+            $(".txtMonthlyDate").val(selDt);
+            $('#selMonthYear').text(selDt);
+            $("#DisplayMonthYear").show();
+        } else {
+            var selectedDate = "@Model.SelectedDate.ToString("MMM, yyyy")";
+            $(".txtMonthlyDate").val(selectedDate);
+            $('#selMonthYear').text(selectedDate);
+            $("#DisplayMonthYear").show();
+        }
+
+        function exportTableToCSV($table, filename) {
+            var $headers = $table.find('tr:has(th)')
+                , $rows = $table.find('tr:has(td)')
+
+                // Temporary delimiter characters unlikely to be typed by keyboard
+                // This is to avoid accidentally splitting the actual contents
+                , tmpColDelim = String.fromCharCode(11) // vertical tab character
+                , tmpRowDelim = String.fromCharCode(0) // null character
+
+                // actual delimiter characters for CSV format
+                , colDelim = '","'
+                , rowDelim = '"\r\n"';
+
+            // Grab text from table into CSV formatted string
+            var csv = '"';
+            csv += formatRows($headers.map(grabRow));
+            csv += rowDelim;
+            csv += formatRows($rows.map(grabRow)) + '"';
+
+            // Data URI
+            var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+
+            // For IE (tested 10+)
+            if (window.navigator.msSaveOrOpenBlob) {
+                var blob = new Blob([decodeURIComponent(encodeURI(csv))], {
+                    type: "text/csv;charset=utf-8;"
+                });
+                navigator.msSaveBlob(blob, filename);
+            } else {
+                $(this)
+                    .attr({
+                        'download': filename
+                        , 'href': csvData
+                        //,'target' : '_blank' //if you want it to open in a new window
+                    });
+            }
+
+            //------------------------------------------------------------
+            // Helper Functions
+            //------------------------------------------------------------
+            // Format the output so it has the appropriate delimiters
+            function formatRows(rows) {
+                return rows.get().join(tmpRowDelim)
+                    .split(tmpRowDelim).join(rowDelim)
+                    .split(tmpColDelim).join(colDelim);
+            }
+            // Grab and format a row from the table
+            function grabRow(i, row) {
+
+                var $row = $(row);
+                //for some reason $cols = $row.find('td') || $row.find('th') won't work...
+                var $cols = $row.find('td');
+                if (!$cols.length) $cols = $row.find('th');
+
+                return $cols.map(grabCol)
+                    .get().join(tmpColDelim);
+            }
+            // Grab and format a column from the table
+            function grabCol(j, col) {
+                var $col = $(col),
+                    $text = $col.text();
+
+                return $text.replace('"', '""'); // escape double quotes
+
+            }
+        }
+
+        // This must be a hyperlink
+        $("#export").click(function (event) {
+            // var outputFile = 'export'
+            var outputFile = 'MonthlyData ';
+            outputFile = outputFile.replace('.csv', '') + '.csv'
+
+            // CSV
+            exportTableToCSV.apply(this, [$('#dvData > table'), outputFile]);
+
+            // IF CSV, don't do event.preventDefault() or return false
+            // We actually need this to be a typical hyperlink
+        });
+    });
+
+    function printData() {
+        var divToPrint = document.getElementById("printTable");
+        newWin = window.open("");
+        newWin.document.write(divToPrint.outerHTML);
+        newWin.print();
+        newWin.close();
+    }
+
+    $('.printbuttonData').on('click', function () {
+        printData();
+    })
+
+    </script>
+
+
+
+

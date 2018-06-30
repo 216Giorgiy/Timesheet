@@ -1,0 +1,350 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@*<!DOCTYPE html>*@
+@using System.Security.Principal
+@using GoLocal.TimeTracker.Dashboard.Resources
+@using Microsoft.AspNetCore.Localization
+
+@inject LocService SharedLocalizer
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @SharedLocalizer.GetLocalizedHtmlString("Title")</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css" />
+
+
+        <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.3.0/css/fabric.min.css">
+        <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.components.min.css" />
+        <link rel="stylesheet" href="~/css/timepicki.css" />
+        <link rel="stylesheet" href="~/css/timetracker.css" />
+        <link rel="stylesheet" href="~/css/style.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css" />
+
+        <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.3.0/css/fabric.min.css">
+        <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.components.min.css" />
+        <link rel="stylesheet" href="~/css/timetracker.css" />
+        <link rel="stylesheet" href="~/css/timepicki.css" />
+        <link rel="stylesheet" href="~/css/style.css" />
+    </environment>
+
+
+
+    @Html.Raw(JavaScriptSnippet.FullScript)
+</head>
+<body>
+    <div class="navbar navbar-expand navbar-dark  navbar-fixed-top">
+        <nav class="navbar navbar-default topNav">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand NavName" href="@Url.Action("Index", "Home")">@SharedLocalizer.GetLocalizedHtmlString("Title")</a>
+                </div>
+                <div class="">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="nav-item dropdown activeLink">
+                            <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="@Url.Action("Notifications", "Home")">
+                                <i class="ms-Icon ms-Icon--Ringer font-white font30" aria-hidden="true"></i> <span class="pull-right label label-danger labelInfo notificationUnReadCount"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+
+
+                                <a class="dropdown-item" href="#">
+                                    <span class="">
+                                        <strong>
+                                            Time Change request
+                                        </strong>
+                                    </span>
+                                    <span class="small float-right text-muted">11:21 AM</span>
+                                    <div class="dropdown-message small">Time change request ..</div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">
+                                    <span class="">
+                                        <strong>
+                                            Time Change request
+                                        </strong>
+                                    </span>
+                                    <span class="small float-right text-muted">10:30 AM</span>
+                                    <div class="dropdown-message small">New time change request ..</div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">
+                                    <span class="">
+                                        <strong>
+                                            Time Change request
+                                        </strong>
+                                    </span>
+                                    <span class="small float-right text-muted">10:10 AM</span>
+                                    <div class="dropdown-message small">You have a new time change request ..</div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+
+
+                                <a class="dropdown-item small" href="#">View all notifications</a>
+                            </div>
+                        </li>
+
+
+
+                        <li class=" font-white helpLink activeLink">
+
+
+
+                            <div class="ms-PanelExample">
+                                <button class="ms-Button pulllbuttonExample">
+                                    <i class="ms-Icon ms-Icon--Help font-white font24" aria-hidden="true"></i>
+                                </button>
+                                <div class="ms-Panel">
+                                    <button class="ms-Panel-closeButton ms-PanelAction-close">
+                                        <i class="ms-Panel-closeIcon ms-Icon ms-Icon--Cancel"></i>
+                                    </button>
+                                    <div class="ms-Panel-contentInner">
+                                        <p class="ms-Panel-headerText">Help</p>
+                                        <div class="ms-Panel-content">
+                                            <ul class="rightPanel">
+                                                <li class="ms-font-m"> <a href="mailto:<to_be_updated>"> Feedback/Support </a>  </li>
+
+                                                <li class="ms-font-m"> <a href="#" target="popup" onclick="window.open('../about.html', 'name', 'width=600,height=400')"> About </a>  </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="pT14 font-white">
+
+
+                                <div class="ms-Persona ms-Persona--xs pull-right ">
+                                    <div class="ms-Persona-imageArea UserImage">
+                                        <img class="ms-Persona-image" src="@ViewData["UserImage"]" />
+                                    </div>
+
+                                    <div class="ms-Persona-details ">
+                                        <div class="ms-Persona-primaryText font-white font-bold UserName">  @ViewData["Email"] </div>
+                                    </div>
+                                </div> &nbsp;
+
+
+                            </li>
+                            <li class="font-white"><a href="@Url.Action("SignOut", "Account")"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Sign out</a></li>
+
+                        }
+                        else
+                        {
+
+                            <li><a asp-area="" asp-controller="Account" asp-action="Signin">Sign in</a></li>
+
+                        }
+                    </ul>
+                    @*<div class="row">
+                            <div class="col-md-6">
+
+                            </div>
+                            <div class="col-md-6 text-right">
+                                @await Html.PartialAsync("_SelectLanguagePartial")
+                            </div>
+                        </div>*@
+
+                </div>
+
+            </div>
+        </nav>
+    </div>
+
+    <!--------New Navbar END-->
+    <div class="TestInclideBody">
+        <div class="sidebar">
+
+            <div class="sidebar-wrapper">
+
+
+                <ul class="nav">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")" id="lnkDashboard">
+                            <i class="ms-Icon ms-Icon--HomeSolid" aria-hidden="true"></i>
+                            <p>@SharedLocalizer.GetLocalizedHtmlString("lblDashboard")  &nbsp; &nbsp;<span class="pageLoader lnkDashboard hidden">  <img src="~/images/Loading.gif" class="" height="15" /></span></p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Notifications", "Home")" id="lnkNotification">
+                            <i class="ms-Icon ms-Icon--ContactCard" aria-hidden="true"></i>
+                            <p>@SharedLocalizer.GetLocalizedHtmlString("lblNotification") &nbsp; &nbsp;<span class="pageLoader lnkNotification hidden">  <img id="loadingEditHrs" src="~/images/Loading.gif" class="" height="15" /></span><span class="pull-right label label-danger labelInfo-2 notificationUnReadCount "></span></p>
+                        </a>
+
+                    </li>
+                     @if (Convert.ToBoolean(ViewData["IsManager"]))
+                    {
+                        <li>
+                            <a href="@Url.Action("MyTeams", "Home")" id="lnkMyTeams">
+                                <i class="ms-Icon ms-Icon--Group" aria-hidden="true"></i>
+                                <p>@SharedLocalizer.GetLocalizedHtmlString("lblMyTeamHours") &nbsp; &nbsp;<span class="pageLoader lnkMyTeams hidden">  <img src="~/images/Loading.gif" class="" height="15" /></span></p>
+                            </a>
+                        </li>
+                    }
+                    @if (Convert.ToBoolean(ViewData["IsHr"]) || Convert.ToBoolean(ViewData["IsAdmin"]))
+                    {
+                       
+                        <li>
+                            <a href="@Url.Action("Monthly", "Home")" id="lnkMonthly">
+                                <i class="ms-Icon ms-Icon--CalendarWorkWeek" aria-hidden="true"></i>
+                                <p>@SharedLocalizer.GetLocalizedHtmlString("lblReportHours") &nbsp; &nbsp; <span class="pageLoader lnkMonthly hidden">  <img src="~/images/Loading.gif" class="" height="15" /></span></p>
+                            </a>
+                        </li>
+                         <li>
+                            <a href="@Url.Action("Analytics", "Home")" id="lnkWeekly">
+                                <i class="ms-Icon ms-Icon--BIDashboard " aria-hidden="true"></i>
+                                <p>@SharedLocalizer.GetLocalizedHtmlString("lblAnalytics") &nbsp; &nbsp;<span class="pageLoader lnkWeekly hidden">  <img src="~/images/Loading.gif" class="" height="15" /></span></p>
+                            </a>
+                        </li>
+                    }
+                 
+                </ul>
+            </div>
+        </div>
+
+
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+            </script>
+        </environment>
+        <div class="wrapper">
+            @RenderBody()
+
+        </div>
+    </div>
+    <environment include="Development">
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+        <script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
+
+        <script src="~/js/PickaDate.js"></script>
+        @{
+        var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+        if (requestCulture.RequestCulture.UICulture.Name == "ja-JP")
+        {
+            <script src="~/js/ja_JP.js"></script>
+        }
+        }
+        <script src="~/js/timetracker.js" asp-append-version="true"></script>
+        <script src="~/js/office-fabric.js" asp-append-version="true"></script>
+        <script src="~/js/Exportfiles.js"></script>
+        <script src="~/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" />
+
+
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+        <script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
+        <script src="~/js/timepicki.js"></script>
+        <script src="~/js/PickaDate.js"></script>
+        @{
+            var requestMyCulture = Context.Features.Get<IRequestCultureFeature>();
+            if (requestMyCulture.RequestCulture.UICulture.Name == "ja-JP")
+            {
+                <script src="~/js/ja_JP.js"></script>
+            }
+        }
+        <script src="~/js/timetracker.js" asp-append-version="true"></script>
+        <script src="~/js/office-fabric.js" asp-append-version="true"></script>
+        <script src="~/js/Exportfiles.js"></script>
+        <script src="~/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" />
+    </environment>
+    <style type="text/css">
+
+        .red {
+            background-color: red;
+            color: #000;
+        }
+
+            .red:hover {
+                background-color: red;
+                color: #000;
+            }
+    </style>
+    <script type="text/javascript">
+        // NotificationsUnReadCount
+        $(document).ready(function () {
+            $.ajax({
+                url: "/Home/NotificationsUnReadCount/",
+                type: 'get',
+                success: function (data) {
+                    if (data.unReadCount > 0) {
+                        $(".notificationUnReadCount").text(data.unReadCount).show();
+                    } else {
+                        $(".notificationUnReadCount").hide();
+                    }
+                },
+                error: function (err) {
+                }
+            });
+        });
+
+    </script>
+    <script type="text/javascript">
+        var PanelExamples = document.getElementsByClassName("ms-PanelExample");
+        for (var i = 0; i < PanelExamples.length; i++) {
+            (function () {
+                var PanelExampleButton = PanelExamples[i].querySelector(".ms-Button");
+                var PanelExamplePanel = PanelExamples[i].querySelector(".ms-Panel");
+                PanelExampleButton.addEventListener("click", function (i) {
+                    new fabric['Panel'](PanelExamplePanel);
+                });
+            }());
+        }
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

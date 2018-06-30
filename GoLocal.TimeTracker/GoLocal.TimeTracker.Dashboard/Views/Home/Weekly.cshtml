@@ -1,0 +1,358 @@
+﻿@using GoLocal.TimeTracker.Dashboard.Resources
+@model GoLocal.TimeTracker.Dashboard.ViewModels.WeeklyHoursViewModel;
+@using Newtonsoft.Json
+@inject LocService SharedLocalizer
+@{
+	//ViewData["Title"] = SharedLocalizer.GetLocalizedHtmlString("lblWeeklyHours");
+	ViewBag.Title = @SharedLocalizer.GetLocalizedHtmlString("Weekly");
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://cdn.rawgit.com/digitalBush/jquery.maskedinput/1.4.1/dist/jquery.maskedinput.min.js"></script>
+
+<link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    div.dt-buttons {
+        position: relative !important;
+        float: left !important;
+        padding-top: 0.25em;
+    }
+</style>
+
+<div class="main-panel ms-Grid">
+	<div class="pageHeading ms-Grid-col ms-md12 ms-lg12 ">
+		<div class="pl0">
+			<h1>
+				@SharedLocalizer.GetLocalizedHtmlString("TeamWeeklyHours")
+
+			</h1>
+		</div>
+
+	</div>
+
+	<div class="ms-Grid  whitepanel">
+		<div class="searchPanel  ms-Grid-row pT25 pb5  ">
+            <div class=" ms-Grid-col ms-sm12 ms-md12 ms-lg12">
+                <div class="ms-Grid-col ms-sm6 ms-md4 ms-lg2">
+                   
+                    <div class="ms-TextField">
+                        <label class="ms-Label">@SharedLocalizer.GetLocalizedHtmlString("Week") </label>
+                        @Html.TextBoxFor(m => m.SelectedDate, "{0:MMMM yyyy}", new { @class = "ms-TextField-field txtWeeklyDate", @id = "txtWeeklyDate", @name = "txtWeeklyDate" })
+                        @*<input class="ms-TextField-field txtWeeklyDate" name="txtWeeklyDate" id="txtWeeklyDate" />*@
+                    </div>
+                 
+
+                </div>
+                <div class="ms-Grid-col ms-sm12 ms-md4 ms-lg3 pull-right pr5">
+                    <label class="ms-Label searchlabel">Search</label>
+
+
+                    <div class="ms-SearchBox myteamSearch pull-right">
+
+                        <input class="ms-SearchBox-field" type="text" value="" id="txtWeeklySearch">
+
+                        <label class="ms-SearchBox-label">
+                            <i class="ms-SearchBox-icon ms-Icon ms-Icon--Search"></i>
+
+                        </label>
+                        <div class="ms-CommandButton ms-SearchBox-clear ms-CommandButton--noLabel">
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+
+			<div class=" ms-Grid-col ms-sm12 ms-md12 ms-lg6">
+				<div class="ms-Grid-col ms-sm12 ms-md12 ms-lg12">
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	@*<div class='weeklyviewTable table-responsive bottomborder'>*@
+    <div class='weeklyviewTable bottomborder'>
+        <table id="tblWeekly" class="display ms-Table" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("Employee")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("Manager")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("SUN")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("MON")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("TUE")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("WED")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("THU")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("FRI")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("SAT")</th>
+                    <th>@SharedLocalizer.GetLocalizedHtmlString("TotalHours")</th>
+
+                </tr>
+            </thead>
+
+        </table>
+        
+
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var selDt = getParameterByName('dt');
+        if (selDt) {
+            $(".txtWeeklyDate").val(selDt);
+            $("#DisplayWeeklyDate").show();
+        } else {
+            var selectedDate = "@Model.SelectedDate.ToString("yyyy-MM-dd")".split('-');
+            $(".txtWeeklyDate").datepicker().datepicker('setDate', new Date(selectedDate[0], selectedDate[1] - 1, selectedDate[2]));
+            // $('.ui-datepicker-current-day').click();
+           // setDates('.txtWeeklyDate');
+            $("#DisplayWeeklyDate").removeClass('hidden').show();
+        }
+
+        $('#tblWeekly').dataTable({
+            "processing": false,
+            "serverSide": false,
+            "info": false,
+            "stateSave": true,
+            "pagingType": "simple",
+            "paging": true,
+            "lengthMenu": [[10], [10]],
+            "ajax": {
+                "url": "/WeeklyReportHours/WkLdReq/",
+                "type": "GET",
+                "data": function (d) { var selDt = $("#txtWeeklyDate").val(); d.date = selDt; },
+            },
+            "columns": [
+                { "data": "eNm", "orderable": false },
+                { "data": "mNm", "orderable": false },
+                { "data": "suHM", "orderable": false },
+                { "data": "monHM", "orderable": false },
+                { "data": "tuHM", "orderable": false },
+                { "data": "weHM", "orderable": false },
+                { "data": "thHM", "orderable": false },
+                { "data": "frHM", "orderable": false },
+                { "data": "saHM", "orderable": false },
+                { "data": "totHM", "orderable": false }
+            ],
+            "order": [[0, "asc"]],
+            "dom": 'frtipB',
+            "buttons": [
+                {
+                    "extend": 'csv',
+                    "text": 'Export'
+                },
+                {
+                    "extend": 'print'
+                }
+            ]
+        });
+
+        $(document).on("keypress", "#txtWeeklySearch", function (e) {
+            if (e.which == 13) {
+                $("#tblWeekly").dataTable().fnDestroy();
+                $('#tblWeekly tbody').empty();
+                $("#tblWeekly").dataTable({
+                    "processing": false,
+                    "serverSide": false,
+                    "info": false,
+                    "stateSave": true,
+                    "pagingType": "simple",
+                    "paging": true,
+                    "lengthMenu": [[10], [10]],
+                    "ajax": {
+                        "url": "/WeeklyReportHours/WkLdReq/",
+                        "type": "GET",
+                        "data": {
+                            "date": $("#txtWeeklyDate").val(),
+                            "searchtext": $(this).val(),
+                        }
+                    },
+                    "columns": [
+                        { "data": "eNm", "orderable": false },
+                        { "data": "mNm", "orderable": false },
+                        { "data": "suHM", "orderable": false },
+                        { "data": "monHM", "orderable": false },
+                        { "data": "tuHM", "orderable": false },
+                        { "data": "weHM", "orderable": false },
+                        { "data": "thHM", "orderable": false },
+                        { "data": "frHM", "orderable": false },
+                        { "data": "saHM", "orderable": false },
+                        { "data": "totHM", "orderable": false }
+                    ],
+                    "order": [[0, "asc"]],
+                    "dom": 'frtipB',
+                    "buttons": [
+                        {
+                            "extend": 'csv',
+                            "text": 'Export'
+                        },
+                        {
+                            "extend": 'print'
+                        }
+                    ]
+                }).search($(this).val()).draw();
+
+            }
+        });
+    });
+	//$("#printTable").on('page.dt', function () {
+ //       $("#loadingSearch").removeClass("hidden").show();
+ //       doNextPage();
+ //   });
+    function doNextPage1() {
+        $("#loadingSearch").addClass("hidden");
+		var table = $('#printTable').DataTable();
+		var selDt = $("#txtWeeklyDate").val();
+        window.location = '/Home/Weekly/?selMonthDt=' + selDt + '&empNameFilter=&pageId=1&pageSize=10';
+    }
+
+    function doNextPage() {
+        $("#loadingSearch").addClass("hidden");
+		var selDt = $("#txtWeeklyDate").val();
+        var RequestObj = {
+            "selMonthDt": selDt,
+            "reportHours":JSON.stringify(@Html.Raw(JsonConvert.SerializeObject(Model.WeeklyHrs))),
+            "status":1
+        };
+        $.ajax({
+            "type": "GET",
+            "url": "/Home/Weekly",
+            "data": RequestObj,
+            "success": function (response) {
+                var json = JSON.parse(response);
+                //fnCallback(json);
+				$.each(json, function (i, item) {
+					console.log(item);
+                    var rows = "<tr>" +
+                        "<td >" + item.weeklyHours + "</td>" +
+                        "<td >" + "0" + "</td>" +
+                        "<td >" + "0" + "</td>" +
+                        "<td >" + "0" + "</td>" +
+                        "</tr>";
+					$('#printTable').append(rows);
+                });
+            },
+            error: function (xhr, textStatus, error) {
+                if (typeof console == "object") {
+                    console.log(xhr.status + "," + xhr.responseText + "," + textStatus + "," + error);
+                }
+            }
+        });
+    }
+
+	var weeklyHours = @Html.Raw(JsonConvert.SerializeObject(Model.WeeklyHrs));
+    function doUpdateHours() {
+        var dateData = $(".txtWeeklyDate").val();
+
+        window.location = '/Home/Weekly/?dt=' + dateData;
+    }
+
+    $(document).ready(function () {
+        //$("#loadingSearch").addClass("hidden");
+        //$('#printTable')
+        //    .on('init.dt', function () {
+        //        $("#loadingSearch").addClass("hidden");
+        //    }).DataTable({
+        //        "scrollY": 600,
+        //        "scrollX": false
+        //    });
+
+        //s$("#DisplayWeeklyDate").hide();
+        $(".txtWeeklyDate").change(function () {
+            //$("#loadingSearch").removeClass("hidden").show();
+            doUpdateHours();
+        });
+        //set requested date in datepicker
+
+    });
+
+    $(function () {
+        var startDate;
+        var endDate;
+
+        var selectCurrentWeek = function () {
+            window.setTimeout(function () {
+                $('.ui-weekpicker').find('.ui-datepicker-current-day a').addClass('ui-state-active').removeClass('ui-state-default');
+            }, 1);
+        }
+
+        var setDates = function (input) {
+            var $input = $(input);
+            var date = $input.datepicker('getDate');
+            if (date !== null) {
+                var firstDay = $input.datepicker("option", "firstDay");
+                var dayAdjustment = date.getDay() - firstDay;
+                if (dayAdjustment < 0) {
+                    dayAdjustment += 7;
+                }
+                startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - dayAdjustment);
+                endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - dayAdjustment + 6);
+
+                var inst = $input.data('datepicker');
+                var dateFormat = inst.settings.dateFormat || $.datepicker._defaults.dateFormat;
+                $('#startDate').text($.datepicker.formatDate(dateFormat, startDate, inst.settings));
+                $('#endDate').text($.datepicker.formatDate(dateFormat, endDate, inst.settings));
+            }
+        }
+
+        $('.txtWeeklyDate').datepicker({
+            beforeShow: function () {
+                $('#ui-datepicker-div').addClass('ui-weekpicker');
+                selectCurrentWeek();
+            },
+            onClose: function () {
+                $('#ui-datepicker-div').removeClass('ui-weekpicker');
+            },
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            maxDate: new Date(),
+            onSelect: function (dateText, inst) {
+                setDates(this);
+                selectCurrentWeek();
+                $(this).change();
+            },
+            beforeShowDay: function (date) {
+                var cssClass = '';
+                if (date >= startDate && date <= endDate)
+                    cssClass = 'ui-datepicker-current-day';
+                return [true, cssClass];
+            },
+            onChangeMonthYear: function (year, month, inst) {
+                selectCurrentWeek();
+            }
+        });
+
+        //setDates('.txtWeeklyDate');
+
+        var $calendarTR = $('.ui-weekpicker .ui-datepicker-calendar tr');
+        $calendarTR.live('mousemove', function () {
+            $(this).find('td a').addClass('ui-state-hover');
+        });
+        $calendarTR.live('mouseleave', function () {
+            $(this).find('td a').removeClass('ui-state-hover');
+        });
+    });
+
+
+    function printData() {
+        var divToPrint = document.getElementById("printTable");
+        newWin = window.open("");
+        newWin.document.write(divToPrint.outerHTML);
+        newWin.print();
+        newWin.close();
+    }
+
+    $('.printbutton').on('click', function () {
+        printData();
+    })
+
+</script>
