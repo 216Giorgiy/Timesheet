@@ -296,7 +296,7 @@ namespace GoLocal.TimeWise.AzureFunctions.Repositories
                     // To track the day that is being calculated in the while
                     var dateToCalculate = lastDay;
 
-                    while (dateToCalculate.Date < endOfMonth.Date)
+                    while (dateToCalculate.Date <= endOfMonth.Date)
                     {
                         var workHoursFields = new WorkHoursFields
                         {

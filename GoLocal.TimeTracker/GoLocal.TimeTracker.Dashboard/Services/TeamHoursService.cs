@@ -27,6 +27,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using GoLocal.TimeTracker.Dashboard.Models;
 using GoLocal.TimeTracker.Dashboard.Services.Helpers;
+using GoLocal.TimeTracker.Dashboard.Resources;
 
 namespace GoLocal.TimeTracker.Dashboard.Services
 {
@@ -41,18 +42,21 @@ namespace GoLocal.TimeTracker.Dashboard.Services
         private readonly IRepository<UserProfile> _userProfileRepository;
         private readonly IRepository<TeamHours> _teamHoursRepository;
         private ListCollectionPage<TeamHours> _listCollectionPage;
+		private readonly LocService _sharedLocalizer;
 
-        public TeamHoursService(
+		public TeamHoursService(
             ILogger<TeamHoursService> logger,
             IOptionsSnapshot<TimeTrackerOptions> timeTrackerOptions,
             IRepository<UserProfile> userProfileRepository,
-            IRepository<TeamHours> teamHoursRepository)
-        {
+            IRepository<TeamHours> teamHoursRepository,
+			LocService sharedLocalizer)
+		{
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _timeTrackerOptions = timeTrackerOptions.Value ?? throw new ArgumentNullException(nameof(timeTrackerOptions));
             _userProfileRepository = userProfileRepository ?? throw new ArgumentNullException(nameof(userProfileRepository));
             _teamHoursRepository = teamHoursRepository ?? throw new ArgumentNullException(nameof(teamHoursRepository));
-        }
+			_sharedLocalizer = sharedLocalizer ;
+		}
 
         public async Task<TeamHoursViewModel> GetViewModel(DateTime date, int pageIndex = 1, int pageSize = 10)
         {
@@ -114,29 +118,36 @@ namespace GoLocal.TimeTracker.Dashboard.Services
                     if(item.Fields.TeamHoursItemState.ToString() == ItemState.Submitted.ToString())
                     {
                         mgrSubmitted = true;
-                        status = item.Fields.ItemState.ToString();
-                        actionLinks += "<span class='recheckHrs icon-noaction'> <i class='ms-Icon ms-Icon--DelveAnalytics font20' title='Request Revision'></i></span>";
+
+						//status = item.Fields.ItemState.ToString();
+						status = _sharedLocalizer.GetLocalizedHtmlString("Submitted");
+
+						actionLinks += "<span class='recheckHrs icon-noaction'> <i class='ms-Icon ms-Icon--DelveAnalytics font20' title='Request Revision'></i></span>";
                     }
                     else if(item.Fields.ItemState.ToString() == ItemState.Submitted.ToString())
                     {
                         userSubmitted = true;
-                        status = item.Fields.ItemState.ToString();
-                        actionLinks += "<span class='recheckHrs'> <i class='ms-Icon ms-Icon--DelveAnalytics font20 Pointer' title='Request Revision'></i></span>";
+                        //status = item.Fields.ItemState.ToString();
+						status = _sharedLocalizer.GetLocalizedHtmlString("Submitted");
+						actionLinks += "<span class='recheckHrs'> <i class='ms-Icon ms-Icon--DelveAnalytics font20 Pointer' title='Request Revision'></i></span>";
                     }else if (item.Fields.ItemState.ToString() == ItemState.RequiresRevision.ToString())
                     {
-                        status = "Requires Revision";
-                        actionLinks += "<span class='recheckHrs icon-noaction'> <i class='ms-Icon ms-Icon--DelveAnalytics font20' title='Request Revision'></i></span>";
+                        //status = "Requires Revision";
+						status = _sharedLocalizer.GetLocalizedHtmlString("RequiresRevision");
+						actionLinks += "<span class='recheckHrs icon-noaction'> <i class='ms-Icon ms-Icon--DelveAnalytics font20' title='Request Revision'></i></span>";
                     }
                     else if (item.Fields.ItemState.ToString() == ItemState.NotSubmitted.ToString())
                     {
                         status = "Not Submitted";
-                        actionLinks += "<span class='recheckHrs icon-noaction'> <i class='ms-Icon ms-Icon--DelveAnalytics font20' title='Request Revision'></i></span>";
+						status = _sharedLocalizer.GetLocalizedHtmlString("NotSubmitted");
+						actionLinks += "<span class='recheckHrs icon-noaction'> <i class='ms-Icon ms-Icon--DelveAnalytics font20' title='Request Revision'></i></span>";
                     }
                     else if (item.Fields.ItemState.ToString() == ItemState.SubmittedBySystem.ToString())
                     {
                         userSubmitted = true;
                         status = "Submitted By System";
-                        actionLinks += "<span class='recheckHrs'> <i class='ms-Icon ms-Icon--DelveAnalytics font20 Pointer' title='Request Revision'></i></span>";
+						status = _sharedLocalizer.GetLocalizedHtmlString("SubmittedBySystem");
+						actionLinks += "<span class='recheckHrs'> <i class='ms-Icon ms-Icon--DelveAnalytics font20 Pointer' title='Request Revision'></i></span>";
                     }
                     else
                     {

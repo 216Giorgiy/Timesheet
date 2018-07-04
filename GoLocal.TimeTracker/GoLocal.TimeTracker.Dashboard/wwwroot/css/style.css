@@ -754,7 +754,7 @@ card .card-body {
 }
 
 .ms-DatePicker-day--highlighted:hover, .ms-DatePicker-picker--focused .ms-DatePicker-day--highlighted {
-    color: #000;
+    color: #000 !important;
     background: none !important;
 }
 

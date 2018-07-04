@@ -42,18 +42,18 @@ using GoLocal.TimeTracker.MiddleTier.Services.AppContext;
 
 namespace GoLocal.TimeTracker.Dashboard
 {
-	public class Startup
-	{
-		public Startup(IConfiguration configuration)
-		{
-			Configuration = configuration;
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
         }
 
-		public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-		{
+        {
             // Register Azure AD authentication service options
             services.AddAuthentication(sharedOptions =>
             {
@@ -68,16 +68,10 @@ namespace GoLocal.TimeTracker.Dashboard
             services.AddSingleton<LocService>();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            services.AddMvc()
-               .AddViewLocalization(options => options.ResourcesPath = "Resources")
-               .AddDataAnnotationsLocalization(options =>
-               {
-                   options.DataAnnotationLocalizerProvider = (type, factory) =>
-                   {
-                       var assemblyName = new AssemblyName(typeof(SharedResource).GetTypeInfo().Assembly.FullName);
-                       return factory.Create("SharedResource", assemblyName.Name);
-                   };
-               });
+
+            services.AddMvc()                
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)                                
+                .AddDataAnnotationsLocalization();
 
             services.Configure<RequestLocalizationOptions>(
                 options =>
@@ -86,33 +80,15 @@ namespace GoLocal.TimeTracker.Dashboard
                         {
                             new CultureInfo("en-US"),
                             new CultureInfo("ja-JP"),
-                        //new CultureInfo("hi-IN")
+                            new CultureInfo("ja")
                     };
-
-                    string language = "en-US";
-
-                        // Detect User's Language.
-                        CultureInfo Reqlanguage = new CultureInfo(System.Threading.Thread.CurrentThread.CurrentCulture.LCID);
-                    if (Reqlanguage.ToString() != null)
-                    {
-                            // Check language is exist in Supported Culture and Set the Language.
-                            if (supportedCultures.Contains(Reqlanguage))
-                        {
-                            language = Reqlanguage.ToString();
-                        }
-                        language = Reqlanguage.ToString();
-                    }
-
-                    options.DefaultRequestCulture = new RequestCulture(culture: language, uiCulture: language);
+                    options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
+                    // You must explicitly state which cultures your application supports.
+                    // These are the cultures the app supports for formatting numbers, dates, etc.
                     options.SupportedCultures = supportedCultures;
+                    // These are the cultures the app supports for UI strings, i.e. we have localized resources for.
                     options.SupportedUICultures = supportedCultures;
-                    options.RequestCultureProviders = new List<IRequestCultureProvider>();
-
-                    // By default, the following built-in providers are configured:
-                    // - QueryStringRequestCultureProvider, sets culture via "culture" and "ui-culture" query string values, useful for testing
-                    // - CookieRequestCultureProvider, sets culture via "ASPNET_CULTURE" cookie
-                    // - AcceptLanguageHeaderRequestCultureProvider, sets culture via the "Accept-Language" request header
-                    });
+                });
 
             // Add scheduled tasks,  scheduler & related services
             // TODO: Varma:  review changing from singleton to scoped.
@@ -167,7 +143,7 @@ namespace GoLocal.TimeTracker.Dashboard
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-		{
+        {
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -202,6 +178,6 @@ namespace GoLocal.TimeTracker.Dashboard
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-	}
+    }
 }
 

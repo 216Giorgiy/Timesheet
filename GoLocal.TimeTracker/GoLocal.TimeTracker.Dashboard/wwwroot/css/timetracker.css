@@ -134,7 +134,7 @@ input:focus {
 }
 
 .ms-PanelHost {
-    top: 60px;
+    top: 60px !important;
 }
 
 .wrapper {
@@ -356,6 +356,9 @@ input:focus {
     position: relative;
     z-index: 2;
     float: right;
+    width:79%;
+    width: -webkit-calc(100% - 260px);
+    width: -moz-calc(100% - 260px);
     width: calc(100% - 260px);
 }
 
@@ -830,7 +833,7 @@ input:focus {
         }
 
     .ms-PanelHost {
-        top: 109px;
+        top: 109px !important;
     }
 
         .navbar-right {
@@ -1387,5 +1390,17 @@ input:focus {
     }
     .MailConntent {
         border-left: 0px solid #ccc;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .ms-persona-details {
+        padding: 0 12px;
+        vertical-align: middle;
+        overflow: hidden;
+        text-align: left;
+        padding-left: 60px;
+        display: table-cell;
+        width: 0 !important;
     }
 }

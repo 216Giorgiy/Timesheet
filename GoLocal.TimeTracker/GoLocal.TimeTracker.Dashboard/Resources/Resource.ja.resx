@@ -538,7 +538,7 @@
     <value>更新</value>
   </data>
   <data name="Analyticslegend" xml:space="preserve">
-    <value>過労した従業員</value>
+    <value>過労した従業員％</value>
   </data>
   <data name="lblAnalytics" xml:space="preserve">
     <value>アナリティクス</value>

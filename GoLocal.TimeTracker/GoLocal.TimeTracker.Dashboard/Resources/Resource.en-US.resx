@@ -547,12 +547,24 @@
     <value>Update</value>
   </data>
   <data name="Analyticslegend" xml:space="preserve">
-    <value>% Employees Overworked</value>
+    <value>Employees Overworked</value>
   </data>
   <data name="lblexport" xml:space="preserve">
     <value>Export</value>
   </data>
   <data name="lblPrint" xml:space="preserve">
     <value>Print</value>
+  </data>
+  <data name="NotSubmitted" xml:space="preserve">
+    <value>Not Submitted</value>
+  </data>
+  <data name="RequiresRevision" xml:space="preserve">
+    <value>Requires Revision</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Submitted</value>
+  </data>
+  <data name="SubmittedBySystem" xml:space="preserve">
+    <value>Submitted By System</value>
   </data>
 </root>

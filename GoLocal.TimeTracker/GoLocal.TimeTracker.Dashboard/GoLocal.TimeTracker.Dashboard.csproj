@@ -43,10 +43,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Resource.ja-JP.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Resource.en-US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Resource.ja-JP.resx">
+    <EmbeddedResource Update="Resources\Resource.ja.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
