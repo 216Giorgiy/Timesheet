@@ -43,7 +43,7 @@
         </div>
         <div class="weeklyviewTable ms-font-m">
             <div class="ms-Grid-col ms-sm12 ms-lg12">
-                <span class="Reported" style="display:none;text-align:center;">@SharedLocalizer.GetLocalizedHtmlString("NoOvertimeReported")</span>
+                <span class="Reported" style="display:none;text-align:center;">@SharedLocalizer.GetLocalizedHtmlString("NoOvertimeReported") <span class="ReportMonth"></span></span>
             </div>
             <div class="ms-Grid-col ms-sm12 ms-lg12" id="canvas">
                 <div class="Linechart pl20" style="width:100%;">
@@ -56,11 +56,41 @@
 
 
 </div>
+<div class="hiddenelements" style="display:none;">
+    <label id="Analyticslegend" style="display:none">@SharedLocalizer.GetLocalizedHtmlString("Analyticslegend")</label>
+    <label id="PercentageofEmployees" style="display:none;">@SharedLocalizer.GetLocalizedHtmlString("PercentageofEmployees")</label>
+    <label id="NoofEmployees" style="display:none;">@SharedLocalizer.GetLocalizedHtmlString("NoofEmployees")</label>
+    <label id="January">@SharedLocalizer.GetLocalizedHtmlString("January")</label><label id="February">@SharedLocalizer.GetLocalizedHtmlString("February")</label><label id="March">@SharedLocalizer.GetLocalizedHtmlString("March")</label>
+    <label id="April">@SharedLocalizer.GetLocalizedHtmlString("April")</label><label id="May">@SharedLocalizer.GetLocalizedHtmlString("May")</label><label id="June">@SharedLocalizer.GetLocalizedHtmlString("June")</label>
+    <label id="July">@SharedLocalizer.GetLocalizedHtmlString("July")</label><label id="August">@SharedLocalizer.GetLocalizedHtmlString("August")</label><label id="September">@SharedLocalizer.GetLocalizedHtmlString("September")</label>
+    <label id="October">@SharedLocalizer.GetLocalizedHtmlString("October")</label><label id="November">@SharedLocalizer.GetLocalizedHtmlString("November")</label><label id="December">@SharedLocalizer.GetLocalizedHtmlString("December")</label>
+    <label id="Jan">@SharedLocalizer.GetLocalizedHtmlString("Jan")</label>
+    <label id="Feb">@SharedLocalizer.GetLocalizedHtmlString("Feb")</label>
+    <label id="Mar">@SharedLocalizer.GetLocalizedHtmlString("Mar")</label>
+    <label id="Apr">@SharedLocalizer.GetLocalizedHtmlString("Apr")</label>
+    <label id="May">@SharedLocalizer.GetLocalizedHtmlString("May")</label>
+    <label id="June">@SharedLocalizer.GetLocalizedHtmlString("June")</label>
+    <label id="July">@SharedLocalizer.GetLocalizedHtmlString("July")</label>
+    <label id="Aug">@SharedLocalizer.GetLocalizedHtmlString("Aug")</label>
+    <label id="Sep">@SharedLocalizer.GetLocalizedHtmlString("Sep")</label>
+    <label id="Oct">@SharedLocalizer.GetLocalizedHtmlString("Oct")</label>
+    <label id="Nov">@SharedLocalizer.GetLocalizedHtmlString("Nov")</label>
+    <label id="Dec">@SharedLocalizer.GetLocalizedHtmlString("Dec")</label>
+    <label id="Jump">@SharedLocalizer.GetLocalizedHtmlString("Jump")</label>
+    <label id="Year">@SharedLocalizer.GetLocalizedHtmlString("Year")</label>
+</div>
 <script src="~/js/Chart.min.js"></script>
 <script type="text/javascript">
-    var Overtimeemployees = [];
+    var Overtimeemployees = []; var monthlabel = [];
     $(document).ready(function () {
+        monthlabel = [$('#Jan').text(), $('#Feb').text(), $('#Mar').text(), $('#Apr').text(), $('#May').text(), $('#June').text(), $('#July').text(), $('#Aug').text(), $('#Sep').text(), $('#Oct').text(), $('#Nov').text(), $('#Dec').text()];
         $('#txtMonthlyDate').MonthPicker({
+            IsRTL: true,
+            i18n: {
+                year: $('#Year').text(),
+                jumpYears: $('#Jump').text(),
+                months: monthlabel
+            },
             MaxMonth: -1,
             Button: false,
             MonthFormat: 'M, yy',
@@ -102,11 +132,11 @@
                         result.push(e.percentOfOTUsers);
                         Overtimeemployees.push(e.otUserCount);
                     });
-                    if (result.length == 0 && Overtimeemployees.length == 0) {
+                    if (result.length != 0 && Overtimeemployees.length != 0) {
                         var data = {
                             labels: labels,
                             datasets: [{
-                                label: "Employees Overworked",
+                                label:$("#Analyticslegend").text(),
                                 fill: false,
                                 borderWidth: 1,
                                 borderColor: "#2a809f",
@@ -154,7 +184,7 @@
                                         label: function (tooltipItem, data) {
                                             var successCount = data.datasets[0].data[tooltipItem.index];
                                             var failCount = data.datasets[1].data[tooltipItem.index];
-                                            var msg = "@SharedLocalizer.GetLocalizedHtmlString("PercentageofEmployees"):" + successCount + "%" + "     @SharedLocalizer.GetLocalizedHtmlString("NoofEmployees"):"+ failCount;
+                                            var msg = $('#PercentageofEmployees').text() + ":" + successCount + " ," + $('#NoofEmployees').text()+ ":" + failCount;
                                             return msg;
                                         }
                                     }
@@ -164,7 +194,24 @@
                     } else {
                         $('#canvas').css("display", "none");
                         $('.Reported').css("display", "block");
-                        $('.Reported').append(" " + Month);
+                        var resultflag = "";
+                        switch (Month.split(',')[0].toLowerCase()) {
+                            case "jan": resultflag = $("#January").text(); break;
+                            case "feb": resultflag = $("#February").text(); break;
+                            case "mar": resultflag = $("#March").text(); break;
+                            case "apr": resultflag = $("#April").text(); break;
+                            case "may": resultflag = $("#May").text(); break;
+                            case "june": resultflag = $("#June").text(); break;
+                            case "jun": resultflag = $("#June").text(); break;
+                            case "jul": resultflag = $("#July").text(); break;
+                            case "aug": resultflag = $("#August").text(); break;
+                            case "sep": resultflag = $("#September").text(); break;
+                            case "oct": resultflag = $("#October").text(); break;
+                            case "nov": resultflag = $("#November").text(); break;
+                            case "dec": resultflag = $("#December").text(); break;
+
+                        }
+                        $('.ReportMonth').text(resultflag + "," + Month.split(',')[1]);
                     }
                 }
                 else { alert("Error Occured"); }
@@ -175,7 +222,6 @@
 
     }
     function GetDataTip(t, e) {
-        debugger;
         var ot = Overtimeemployees;
     }
 </script>

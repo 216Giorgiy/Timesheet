@@ -155,8 +155,8 @@ namespace GoLocal.TimeTracker.Dashboard
             }
 
             var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
-            //app.UseRequestLocalization(locOptions.Value);
-            app.UseRequestLocalization();
+            app.UseRequestLocalization(locOptions.Value);
+            
 
 
             app.UseStaticFiles();

@@ -4,161 +4,175 @@
 @inject LocService SharedLocalizer
 
 @{
-	ViewData["Title"] = SharedLocalizer.GetLocalizedHtmlString("lblDashboard");
+    ViewData["Title"] = SharedLocalizer.GetLocalizedHtmlString("lblDashboard");
 }
 
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.min.css" />
-<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.components.min.css" />
-<script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
+<script src="~/js/jquery-ui.min.js"></script>
+<link href="~/css/fabric.components.min.css" rel="stylesheet" />
+<link href="~/css/fabric.min.css" rel="stylesheet" />
 <script type="text/javascript">
-	$(document).ready(function () {
+    $(document).ready(function () {
 
-	})
+    })
 </script>
 
 
 <div class="main-panel ms-Grid">
-	<!----Page Heading---->
-	<div class="pageHeading ms-Grid ">
-		<div class="ms-Grid-row">
-			<div class=" ms-Grid">
-				<div class="ms-Grid-col ms-sm12 ms-ms-5 ms-lg7 ">
-					<h1>
-						@SharedLocalizer.GetLocalizedHtmlString("MyTimings")
-					</h1>
-				</div>
+    <!----Page Heading---->
+    <div class="hiddenelements" style="display:none;">
+        <label id="hour">@SharedLocalizer.GetLocalizedHtmlString("hour")</label>
+        <label id="minute">@SharedLocalizer.GetLocalizedHtmlString("minute")</label>
+        <label id="Calculated">@SharedLocalizer.GetLocalizedHtmlString("CalculatedHours")</label>
+        <label id="Adjusted">@SharedLocalizer.GetLocalizedHtmlString("AdjustedHours")</label>
+    </div>
+    <div class="pageHeading ms-Grid ">
+        <div class="ms-Grid-row">
+            <div class=" ms-Grid">
+                <div class="ms-Grid-col ms-sm12 ms-ms-5 ms-lg7 ">
+                    <h1>
+                        @SharedLocalizer.GetLocalizedHtmlString("MyTimings")
+                    </h1>
+                </div>
 
-				<div class="ms-Grid-col ms-sm12 ms-ms-5 ms-lg3 pull-right">
-					<div class="ms-lg5 pT25 ">
-						@if (Model.UserInfo.Fields.Manager != String.Empty)
-						{
-							<div class="ms-Persona ms-Persona--sm  ">
-								<div class="ms-Persona-imageArea">
-									<img class="ms-Persona-image" src="@Model.UserInfo.Fields.ManagerPicture" />
-								</div>
+                <div class="ms-Grid-col ms-sm12 ms-ms-5 ms-lg3 pull-right">
+                    <div class="ms-lg5 pT25 ">
+                        @if (Model.UserInfo.Fields.Manager != String.Empty)
+                        {
+                            <div class="ms-Persona ms-Persona--sm  ">
+                                <div class="ms-Persona-imageArea">
+                                    <img class="ms-Persona-image" src="@Model.UserInfo.Fields.ManagerPicture" />
+                                </div>
 
-								<div class="ms-Persona-details">
-									<div class="ms-Persona-primaryText font-bold AppUserName">@Model.UserInfo.Fields.Manager </div>
-									<div class="ms-Persona-secondaryText">@SharedLocalizer.GetLocalizedHtmlString("IsYourManager")</div>
-								</div>
-							</div>
-						}
-					</div>
-				</div>
-			</div>
-		</div>
-		<!----Page Heading End---->
-		<div class="PageSextion ms-Grid">
-			<div class="ms-Grid-row">
-				<div class="col-md-12" style="margin-top:45px;">
-					<div class="col-sm-12 col-md-3 ">
-						<div class="ms-Grid-col ms-sm12 ms-lg12">
-							<div class="card ">
-								<div class="card-body pv">
-									<div class="ms-Grid-col ms-sm12 ms-lg9 pT10 pl10">
-										<div class="pb10">
-											<h2> @SharedLocalizer.GetLocalizedHtmlString("Today")</h2>
-										</div>
-										<div class="workTime pT10">
-											@Model.TodayHours@SharedLocalizer.GetLocalizedHtmlString("h")  @Model.TodayMinutes@SharedLocalizer.GetLocalizedHtmlString("m")
-										</div>
-									</div>
-									<div class="ms-Grid-col ms-sm12 ms-lg3 top15margin">
-										<img src="~/images/@(Model.TodayGoalStatus=="Overtime"?"Sad.png":"Happy.png")" style="width: 30px;margin-top: 24px;" />
-									</div>
+                                <div class="ms-Persona-details">
+                                    <div class="ms-Persona-primaryText font-bold AppUserName">@Model.UserInfo.Fields.Manager </div>
+                                    <div class="ms-Persona-secondaryText">@SharedLocalizer.GetLocalizedHtmlString("IsYourManager")</div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!----Page Heading End---->
+        <div class="PageSextion ms-Grid">
+            <div class="ms-Grid-row">
+                <div class="col-md-12" style="margin-top:45px;">
+                    <div class="col-sm-12 col-md-3 ">
+                        <div class="ms-Grid-col ms-sm12 ms-lg12">
+                            <div class="card ">
+                                <div class="card-body pv">
+                                    <div class="ms-Grid-col ms-sm12 ms-lg9 pT10 pl10">
+                                        <div class="pb10">
+                                            <h2> @SharedLocalizer.GetLocalizedHtmlString("Today")</h2>
+                                        </div>
+                                        <div class="workTime pT10">
+                                            @Model.TodayHours@SharedLocalizer.GetLocalizedHtmlString("hour")  @Model.TodayMinutes@SharedLocalizer.GetLocalizedHtmlString("minute")
+                                        </div>
+                                    </div>
+                                    <div class="ms-Grid-col ms-sm12 ms-lg3 top15margin">
+                                        <img src="~/images/@(Model.TodayGoalStatus=="Overtime"?"Sad.png":"Happy.png")" style="width: 30px;margin-top: 24px;" />
+                                    </div>
 
-								</div>
-							</div>
-						</div>
+                                </div>
+                            </div>
+                        </div>
 
-						<div class="ms-Grid-col ms-sm12 ms-lg12">
-							<div class="card">
-								<div class="card-body pv">
-									<div class="ms-Grid-col ms-sm12 ms-lg9 pT10 pl10">
+                        <div class="ms-Grid-col ms-sm12 ms-lg12">
+                            <div class="card">
+                                <div class="card-body pv">
+                                    <div class="ms-Grid-col ms-sm12 ms-lg9 pT10 pl10">
 
-										<div class="pb10">
-											<h2> @SharedLocalizer.GetLocalizedHtmlString("LastWeek")</h2>
-										</div>
-										
-										@if (Model.currentWeekData == true)
-										{
-									<div class="ms-Spinner ms-Spinner--large">
-										<div class="ms-Spinner-label">
-											@SharedLocalizer.GetLocalizedHtmlString("Loading")...
-										</div>
-									</div>
+                                        <div class="pb10">
+                                            <h2> @SharedLocalizer.GetLocalizedHtmlString("LastWeek")</h2>
+                                        </div>
 
-
-									}
-									else
-									{
-									<div class="workTime pT10">
-										@Model.LastWeek.TotalHours@SharedLocalizer.GetLocalizedHtmlString("h") @Model.LastWeek.TotalMins@SharedLocalizer.GetLocalizedHtmlString("m")
-									</div>
-									}
-										<div class="WorkDuration  pb10">
-										</div>
-									</div>
-									<div class="ms-Grid-col ms-sm12 ms-lg6">
-									</div>
-
-								</div>
-							</div>
+                                        @if (Model.currentWeekData == true)
+                                        {
+                                            <div class="ms-Spinner ms-Spinner--large">
+                                                <div class="ms-Spinner-label">
+                                                    @SharedLocalizer.GetLocalizedHtmlString("Loading")...
+                                                </div>
+                                            </div>
 
 
-						</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="workTime pT10">
+                                                @Model.LastWeek.TotalHours@SharedLocalizer.GetLocalizedHtmlString("hour") @Model.LastWeek.TotalMins@SharedLocalizer.GetLocalizedHtmlString("minute")
+                                            </div>
+                                        }
+                                        <div class="WorkDuration  pb10">
+                                        </div>
+                                    </div>
+                                    <div class="ms-Grid-col ms-sm12 ms-lg6">
+                                    </div>
 
-						<div class="ms-Grid-col ms-sm12 ms-lg12">
-							<div class="card">
-								<div class="card-body pv">
-									<div class="ms-Grid-col ms-sm12 ms-lg9 pT10 pl10">
-										<div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="ms-Grid-col ms-sm12 ms-lg12">
+                            <div class="card">
+                                <div class="card-body pv">
+                                    <div class="ms-Grid-col ms-sm12 ms-lg9 pT10 pl10">
+                                        <div>
                                             @if (Model.currentWeekData == true)
                                             {
-                                            <a href="@Url.Action("refreshData", "Home" )" id="refreshData"> </a>
+                                                <a href="@Url.Action("refreshData", "Home" )" id="refreshData"> </a>
                                             }
-                                             
-										</div>
-										<div class="pb10">
-											<h2> @SharedLocalizer.GetLocalizedHtmlString("ThisMonth")</h2>
-										</div>
-										@if (Model.currentWeekData == true)
-										{
-									<div class="ms-Spinner ms-Spinner--large">
-										<div class="ms-Spinner-label">
-											@SharedLocalizer.GetLocalizedHtmlString("Loading")...
-										</div>
-									</div>
+
+                                        </div>
+                                        <div class="pb10">
+                                            <h2> @SharedLocalizer.GetLocalizedHtmlString("ThisMonth")</h2>
+                                        </div>
+                                        @if (Model.currentWeekData == true)
+                                        {
+                                            <div class="ms-Spinner ms-Spinner--large">
+                                                <div class="ms-Spinner-label">
+                                                    @SharedLocalizer.GetLocalizedHtmlString("Loading")...
+                                                </div>
+                                            </div>
 
 
-										}
-										else
-										{
-									<div class="workTime pT10">
-										@Model.ThisMonth.TotalHours@SharedLocalizer.GetLocalizedHtmlString("h") @Model.ThisMonth.TotalMins@SharedLocalizer.GetLocalizedHtmlString("m")
-									</div>
-										}
-									<div class="WorkDuration  pb10">
-									</div>
-									</div>
-									<div class="ms-Grid-col ms-sm12 ms-lg6">
-									</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="workTime pT10">
+                                                @Model.ThisMonth.TotalHours@SharedLocalizer.GetLocalizedHtmlString("hour") @Model.ThisMonth.TotalMins@SharedLocalizer.GetLocalizedHtmlString("minute")
+                                            </div>
+                                        }
+                                        <div class="WorkDuration  pb10">
+                                        </div>
+                                    </div>
+                                    <div class="ms-Grid-col ms-sm12 ms-lg6">
+                                    </div>
 
-								</div>
-							</div>
+                                </div>
+                            </div>
 
-						</div>
-					</div>
-					<script>
-                        var SubmittedDate ="@Model.SubmittedOn"; 
-                var weekLbl = ["@(Convert.ToDateTime(Model.DayHours[0].HoursDate).DayOfWeek.ToString().Substring(0,3)) @(Convert.ToDateTime(Model.DayHours[0].HoursDate).ToString("MM/dd"))",
-                    "@(Convert.ToDateTime(Model.DayHours[1].HoursDate).DayOfWeek.ToString().Substring(0, 3)) @(Convert.ToDateTime(Model.DayHours[1].HoursDate).ToString("MM/dd"))",
-                    "@(Convert.ToDateTime(Model.DayHours[2].HoursDate).DayOfWeek.ToString().Substring(0, 3)) @(Convert.ToDateTime(Model.DayHours[2].HoursDate).ToString("MM/dd"))",
-                    "@(Convert.ToDateTime(Model.DayHours[3].HoursDate).DayOfWeek.ToString().Substring(0, 3)) @(Convert.ToDateTime(Model.DayHours[3].HoursDate).ToString("MM/dd"))",
-                    "@(Convert.ToDateTime(Model.DayHours[4].HoursDate).DayOfWeek.ToString().Substring(0, 3)) @(Convert.ToDateTime(Model.DayHours[4].HoursDate).ToString("MM/dd"))",
-                    "@(Convert.ToDateTime(Model.DayHours[5].HoursDate).DayOfWeek.ToString().Substring(0,3)) @(Convert.ToDateTime(Model.DayHours[5].HoursDate).ToString("MM/dd"))",
-                    "@(Convert.ToDateTime(Model.DayHours[6].HoursDate).DayOfWeek.ToString().Substring(0, 3)) @(Convert.ToDateTime(Model.DayHours[6].HoursDate).ToString("MM/dd"))"];
+                        </div>
+                    </div>
+                    <div class="hiddenFields" style="display:none">
+                        <label id="Mon">@SharedLocalizer.GetLocalizedHtmlString("MON")</label>
+                        <label id="Tue">@SharedLocalizer.GetLocalizedHtmlString("TUE")</label>
+                        <label id="Wed">@SharedLocalizer.GetLocalizedHtmlString("WED")</label>
+                        <label id="Thu">@SharedLocalizer.GetLocalizedHtmlString("THU")</label>
+                        <label id="Fri">@SharedLocalizer.GetLocalizedHtmlString("FRI")</label>
+                        <label id="Sat">@SharedLocalizer.GetLocalizedHtmlString("SAT")</label>
+                        <label id="Sun">@SharedLocalizer.GetLocalizedHtmlString("SUN")</label>
+                    </div>
+                    <script>
+                        var SubmittedDate = "@Model.SubmittedOn";
+                        var weekLbl = [$('#Mon').text()+ " @(Convert.ToDateTime(Model.DayHours[0].HoursDate).ToString("MM/dd"))",
+                            $('#Tue').text() +" @(Convert.ToDateTime(Model.DayHours[1].HoursDate).ToString("MM/dd"))",
+                            $('#Wed').text() +" @(Convert.ToDateTime(Model.DayHours[2].HoursDate).ToString("MM/dd"))",
+                            $('#Thu').text() +" @(Convert.ToDateTime(Model.DayHours[3].HoursDate).ToString("MM/dd"))",
+                            $('#Fri').text() +" @(Convert.ToDateTime(Model.DayHours[4].HoursDate).ToString("MM/dd"))",
+                            $('#Sat').text() +" @(Convert.ToDateTime(Model.DayHours[5].HoursDate).ToString("MM/dd"))",
+                            $('#Sun').text() +" @(Convert.ToDateTime(Model.DayHours[6].HoursDate).ToString("MM/dd"))"];
 
                 var colon = ":";
 
@@ -179,334 +193,333 @@
                                             @Model.DayHours[4].AdjHours,
                                             @Model.DayHours[5].AdjHours,
                                             @Model.DayHours[6].AdjHours];
-					</script>
-					<div class="col-sm-12 col-md-9 grayBorder " style="margin-bottom:10px;float:left;">
-						<div class="col-md-12 mt20">
-							<div class="col-md-4">
-								<button class="ms-Button ms-Button--primary" id="btnEditWorkHours" data-backdrop="static" @(Model.WorkHoursEditable ? "" : "disabled")>
-									<span class="ms-Button-label"> <span class="glyphicon glyphicon-pencil"></span> &nbsp; @SharedLocalizer.GetLocalizedHtmlString("EditHours") </span>
-								</button>
-							</div>
-							<div class="col-md-8">
-								<div class="ms-Grid pull-right">
-									<span class="pageLoader lnkNextPrevWeek hidden">  <img src="~/images/Loading.gif" class="" height="15" /></span>
-									@if (Model.WeekStartDay < DateTime.Now.AddMonths(-1).AddDays(1 - DateTime.Now.Day) || Model.currentWeekData == true)
-									{
-										<i class="ms-Icon ms-Icon--ChevronLeftSmall inactive" aria-hidden="true"></i>
-									}
-									else
-									{
-										<a href="@Url.Action("GetPrevNextWeek", "Home" , new { dt=Model.WeekStartDay.ToString("M/d/yyyy"), weekType="prev" })">
-											<i class="ms-Icon ms-Icon--ChevronLeftSmall" aria-hidden="true"></i>
-										</a>
-									}
-									<span class="">&nbsp;@Model.WeekStartDay.ToString("M/d/yyyy")&nbsp;-&nbsp;@Model.WeekEndDay.ToString("M/d/yyyy")&nbsp;</span>
-									@if (Model.WeekEndDay.AddDays(1) > DateTime.Now)
-									{
-										<i class="ms-Icon ms-Icon--ChevronRightSmall inactive" aria-hidden="true"></i>
-									}
-									else
-									{
-										<a href="@Url.Action("GetPrevNextWeek", "Home", new { dt = Model.WeekEndDay.ToString("M/d/yyyy"), weekType = "next"})">
-											<i class="ms-Icon ms-Icon--ChevronRightSmall" aria-hidden="true"></i>
-										</a>
-									}
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="GraphValue mt30  ms-Grid-row">
-								<div class="ms-Grid-col ms-sm12 ms-lg12">
-									<canvas id="canvas"></canvas>
-								</div>
-								<div class="ms-Grid-col ms-sm12 ms-lg12  pT25 lgd">
-									<ul class="legend">
-										<li><span class="workHours"></span> @SharedLocalizer.GetLocalizedHtmlString("CalculatedHours")</li>
-										<li><span class="submittedHours"></span> @SharedLocalizer.GetLocalizedHtmlString("SubmittedHours")</li>
-										<li><span class="adjustedHours"></span> @SharedLocalizer.GetLocalizedHtmlString("AdjustedHours")</li>
+                    </script>
+                    <div class="col-sm-12 col-md-9 grayBorder " style="margin-bottom:10px;float:left;">
+                        <div class="col-md-12 mt20">
+                            <div class="col-md-4">
+                                <button class="ms-Button ms-Button--primary" id="btnEditWorkHours" data-backdrop="static" @(Model.WorkHoursEditable ? "" : "disabled")>
+                                    <span class="ms-Button-label"> <span class="glyphicon glyphicon-pencil"></span> &nbsp; @SharedLocalizer.GetLocalizedHtmlString("EditHours") </span>
+                                </button>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="ms-Grid pull-right">
+                                    <span class="pageLoader lnkNextPrevWeek hidden">  <img src="~/images/Loading.gif" class="" height="15" /></span>
+                                    @if (Model.WeekStartDay < DateTime.Now.AddMonths(-1).AddDays(1 - DateTime.Now.Day) || Model.currentWeekData == true)
+                                    {
+                                        <i class="ms-Icon ms-Icon--ChevronLeftSmall inactive" aria-hidden="true"></i>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("GetPrevNextWeek", "Home" , new { dt=Model.WeekStartDay.ToString("M/d/yyyy"), weekType="prev" })">
+                                            <i class="ms-Icon ms-Icon--ChevronLeftSmall" aria-hidden="true"></i>
+                                        </a>
+                                    }
+                                    <span class="">&nbsp;@Model.WeekStartDay.ToString("M/d/yyyy")&nbsp;-&nbsp;@Model.WeekEndDay.ToString("M/d/yyyy")&nbsp;</span>
+                                    @if (Model.WeekEndDay.AddDays(1) > DateTime.Now)
+                                    {
+                                        <i class="ms-Icon ms-Icon--ChevronRightSmall inactive" aria-hidden="true"></i>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("GetPrevNextWeek", "Home", new { dt = Model.WeekEndDay.ToString("M/d/yyyy"), weekType = "next"})">
+                                            <i class="ms-Icon ms-Icon--ChevronRightSmall" aria-hidden="true"></i>
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="GraphValue mt30  ms-Grid-row">
+                                <div class="ms-Grid-col ms-sm12 ms-lg12">
+                                    <canvas id="canvas"></canvas>
+                                </div>
+                                <div class="ms-Grid-col ms-sm12 ms-lg12  pT25 lgd">
+                                    <ul class="legend">
+                                        <li><span class="workHours"></span> @SharedLocalizer.GetLocalizedHtmlString("CalculatedHours")</li>
+                                        <li><span class="submittedHours"></span> @SharedLocalizer.GetLocalizedHtmlString("SubmittedHours")</li>
+                                        <li><span class="adjustedHours"></span> @SharedLocalizer.GetLocalizedHtmlString("AdjustedHours")</li>
 
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="ms-Grid-row mt20">
-							<div class=" ms-Grid pull-right">
-								<div class="docs-DialogExample-close">
-									<div class="ms-Dialog ms-Dialog--close">
-										<button class="ms-Dialog-button ms-Dialog-buttonClose">
-											<i class="ms-Icon ms-Icon--Cancel"></i>
-										</button>
-										<div class="ms-Dialog-content ">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ms-Grid-row mt20">
+                            <div class=" ms-Grid pull-right">
+                                <div class="docs-DialogExample-close">
+                                    <div class="ms-Dialog ms-Dialog--close">
+                                        <button class="ms-Dialog-button ms-Dialog-buttonClose">
+                                            <i class="ms-Icon ms-Icon--Cancel"></i>
+                                        </button>
+                                        <div class="ms-Dialog-content ">
 
-											@if (Model.SubmittedMonths != "")
-											{
-												<div class="ms-Dialog-title">@SharedLocalizer.GetLocalizedHtmlString("Confirm")</div>
-												<p>@SharedLocalizer.GetLocalizedHtmlString("DashboardSubmitHoursMsg") @Model.SubmittedMonths.<br />@SharedLocalizer.GetLocalizedHtmlString("DoYouWantToContinue")</p>
-											}
-											else
-											{
-												<p>@SharedLocalizer.GetLocalizedHtmlString("DashboardFailureSubmitHoursMsg") @Model.SubmittedMonths.</p>
-											}
-											@*<p> @SharedLocalizer.GetLocalizedHtmlString("SubmitConfirmMsg") </p>*@
+                                            @if (Model.SubmittedMonths != "")
+                                            {
+                                                <div class="ms-Dialog-title">@SharedLocalizer.GetLocalizedHtmlString("Confirm")</div>
+                                                <p>@SharedLocalizer.GetLocalizedHtmlString("DashboardSubmitHoursMsg") @Model.SubmittedMonths.<br />@SharedLocalizer.GetLocalizedHtmlString("DoYouWantToContinue")</p>
+                                            }
+                                            else
+                                            {
+                                                <p>@SharedLocalizer.GetLocalizedHtmlString("DashboardFailureSubmitHoursMsg") @Model.SubmittedMonths.</p>
+                                            }
+                                            @*<p> @SharedLocalizer.GetLocalizedHtmlString("SubmitConfirmMsg") </p>*@
 
-										</div>
-										@if (Model.SubmittedMonths != "")
-										{
-											<div class="ms-Dialog-actions">
-												<button class="ms-Button ms-Dialog-action ms-Button--primary " id="btnSubmitHrsForLastMonth">
-													<span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Continue") </span>
-												</button> &nbsp;
-												<button class="ms-Button ms-Dialog-action pl0 ">
-													<span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Cancel")</span>
-												</button>
-											</div>
-										}
-										else
-										{
-											<div class="ms-Dialog-actions">
-												<button class="ms-Button ms-Dialog-action pl0 ">
-													<span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("OK")</span>
-												</button>
-											</div>
-										}
-									</div>
+                                        </div>
+                                        @if (Model.SubmittedMonths != "")
+                                        {
+                                            <div class="ms-Dialog-actions">
+                                                <button class="ms-Button ms-Dialog-action ms-Button--primary " id="btnSubmitHrsForLastMonth">
+                                                    <span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Continue") </span>
+                                                </button> &nbsp;
+                                                <button class="ms-Button ms-Dialog-action pl0 ">
+                                                    <span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Cancel")</span>
+                                                </button>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="ms-Dialog-actions">
+                                                <button class="ms-Button ms-Dialog-action pl0 ">
+                                                    <span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("OK")</span>
+                                                </button>
+                                            </div>
+                                        }
+                                    </div>
 
-									@if (Model.SubmittedOn == DateTime.MinValue && Model.currentWeekData == false)
-									{
-										<img id="loadingSubmit" src="~/images/Loading.gif" class="hidden" />
-										<button class="ms-Button docs-DialogExample-button ms-Button--primary font-white " id="btnConfirmSubmitForLastMonth">
-											@SharedLocalizer.GetLocalizedHtmlString("Submit")
-										</button>
-									}
-									else
-									{
-										<button class="ms-Button docs-DialogExample-button ms-Button--primary font-white " disabled>
-											@SharedLocalizer.GetLocalizedHtmlString("Submit")
-										</button>
-									}
-
-
-									<label class="docs-DialogExample-label "></label>
-								</div>
-								@if (Model.SubmittedOn != DateTime.MinValue)
-								{
-									<p class="font12" id="SubmitOnMsg">
-										<font id="submittedOnMsg">
-											@SharedLocalizer.GetLocalizedHtmlString("SubmittedOn")
-										</font>:&nbsp;<font id="submittedDate">@Model.SubmittedOn.ToShortDateString()</font>
-									</p>
-								}
-								<p class="font12 text-danger hidden" id="FailedToSubmitMsg">
-									<font id="submittedOnMsg">
-										@SharedLocalizer.GetLocalizedHtmlString("FailedtoSubmit")
-									</font>:&nbsp;<font id="submittedDateFailed">@Model.SubmittedOn</font>
-								</p>
-								<p class="font12" id="SubmitErrMsg"></p>
-
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
+                                    @if (Model.SubmittedOn == DateTime.MinValue && Model.currentWeekData == false)
+                                    {
+                                        <img id="loadingSubmit" src="~/images/Loading.gif" class="hidden" />
+                                        <button class="ms-Button docs-DialogExample-button ms-Button--primary font-white " id="btnConfirmSubmitForLastMonth">
+                                            @SharedLocalizer.GetLocalizedHtmlString("Submit")
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="ms-Button docs-DialogExample-button ms-Button--primary font-white " disabled>
+                                            @SharedLocalizer.GetLocalizedHtmlString("Submit")
+                                        </button>
+                                    }
 
 
+                                    <label class="docs-DialogExample-label "></label>
+                                </div>
+                                @if (Model.SubmittedOn != DateTime.MinValue)
+                                {
+                                    <p class="font12" id="SubmitOnMsg">
+                                        <font id="submittedOnMsg">
+                                            @SharedLocalizer.GetLocalizedHtmlString("SubmittedOn")
+                                        </font>:&nbsp;<font id="submittedDate">@Model.SubmittedOn.ToShortDateString()</font>
+                                    </p>
+                                }
+                                <p class="font12 text-danger hidden" id="FailedToSubmitMsg">
+                                    <font id="submittedOnMsg">
+                                        @SharedLocalizer.GetLocalizedHtmlString("FailedtoSubmit")
+                                    </font>:&nbsp;<font id="submittedDateFailed">@Model.SubmittedOn</font>
+                                </p>
+                                <p class="font12" id="SubmitErrMsg"></p>
 
-		</div>
+                            </div>
+                        </div>
 
-		</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-		<!-- Modal -->
-		<div id="EditTime" class="modal fade" tabindex="-1" role="dialog">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header pageHeading Noborder">
-						<button type="button" class="close" data-dismiss="modal" id="btnEditClose">&times;</button>
-						<h1 class="modal-title">
-							@SharedLocalizer.GetLocalizedHtmlString("EditWorkHours")
-							<img id="loadingEdit" src="~/images/Loading.gif" class="hidden" />
-						</h1>
 
-					</div>
-					<div class="modal-body">
-						<div class="ms-Grid-row divDispMsg">
-							<div class="alert alert-success hidden">
-								@SharedLocalizer.GetLocalizedHtmlString("EditWorkHoursUpdatedSuccessMsg")
-							</div>
-							<div class="alert alert-danger hidden" id="EditHoursErrMSg">
-								@SharedLocalizer.GetLocalizedHtmlString("EditWorkHoursUpdatedFailureMsg")
-							</div>
-						</div>
-						<div class="alert alert-danger hidden" id="TotalAdjErrMSg">
-							@SharedLocalizer.GetLocalizedHtmlString("TotalHrsExceedErrorMessage")
-						</div>
-						<div class="alert alert-danger hidden" id="TotalInputErrMSg">
-							@SharedLocalizer.GetLocalizedHtmlString("TimeBoxMaxErrorMessage")
-						</div>
-						<div class="ms-Grid pl0">
-							<div class="ms-Grid-row">
-								<fieldset id="editHrsForm">
-									<div class="ms-Grid-col ms-sm6 ms-lg12 pl0">
+    </div>
 
-										<div class="ms-Grid-col ms-sm12 ms-lg8 pl0">
-											@*@if (Model.UserInfo.Fields.Manager != String.Empty)
-												{
-												<div class="ms-TextField is-disabled">
-													<label class="ms-Label">
-														@SharedLocalizer.GetLocalizedHtmlString("Manager")
-													</label>
+</div>
 
-													<input class="ms-TextField-field" type="text" value="@Model.UserInfo.Fields.Manager" placeholder="Manager name" disabled>
-												</div>
-												}*@
-										</div>
 
-										<div class="ms-Grid-col ms-sm6 ms-lg4">
-											<div class="ms-DatePicker">
-												<div class="ms-TextField">
-													<label class="ms-Label">@SharedLocalizer.GetLocalizedHtmlString("SelectDate")</label>
-													<i class="ms-DatePicker-event ms-Icon ms-Icon--Event"></i>
-													@Html.TextBoxFor(m => m.selectedDate, "{0:dd MMMM, yyyy}", new { @class = "ms-TextField-field txtEditHrsDate", @name = "txtEditHrsDate" })
-												</div>
-												<div class="ms-DatePicker-monthComponents">
-													<span class="ms-DatePicker-nextMonth js-nextMonth"><i class="ms-Icon ms-Icon--ChevronRight"></i></span>
-													<span class="ms-DatePicker-prevMonth js-prevMonth"><i class="ms-Icon ms-Icon--ChevronLeft"></i></span>
-													<div class="ms-DatePicker-headerToggleView js-showMonthPicker"></div>
-												</div>
+<!-- Modal -->
+<div id="EditTime" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header pageHeading Noborder">
+                <button type="button" class="close" data-dismiss="modal" id="btnEditClose">&times;</button>
+                <h1 class="modal-title">
+                    @SharedLocalizer.GetLocalizedHtmlString("EditWorkHours")
+                    <img id="loadingEdit" src="~/images/Loading.gif" class="hidden" />
+                </h1>
 
-											</div>
-										</div>
-									</div>
+            </div>
+            <div class="modal-body">
+                <div class="ms-Grid-row divDispMsg">
+                    <div class="alert alert-success hidden">
+                        @SharedLocalizer.GetLocalizedHtmlString("EditWorkHoursUpdatedSuccessMsg")
+                    </div>
+                    <div class="alert alert-danger hidden" id="EditHoursErrMSg">
+                        @SharedLocalizer.GetLocalizedHtmlString("EditWorkHoursUpdatedFailureMsg")
+                    </div>
+                </div>
+                <div class="alert alert-danger hidden" id="TotalAdjErrMSg">
+                    @SharedLocalizer.GetLocalizedHtmlString("TotalHrsExceedErrorMessage")
+                </div>
+                <div class="alert alert-danger hidden" id="TotalInputErrMSg">
+                    @SharedLocalizer.GetLocalizedHtmlString("TimeBoxMaxErrorMessage")
+                </div>
+                <div class="ms-Grid pl0">
+                    <div class="ms-Grid-row">
+                        <fieldset id="editHrsForm">
+                            <div class="ms-Grid-col ms-sm6 ms-lg12 pl0">
 
-									<div class="ms-Grid  GraphTimings">
-										<div class="ms-Grid-col ms-sm12 ms-lg12">
-											<h5> @SharedLocalizer.GetLocalizedHtmlString("CalculatedHours") </h5>
-										</div>
-										<div class="ms-Grid-row">
+                                <div class="ms-Grid-col ms-sm12 ms-lg8 pl0">
+                                    @*@if (Model.UserInfo.Fields.Manager != String.Empty)
+                                        {
+                                        <div class="ms-TextField is-disabled">
+                                            <label class="ms-Label">
+                                                @SharedLocalizer.GetLocalizedHtmlString("Manager")
+                                            </label>
 
-											<div class="ms-Grid-col ms-sm12 ms-lg4 ">
-												<div class="ms-Grid">
-													<h2> <span class="BlueICon"> <i class="ms-Icon ms-Icon--CalendarWorkWeek" aria-hidden="true"></i> </span>@SharedLocalizer.GetLocalizedHtmlString("MeetingHours")  </h2>
-												</div>
+                                            <input class="ms-TextField-field" type="text" value="@Model.UserInfo.Fields.Manager" placeholder="Manager name" disabled>
+                                        </div>
+                                        }*@
+                                </div>
 
-												<div class="ms-Grid">
-													<h3><font id="txtTodayMeetingHrs">@Model.TodayMeetingHours</font>@SharedLocalizer.GetLocalizedHtmlString("h") <font id="txtTodayMeetingMin">@Model.TodayMeetingMins</font>@SharedLocalizer.GetLocalizedHtmlString("m")</h3>
-												</div>
-											</div>
-											<div class="ms-Grid-col ms-sm12 ms-lg4 ">
-												<div class="ms-Grid">
-													<h2> <span class="BlueICon"><i class="ms-Icon ms-Icon--Mail" aria-hidden="true"></i>  </span>@SharedLocalizer.GetLocalizedHtmlString("EmailHours")  </h2>
-												</div>
+                                <div class="ms-Grid-col ms-sm6 ms-lg4">
+                                    <div class="ms-DatePicker">
+                                        <div class="ms-TextField">
+                                            <label class="ms-Label">@SharedLocalizer.GetLocalizedHtmlString("SelectDate")</label>
+                                            <i class="ms-DatePicker-event ms-Icon ms-Icon--Event"></i>
+                                            @Html.TextBoxFor(m => m.selectedDate, "{0:dd MMMM, yyyy}", new { @class = "ms-TextField-field txtEditHrsDate", @name = "txtEditHrsDate" })
+                                        </div>
+                                        <div class="ms-DatePicker-monthComponents">
+                                            <span class="ms-DatePicker-nextMonth js-nextMonth"><i class="ms-Icon ms-Icon--ChevronRight"></i></span>
+                                            <span class="ms-DatePicker-prevMonth js-prevMonth"><i class="ms-Icon ms-Icon--ChevronLeft"></i></span>
+                                            <div class="ms-DatePicker-headerToggleView js-showMonthPicker"></div>
+                                        </div>
 
-												<div class="ms-Grid">
-													<h3><font id="txtTodayEmailHrs">@Model.TodayEmailHours</font>@SharedLocalizer.GetLocalizedHtmlString("h")  <font id="txtTodayEmailMin">@Model.TodayEmailMins</font>@SharedLocalizer.GetLocalizedHtmlString("m")</h3>
-												</div>
-											</div>
-											<div class="ms-Grid-col ms-sm12 ms-lg4 ">
-												<div class="ms-Grid">
-													<h2> <span class="BlueICon"><i class="ms-Icon ms-Icon--DynamicSMBLogo" aria-hidden="true"></i>  </span>@SharedLocalizer.GetLocalizedHtmlString("OtherHours") </h2>
-												</div>
+                                    </div>
+                                </div>
+                            </div>
 
-												<div class="ms-Grid">
-													<h3><font id="txtTodayOtherHrs">@Model.TodayOtherHours</font>@SharedLocalizer.GetLocalizedHtmlString("h")  <font id="txtTodayOtherMin">@Model.TodayOtherMins</font>@SharedLocalizer.GetLocalizedHtmlString("m")</h3>
-												</div>
-											</div>
+                            <div class="ms-Grid  GraphTimings">
+                                <div class="ms-Grid-col ms-sm12 ms-lg12">
+                                    <h5> @SharedLocalizer.GetLocalizedHtmlString("CalculatedHours") </h5>
+                                </div>
+                                <div class="ms-Grid-row">
 
-										</div>
-										<div class="ms-Grid-row">
-											<div class="ms-Grid-col ms-sm12 ms-lg6 ">
-												<h5 style="display:inline-block;"> @SharedLocalizer.GetLocalizedHtmlString("AdjustedHours") </h5> &nbsp;&nbsp;&nbsp;&nbsp;<font class="font12">@SharedLocalizer.GetLocalizedHtmlString("InvalidTimeFormatMessage")</font>
-											</div>
+                                    <div class="ms-Grid-col ms-sm12 ms-lg4 ">
+                                        <div class="ms-Grid">
+                                            <h2> <span class="BlueICon"> <i class="ms-Icon ms-Icon--CalendarWorkWeek" aria-hidden="true"></i> </span>@SharedLocalizer.GetLocalizedHtmlString("MeetingHours")  </h2>
+                                        </div>
 
-										</div>
-										<div class="ms-Grid-row">
-											<div class="ms-Grid-col ms-sm12 ms-lg4 ">
-												<label class="ms-Label">
-													@SharedLocalizer.GetLocalizedHtmlString("MeetingHours")
-												</label>
-												<input class="ms-TextField-field " type="text" id="txtAdjMeetingHrsMin" name="txtAdjMeetingHrsMin" value="00:00" maxlength="5">
-											</div>
-											<div class="ms-Grid-col ms-sm12 ms-lg4 ">
-												<label class="ms-Label">
-													@SharedLocalizer.GetLocalizedHtmlString("EmailHours")
-												</label>
-												<input class="ms-TextField-field" id="txtAdjEmailHrsMin" type="text" name="txtAdjEmailHrsMin" value="00:00" maxlength="5">
-											</div>
-											<div class="ms-Grid-col ms-sm12 ms-lg4 ">
-												<label class="ms-Label">
-													@SharedLocalizer.GetLocalizedHtmlString("OtherHours")
-												</label>
-												<input class="ms-TextField-field" id="txtAdjOtherWorkHrsMin" type="text" name="txtAdjOtherWorkHrsMin" value="00:00" maxlength="5">
-											</div>
-										</div>
-										<div class="ms-Grid">
-											<div class="ms-Grid-row">
-												<span>&nbsp;&nbsp;<font class="hidden" id="divTotalAdjTime">@SharedLocalizer.GetLocalizedHtmlString("TotalHours") : <font id="totAdjTime" style="display:inline;"></font> </font></span>
-											</div>
-										</div>
+                                        <div class="ms-Grid">
+                                            <h3><font id="txtTodayMeetingHrs">@Model.TodayMeetingHours</font>@SharedLocalizer.GetLocalizedHtmlString("hour") <font id="txtTodayMeetingMin">@Model.TodayMeetingMins</font>@SharedLocalizer.GetLocalizedHtmlString("minute")</h3>
+                                        </div>
+                                    </div>
+                                    <div class="ms-Grid-col ms-sm12 ms-lg4 ">
+                                        <div class="ms-Grid">
+                                            <h2> <span class="BlueICon"><i class="ms-Icon ms-Icon--Mail" aria-hidden="true"></i>  </span>@SharedLocalizer.GetLocalizedHtmlString("EmailHours")  </h2>
+                                        </div>
 
-										<div class="ms-Grid  GraphTimings">
-											<div class="ms-Grid-row">
-												<div class="ms-TextField ms-TextField--multiline">
-													<label class="ms-Label">@SharedLocalizer.GetLocalizedHtmlString("Reason") </label>
-													<textarea class="ms-TextField-field" id="txtAdjReason" name="txtAdjReason">@Model.AdjustedHoursReason</textarea>
-												</div>
+                                        <div class="ms-Grid">
+                                            <h3><font id="txtTodayEmailHrs">@Model.TodayEmailHours</font>@SharedLocalizer.GetLocalizedHtmlString("hour")  <font id="txtTodayEmailMin">@Model.TodayEmailMins</font>@SharedLocalizer.GetLocalizedHtmlString("minute")</h3>
+                                        </div>
+                                    </div>
+                                    <div class="ms-Grid-col ms-sm12 ms-lg4 ">
+                                        <div class="ms-Grid">
+                                            <h2> <span class="BlueICon"><i class="ms-Icon ms-Icon--DynamicSMBLogo" aria-hidden="true"></i>  </span>@SharedLocalizer.GetLocalizedHtmlString("OtherHours") </h2>
+                                        </div>
 
-											</div>
-										</div>
+                                        <div class="ms-Grid">
+                                            <h3><font id="txtTodayOtherHrs">@Model.TodayOtherHours</font>@SharedLocalizer.GetLocalizedHtmlString("hour")  <font id="txtTodayOtherMin">@Model.TodayOtherMins</font>@SharedLocalizer.GetLocalizedHtmlString("minute")</h3>
+                                        </div>
+                                    </div>
 
-										<div class="ms-Grid ms-lg12   pT10 pull-right text-right">
+                                </div>
+                                <div class="ms-Grid-row">
+                                    <div class="ms-Grid-col ms-sm12 ms-lg6 ">
+                                        <h5 style="display:inline-block;"> @SharedLocalizer.GetLocalizedHtmlString("AdjustedHours") </h5> &nbsp;&nbsp;&nbsp;&nbsp;<font class="font12">@SharedLocalizer.GetLocalizedHtmlString("InvalidTimeFormatMessage")</font>
+                                    </div>
 
-											<div class="ms-Grid-row">
-												<button class="ms-Button ms-Button--primary" id="btnEditHrs">
-													<span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Save")</span>
-												</button> &nbsp;
-												<button class="ms-Button" id="btnEditCancel" data-dismiss="modal">
-													<span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Close")</span>
-												</button>
-											</div>
-										</div>
-										<div class="ms-Grid pull-right ms-lg12 text-right">
-											@SharedLocalizer.GetLocalizedHtmlString("EditNotification")
-										</div>
-									</div>
-								</fieldset>
-							</div>
-						</div>
+                                </div>
+                                <div class="ms-Grid-row">
+                                    <div class="ms-Grid-col ms-sm12 ms-lg4 ">
+                                        <label class="ms-Label">
+                                            @SharedLocalizer.GetLocalizedHtmlString("MeetingHours")
+                                        </label>
+                                        <input class="ms-TextField-field " type="text" id="txtAdjMeetingHrsMin" name="txtAdjMeetingHrsMin" value="00:00" maxlength="5">
+                                    </div>
+                                    <div class="ms-Grid-col ms-sm12 ms-lg4 ">
+                                        <label class="ms-Label">
+                                            @SharedLocalizer.GetLocalizedHtmlString("EmailHours")
+                                        </label>
+                                        <input class="ms-TextField-field" id="txtAdjEmailHrsMin" type="text" name="txtAdjEmailHrsMin" value="00:00" maxlength="5">
+                                    </div>
+                                    <div class="ms-Grid-col ms-sm12 ms-lg4 ">
+                                        <label class="ms-Label">
+                                            @SharedLocalizer.GetLocalizedHtmlString("OtherHours")
+                                        </label>
+                                        <input class="ms-TextField-field" id="txtAdjOtherWorkHrsMin" type="text" name="txtAdjOtherWorkHrsMin" value="00:00" maxlength="5">
+                                    </div>
+                                </div>
+                                <div class="ms-Grid">
+                                    <div class="ms-Grid-row">
+                                        <span>&nbsp;&nbsp;<font class="hidden" id="divTotalAdjTime">@SharedLocalizer.GetLocalizedHtmlString("TotalHours") : <font id="totAdjTime" style="display:inline;"></font> </font></span>
+                                    </div>
+                                </div>
 
-					</div>
+                                <div class="ms-Grid  GraphTimings">
+                                    <div class="ms-Grid-row">
+                                        <div class="ms-TextField ms-TextField--multiline">
+                                            <label class="ms-Label">@SharedLocalizer.GetLocalizedHtmlString("Reason") </label>
+                                            <textarea class="ms-TextField-field" id="txtAdjReason" name="txtAdjReason">@Model.AdjustedHoursReason</textarea>
+                                        </div>
 
-				</div>
-			</div>
-		</div>
+                                    </div>
+                                </div>
 
-		<script src="~/js/Chart.bundle.js"></script>
-		<script src="~/js/utils.js"></script>
-		<script src="~/js/barchartgraph.js" asp-append-version="true"></script>
-		<script src="~/js/barchart.js"></script>
-		<style>
-			.workTime {
-				font-size: 18px !important;
-				font-weight: normal;
-			}
-			/*h2 {
-				font-size:12px!important;
-			}*/
-			.top15margin {
-				margin-top: 15px;
-			}
-		</style>
+                                <div class="ms-Grid ms-lg12   pT10 pull-right text-right">
 
-		<script type="text/javascript">
+                                    <div class="ms-Grid-row">
+                                        <button class="ms-Button ms-Button--primary" id="btnEditHrs">
+                                            <span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Save")</span>
+                                        </button> &nbsp;
+                                        <button class="ms-Button" id="btnEditCancel" data-dismiss="modal">
+                                            <span class="ms-Button-label">@SharedLocalizer.GetLocalizedHtmlString("Close")</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="ms-Grid pull-right ms-lg12 text-right">
+                                    @SharedLocalizer.GetLocalizedHtmlString("EditNotification")
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
 
-						$("#EditTime").draggable({
-							handle: ".modal-header"
-						});
-		</script>
+            </div>
 
-		<script>
+        </div>
+    </div>
+</div>
+<script src="~/js/Chart.bundle.js"></script>
+<script src="~/js/utils.js"></script>
+<script src="~/js/barchartgraph.js" asp-append-version="true"></script>
+<script src="~/js/barchart.js"></script>
+<style>
+    .workTime {
+        font-size: 18px !important;
+        font-weight: normal;
+    }
+    /*h2 {
+                font-size:12px!important;
+            }*/
+    .top15margin {
+        margin-top: 15px;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $("#EditTime").draggable({
+        handle: ".modal-header"
+    });
+</script>
+
+<script>
 	var postedData = "false";
 			var lastSubmittedDate = "@Model.SubmittedOn.ToShortDateString()";
 
@@ -600,7 +613,6 @@ function fnValidateTimeFormat(time, txtCntrl) {
     var regExTime2 = /^\d{1,2}$/;
     var regExTime3 = /^([0-9][0-3]):[0-5]|[0-9]$/;
     var regExTime4 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/;
-
     if (time === "") {
         txtCntrl.val("00:00");
         return true;
@@ -688,7 +700,100 @@ function validateNumber(event) {
             });
 
 $(document).ready(function () {
+//Chart Begins
 
+    Chart.plugins.register({
+        afterDatasetsDraw: function (chart, easing) {
+            // To only draw at the end of animation, check for easing === 1
+            var ctx = chart.ctx;
+            chart.data.datasets.forEach(function (dataset, i) {
+                var meta = chart.getDatasetMeta(i);
+                if (!meta.hidden) {
+                    meta.data.forEach(function (element, index) {
+                        // Draw the text in black, with the specified font
+                        ctx.fillStyle = 'rgb(0, 0, 0)';
+                        var fontSize = 14;
+                        var fontStyle = 'normal';
+                        var fontFamily = 'Arial';
+                        //ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                        // Just naively convert to string for now
+                        //var dataString = dataset.data[index].toString();
+
+                        var minutes = Math.round((dataset.data[index] - Math.floor(dataset.data[index])) * 60);
+                        var dataString = (Math.floor(dataset.data[index])).toString() + $('#hour').text()+" " + (minutes).toString() +$('#minute').text();
+                        if (dataset.data[index] == 0)
+                            dataString = "";
+                        // Make sure alignment settings are correct
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        var padding = 5;
+                        var position = element.tooltipPosition();
+                        ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+                    });
+                }
+            });
+        }
+    });
+
+
+    window.onload = function () {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                responsive: true,
+                legend: false,
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 20,
+                        bottom: 0,
+                        fontSize: 14
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: false,
+                            fontSize: 12,
+                            fontFamily: "Arial",
+                            fontColor: '#000',
+                        },
+                        gridLines: { display: false, }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            display: false,
+                            beginAtZero: true,
+                            fontSize: 12,
+                            fontFamily: "Arial",
+                            fontColor: '#000',
+                            //min: 1,
+                            //max: 20
+                        },
+                        gridLines: { display: false, drawBorder: false }
+                    }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (t, d) {
+                            var xLabel = d.datasets[t.datasetIndex].label;
+                            if (xLabel.trim() == "Calculated Hours") { xLabel = $('#Calculated').text(); }
+                            if (xLabel.trim() == "Adjusted Hours") { xLabel = $('#Adjusted').text(); }
+                            var minutes = Math.round((d.datasets[t.datasetIndex].data[t.index] - Math.floor(d.datasets[t.datasetIndex].data[t.index])) * 60);
+                            var dataString = (Math.floor(d.datasets[t.datasetIndex].data[t.index])).toString() + $('#hour').text() + " " + (minutes).toString() + $("#minute").text();
+                            return xLabel + ': ' + dataString;
+                        }
+                    }
+                }
+            }
+        });
+
+    };
+
+//Chart End
     $('#txtAdjMeetingHrsMin,#txtAdjEmailHrsMin,#txtAdjOtherWorkHrsMin').keypress(validateNumber);
 
     $("#txtAdjMeetingHrsMin").change(function () {
@@ -712,8 +817,8 @@ $(document).ready(function () {
         if (!(fnValidateTimeFormat(time, $("#txtAdjEmailHrsMin")))) {
             $("#txtAdjEmailHrsMin").addClass('inputError');
             $("#btnEditHrs").attr("disabled", true);
-            $("#divTotalAdjTime,#TotalAdjErrMSg").addClass('hidden').hide();
-            $("#TotalInputErrMSg").addClass('hidden').hide();
+			$("#TotalInputErrMSg").removeClass('hidden').show();
+			
         } else {
             $("#txtAdjEmailHrsMin").removeClass('inputError');
             if (!$("#txtAdjEmailHrsMin,#txtAdjMeetingHrsMin,#txtAdjOtherWorkHrsMin").hasClass('inputError')) {
@@ -727,8 +832,8 @@ $(document).ready(function () {
         if (!(fnValidateTimeFormat(time, $("#txtAdjOtherWorkHrsMin")))) {
             $("#txtAdjOtherWorkHrsMin").addClass('inputError');
             $("#btnEditHrs").attr("disabled", true);
-            $("#divTotalAdjTime,#TotalAdjErrMSg").addClass('hidden').hide();
-            $("#TotalInputErrMSg").addClass('hidden').hide();
+            
+			$("#TotalInputErrMSg").removeClass('hidden').show();
         } else {
             $("#txtAdjOtherWorkHrsMin").removeClass('inputError');
             if (!$("#txtAdjEmailHrsMin,#txtAdjMeetingHrsMin,#txtAdjOtherWorkHrsMin").hasClass('inputError')) {
@@ -794,7 +899,7 @@ $(document).ready(function () {
 
     //  Attach event handler to submit button
         submitButton.click(function () {
-            
+
         SubmitInfo(infoForm);
     });
 
@@ -812,7 +917,7 @@ $(document).ready(function () {
         type: 'post',
         data: null,
         success: function (data) {
-            
+
             if (data.responseCode > 0) {
                 $("#loadingSubmit").addClass("hidden");
                 window.location = "/Home/";
@@ -915,11 +1020,11 @@ function SubmitInfo(formContainer) {
 
 }
 
-		</script>
-		<script type="text/javascript">
-			var SpinnerElements = document.querySelectorAll(".ms-Spinner");
-			for (var i = 0; i < SpinnerElements.length; i++) {
-				new fabric['Spinner'](SpinnerElements[i]);
-			}
-		</script>
+</script>
+<script type="text/javascript">
+    var SpinnerElements = document.querySelectorAll(".ms-Spinner");
+    for (var i = 0; i < SpinnerElements.length; i++) {
+        new fabric['Spinner'](SpinnerElements[i]);
+    }
+</script>
 

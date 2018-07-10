@@ -2,7 +2,7 @@
 @model GoLocal.TimeTracker.Dashboard.ViewModels.MyMonthlyHoursViewModel;
 @inject LocService SharedLocalizer
 @{
-	ViewBag.Title = @SharedLocalizer.GetLocalizedHtmlString("Monthly");
+    ViewBag.Title = @SharedLocalizer.GetLocalizedHtmlString("Monthly");
 }
 
 <link href="~/css/MonthPicker.min.css" rel="stylesheet" />
@@ -33,38 +33,38 @@
 
         <div class="searchPanel  ms-Grid-row pT25 pb5  ">
             <div class=" ms-Grid-col ms-sm12 ms-md12 ms-lg12">
-                    <div class="ms-Grid-col ms-lg5 ms-sm5">
-                        <div class="ms-TextField">
-                            <label class="ms-Label">@SharedLocalizer.GetLocalizedHtmlString("Month") </label>
-                            @Html.TextBoxFor(m => m.SelectedDate, "{0:MMM, yyyy}", new { @class = "ms-TextField-field txtMonthlyDate", @id = "txtMonthlyDate", @name = "txtMonthlyDate" })
+                <div class="ms-Grid-col ms-lg5 ms-sm5">
+                    <div class="ms-TextField">
+                        <label class="ms-Label">@SharedLocalizer.GetLocalizedHtmlString("Month") </label>
+                        @Html.TextBoxFor(m => m.SelectedDate, "{0:MMM, yyyy}", new { @class = "ms-TextField-field txtMonthlyDate", @id = "txtMonthlyDate", @name = "txtMonthlyDate" })
+                    </div>
+                </div>
+                <div class="ms-Grid-col ms-sm12 ms-md4 ms-lg3 pull-right pr5">
+                    <label class="ms-Label searchlabel">@SharedLocalizer.GetLocalizedHtmlString("Search")</label>
+
+
+                    <div class="ms-SearchBox myteamSearch pull-right">
+
+                        <input class="ms-SearchBox-field" type="text" value="" id="txtMonthlySearch">
+
+                        <label class="ms-SearchBox-label">
+                            <i class="ms-SearchBox-icon ms-Icon ms-Icon--Search"></i>
+
+                        </label>
+                        <div class="ms-CommandButton ms-SearchBox-clear ms-CommandButton--noLabel">
+
                         </div>
                     </div>
-                    <div class="ms-Grid-col ms-sm12 ms-md4 ms-lg3 pull-right pr5">
-                        <label class="ms-Label searchlabel">Search</label>
-
-
-                        <div class="ms-SearchBox myteamSearch pull-right">
-
-                            <input class="ms-SearchBox-field" type="text" value="" id="txtMonthlySearch">
-
-                            <label class="ms-SearchBox-label">
-                                <i class="ms-SearchBox-icon ms-Icon ms-Icon--Search"></i>
-
-                            </label>
-                            <div class="ms-CommandButton ms-SearchBox-clear ms-CommandButton--noLabel">
-
-                            </div>
-                        </div>
 
 
 
 
-                    </div>
+                </div>
 
-              
+
 
             </div>
-            
+
 
         </div>
     </div>
@@ -90,11 +90,26 @@
 
     </div>
 
-    
+
 
 
 </div>
-
+<div class="hiddenfields" style="display:none;">
+    <label id="Jan">@SharedLocalizer.GetLocalizedHtmlString("Jan")</label>
+    <label id="Feb">@SharedLocalizer.GetLocalizedHtmlString("Feb")</label>
+    <label id="Mar">@SharedLocalizer.GetLocalizedHtmlString("Mar")</label>
+    <label id="Apr">@SharedLocalizer.GetLocalizedHtmlString("Apr")</label>
+    <label id="May">@SharedLocalizer.GetLocalizedHtmlString("May")</label>
+    <label id="June">@SharedLocalizer.GetLocalizedHtmlString("June")</label>
+    <label id="July">@SharedLocalizer.GetLocalizedHtmlString("July")</label>
+    <label id="Aug">@SharedLocalizer.GetLocalizedHtmlString("Aug")</label>
+    <label id="Sep">@SharedLocalizer.GetLocalizedHtmlString("Sep")</label>
+    <label id="Oct">@SharedLocalizer.GetLocalizedHtmlString("Oct")</label>
+    <label id="Nov">@SharedLocalizer.GetLocalizedHtmlString("Nov")</label>
+    <label id="Dec">@SharedLocalizer.GetLocalizedHtmlString("Dec")</label>
+    <label id="Jump">@SharedLocalizer.GetLocalizedHtmlString("Jump")</label>
+    <label id="Year">@SharedLocalizer.GetLocalizedHtmlString("Year")</label>
+</div>
 <!--Modal-->!>
 <div id="EditTime" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -109,9 +124,7 @@
             <div class="modal-body">
                 <div class="ms-Grid pl0">
                     <div class="ms-Grid-row">
-                        <fieldset id="editHrsForm">
-                           
-                        </fieldset>
+                        <fieldset id="editHrsForm"></fieldset>
                     </div>
                 </div>
 
@@ -121,9 +134,9 @@
     </div>
 </div>
 
-    <!-- Scripts ----------------------------------------------------------- -->
+<!-- Scripts ----------------------------------------------------------- -->
 
-    <script type='text/javascript'>
+<script type='text/javascript'>
         $("#EditTime").draggable({
             handle: ".modal-header"
         });
@@ -132,9 +145,11 @@
                     backdrop: 'static',
                     keyboard: false
                 }).show();
-        }
+    }
+    var monthlabel = [];
     $(document).ready(function ()
     {
+        monthlabel = [$('#Jan').text(), $('#Feb').text(), $('#Mar').text(), $('#Apr').text(), $('#May').text(), $('#June').text(), $('#July').text(), $('#Aug').text(), $('#Sep').text(), $('#Oct').text(), $('#Nov').text(), $('#Dec').text()];
         $("#loadingSearch").addClass("hidden");
         $('#tblMyMonthly').dataTable({
             "processing": false,
@@ -148,7 +163,7 @@
                 "url": "/MonthlyReportHours/MonthlyHoursLoadRequest/",
                 "type": "GET",
                 "data": function (d) {
-                    var selDt = $("#txtMonthlyDate").val(); d.date = selDt;
+                    selDt = $("#txtMonthlyDate").val(); d.date = selDt;
                 },
                 // "success": function (resp) { debugger; console.log(resp); }
             },
@@ -163,6 +178,14 @@
                 { "data": "monthlyTotalHrMns", "orderable": false }
                 //"render": function (data, type, row, meta) { return data = '<a href="#" onclick=Getmodel($(this))  style=color:#337ab7>' + data + '</a>'; }
             ],
+            "language": {
+                "emptyTable": '@SharedLocalizer.GetLocalizedHtmlString("DatableEmptyMessage")' + $('#txtMonthlyDate').val(),
+                    "paginate": {
+                        "next": '@SharedLocalizer.GetLocalizedHtmlString("Next")', // or '→'
+                        "previous": '@SharedLocalizer.GetLocalizedHtmlString("Previous")' // or '←'
+                      },
+
+                    },
             "order": [[0, "asc"]],
             "dom": 'frtipB',
             "buttons": [
@@ -207,6 +230,13 @@
                         { "data": "week5TotalHrMns", "orderable": false },
                         { "data": "monthlyTotalHrMns", "orderable": false }
                     ],
+                    "language": {
+                        "emptyTable": '@SharedLocalizer.GetLocalizedHtmlString("DatableEmptyMessage")' + $('#txtMonthlyDate').val(),
+                    "paginate": {
+                        "next": '@SharedLocalizer.GetLocalizedHtmlString("Next")', // or '→'
+                        "previous": '@SharedLocalizer.GetLocalizedHtmlString("Previous")' // or '←'
+                      }
+                    },
                     "order": [[0, "asc"]],
                     "dom": 'frtipB',
                     "buttons": [
@@ -245,6 +275,12 @@
         $("#DisplayMonthYear").hide();
 
         $('#txtMonthlyDate').MonthPicker({
+            IsRTL: true,
+            i18n: {
+                year: $('#Year').text(),
+                jumpYears: $('#Jump').text(),
+                months: monthlabel
+            },
             MaxMonth: -1,
             Button: false,
             MonthFormat: 'M, yy',
@@ -360,7 +396,7 @@
         printData();
     })
 
-    </script>
+</script>
 
 
 

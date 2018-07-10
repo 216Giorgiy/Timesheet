@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>About</title>
+	<style type="text/css">
+		.about {
+			font-family: 'Segoe UI WestEuropean', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+		}
+
+			.about h2 {
+				color: #2A809F;
+				font-size: 25px;
+				font-weight: normal;
+			}
+
+			.about p {
+				font-size: 14px;
+			}
+
+			.about ul li {
+				list-style: circle;
+				font-size: 14px;
+			}
+
+			.about b {
+				font-weight: normal;
+			}
+	</style>
+</head>
+<body>
+	<div class="about">
+		<h2> Timesheet </h2>
+		<p>  Timesheet computes your work hours using your Office 365 activity data to help you track your working hours. Your daily goal has been set to 8 hours/day and your weekly and monthly hours goal has been calculated based on this, its value depends on the number of days in a week and month. This is an administrator setting and cannot be changed by you.</p>
+		<p> Timesheet gives you the tools to edit the computed work hours. Only you have access to your dashboard. Your work hours’ data can be accessed by your manager and administrator only after you submit it at the end of the month.</p>
+
+		<h2> Where can I find Timesheet? </h2>
+		<p> Go to your Office 365 portal and click on Timesheet among the listed applications in the app launcher.   </p>
+
+		<h2> What data does Timesheet use? </h2>
+		<p> Timesheet uses information from your Office 365 mailbox and calendar, such as how many emails you have sent to and received from different recipients, and meeting duration. However, we don't collect content from the email body or calendar descriptions. We access this information using Microsoft Graph API, which can get meta data on the Email and Calendar activities across all devices. </p>
+
+		<h2>How are work hours calculated?</h2>
+		<p> On the Dashboard you receive data about the current day, current week, current month and previous month. </p>
+
+		<b> Meeting Hours</b>
+		<p> Your meeting hours’ data is collected from your calendar using Microsoft Graph API, all calendar items are considered – meetings, Skype meetings and appointments. It includes the meetings and Skype meetings accepted by you.  </p>
+		<ul>
+			<li>  It does not include declined calendar items</li>
+			<li> It does not include calendar items marked as Tentative or Free (this includes cancelled meetings). Your administrator can set additional exclusion criteria such as Private and Out of Office</li>
+			<li> All Day Meetings are associated with pre-set hours configured by the administrator, default 0 hours </li>
+
+
+		</ul>
+
+		<b> Email Hours</b>
+		<p> We estimate working hours by calculating the amount of time you spent in sending, reading and forwarding emails.  </p>
+		<p> The main rules for calculating email hours are:</p>
+		<ul>
+			<li> For each email you write (send), we assign 5 minutes*.</li>
+			<li> For each email you read (open), we assign 3 minutes*. </li>
+
+
+
+		</ul>
+		<p> *These values can be changed by administrator</p>
+		<b> Other Hours</b>
+		<p>This can be used by the user to add any additional hours not associated with email and calendar.</p>
+
+		<b> Note: </b> You can override the calculated hours using the Edit Hours option in the dashboard. The final work hours submitted to the manager - Submitted Hours - will be a combination of adjusted hours when changed and calculated hours where unchanged
+
+	</div>
+</body>
+</html>

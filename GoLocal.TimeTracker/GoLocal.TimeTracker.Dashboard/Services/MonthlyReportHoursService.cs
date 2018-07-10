@@ -23,7 +23,7 @@ using GoLocal.TimeTracker.Dashboard.Services.Helpers;
 using Microsoft.AspNetCore.Http;
 using System.Globalization;
 using System.Security.Claims;
-
+using GoLocal.TimeTracker.Dashboard.Resources;
 
 namespace GoLocal.TimeTracker.Dashboard.Services
 {
@@ -38,8 +38,8 @@ namespace GoLocal.TimeTracker.Dashboard.Services
         private readonly IRepository<ReportHours> _reportHoursRepository;
         private readonly IRepository<MiddleTier.Models.Notifications> _notificationsRepository;
         private ListCollectionPage<ReportHours> _listCollectionPage;
-
-        /// <summary>
+		private readonly LocService _sharedLocalizer;
+		/// <summary>
 		/// Constructor
 		/// </summary>
 		/// <param name="logger">The logging provider to use</param>
@@ -48,14 +48,15 @@ namespace GoLocal.TimeTracker.Dashboard.Services
             ILogger<TimeTrackerDataService> logger,
             IRepository<MiddleTier.Models.UserProfile> userProfileRepository,
             IRepository<ReportHours> reportHoursRepository,
-            IRepository<MiddleTier.Models.Notifications> notificationRepository
-            )
-        {
+            IRepository<MiddleTier.Models.Notifications> notificationRepository,
+			LocService sharedLocalizer)
+		{
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _userProfileRepository = userProfileRepository ?? throw new ArgumentNullException(nameof(userProfileRepository));
             _reportHoursRepository = reportHoursRepository ?? throw new ArgumentNullException(nameof(reportHoursRepository)); // For HR
             _notificationsRepository = notificationRepository ?? throw new ArgumentNullException(nameof(notificationRepository));
-        }
+			_sharedLocalizer = sharedLocalizer;
+		}
 
         public async Task<MyMonthlyHoursViewModel> GetViewModel(DateTime dt, int pageIndex = 1, int pageSize = 10)
         {
@@ -200,12 +201,13 @@ namespace GoLocal.TimeTracker.Dashboard.Services
                     monthTotalHrs = (week1TotHrs + week2TotHrs + week3TotHrs + week4TotHrs + week5TotHrs) + (monthTotalMins / 60);
                     monthTotalMins = monthTotalMins % 60;
 
-                    // Create display string.
-                    var week1TotalHrMns = week1TotHrs + "h " + week1TotMins + "m";
-                    var week2TotalHrMns = week2TotHrs + "h " + week2TotMins + "m";
-                    var week3TotalHrMns = week3TotHrs + "h " + week3TotMins + "m";
-                    var week4TotalHrMns = week4TotHrs + "h " + week4TotMins + "m";
-                    var week5TotalHrMns = week5TotHrs + "h " + week5TotMins + "m";
+					// Create display string.
+					
+                    var week1TotalHrMns = week1TotHrs + _sharedLocalizer.GetLocalizedHtmlString("hour") + " " + week1TotMins + _sharedLocalizer.GetLocalizedHtmlString("minute");
+                    var week2TotalHrMns = week2TotHrs + _sharedLocalizer.GetLocalizedHtmlString("hour") + " " + week2TotMins + _sharedLocalizer.GetLocalizedHtmlString("minute");
+                    var week3TotalHrMns = week3TotHrs + _sharedLocalizer.GetLocalizedHtmlString("hour") + " " + week3TotMins + _sharedLocalizer.GetLocalizedHtmlString("minute");
+                    var week4TotalHrMns = week4TotHrs + _sharedLocalizer.GetLocalizedHtmlString("hour") + " " + week4TotMins + _sharedLocalizer.GetLocalizedHtmlString("minute");
+                    var week5TotalHrMns = week5TotHrs + _sharedLocalizer.GetLocalizedHtmlString("hour") + " " + week5TotMins + _sharedLocalizer.GetLocalizedHtmlString("minute");
                     //var monthlyTotalHrMns = monthTotalHrs + "h " + monthTotalMins + "m";
 
                     thisGrouping.Week1TotalHrMns = week1TotalHrMns;
@@ -219,7 +221,7 @@ namespace GoLocal.TimeTracker.Dashboard.Services
                     monthTotalMins = (week1TotMins + week2TotMins + week3TotMins + week4TotMins + week5TotMins);
                     monthTotalHrs = (week1TotHrs + week2TotHrs + week3TotHrs + week4TotHrs + week5TotHrs) + (monthTotalMins / 60);
                     monthTotalMins = monthTotalMins % 60;
-                    var monthlyTotalHrMns = monthTotalHrs + "h " + monthTotalMins + "m";
+                    var monthlyTotalHrMns = monthTotalHrs + _sharedLocalizer.GetLocalizedHtmlString("hour") + " " + monthTotalMins + _sharedLocalizer.GetLocalizedHtmlString("minute");
 
                     thisGrouping.MonthlyTotalHrMns = monthlyTotalHrMns;
 
@@ -410,11 +412,11 @@ namespace GoLocal.TimeTracker.Dashboard.Services
                     monthTotalMins = monthTotalMins % 60;
 
                     // Create display string.
-                    var week1TotalHrMns = week1TotHrs + "h " + week1TotMins + "m";
-                    var week2TotalHrMns = week2TotHrs + "h " + week2TotMins + "m";
-                    var week3TotalHrMns = week3TotHrs + "h " + week3TotMins + "m";
-                    var week4TotalHrMns = week4TotHrs + "h " + week4TotMins + "m";
-                    var week5TotalHrMns = week5TotHrs + "h " + week5TotMins + "m";
+                    var week1TotalHrMns = week1TotHrs + _sharedLocalizer.GetLocalizedHtmlString("hour") + " " + week1TotMins + _sharedLocalizer.GetLocalizedHtmlString("minute");
+                    var week2TotalHrMns = week2TotHrs + _sharedLocalizer.GetLocalizedHtmlString("hour") + " " + week2TotMins + _sharedLocalizer.GetLocalizedHtmlString("minute");
+                    var week3TotalHrMns = week3TotHrs + _sharedLocalizer.GetLocalizedHtmlString("hour") + " " + week3TotMins + _sharedLocalizer.GetLocalizedHtmlString("minute");
+                    var week4TotalHrMns = week4TotHrs + _sharedLocalizer.GetLocalizedHtmlString("hour") + " " + week4TotMins + _sharedLocalizer.GetLocalizedHtmlString("minute");
+                    var week5TotalHrMns = week5TotHrs + _sharedLocalizer.GetLocalizedHtmlString("hour") + " " + week5TotMins + _sharedLocalizer.GetLocalizedHtmlString("minute");
                     //var monthlyTotalHrMns = monthTotalHrs + "h " + monthTotalMins + "m";
 
                     thisGrouping.Week1TotalHrMns = week1TotalHrMns;
@@ -428,7 +430,7 @@ namespace GoLocal.TimeTracker.Dashboard.Services
                     monthTotalMins = (week1TotMins + week2TotMins + week3TotMins + week4TotMins + week5TotMins);
                     monthTotalHrs = (week1TotHrs + week2TotHrs + week3TotHrs + week4TotHrs + week5TotHrs) + (monthTotalMins / 60);
                     monthTotalMins = monthTotalMins % 60;
-                    var monthlyTotalHrMns = monthTotalHrs + "h " + monthTotalMins + "m";
+                    var monthlyTotalHrMns = monthTotalHrs + _sharedLocalizer.GetLocalizedHtmlString("hour") + " " + monthTotalMins + _sharedLocalizer.GetLocalizedHtmlString("minute");
 
                     thisGrouping.MonthlyTotalHrMns = monthlyTotalHrMns;
 

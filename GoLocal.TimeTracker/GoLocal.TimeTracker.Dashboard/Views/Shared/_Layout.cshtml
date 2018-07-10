@@ -10,14 +10,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - @SharedLocalizer.GetLocalizedHtmlString("Title")</title>
-
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css" />
-
-
-        <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.3.0/css/fabric.min.css">
-        <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.components.min.css" />
+        @*<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.3.0/css/fabric.min.css">
+            <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.components.min.css" />*@
+        <link href="~/css/fabric.components.min.css" rel="stylesheet" />
+        <link href="~/css/fabric.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/timepicki.css" />
         <link rel="stylesheet" href="~/css/timetracker.css" />
         <link rel="stylesheet" href="~/css/style.css" />
@@ -28,8 +27,10 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css" />
 
-        <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.3.0/css/fabric.min.css">
-        <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.components.min.css" />
+        @*<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.3.0/css/fabric.min.css">
+            <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.components.min.css" />*@
+        <link href="~/css/fabric.components.min.css" rel="stylesheet" />
+        <link href="~/css/fabric.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/timetracker.css" />
         <link rel="stylesheet" href="~/css/timepicki.css" />
         <link rel="stylesheet" href="~/css/style.css" />
@@ -113,14 +114,20 @@
                                         <i class="ms-Panel-closeIcon ms-Icon ms-Icon--Cancel"></i>
                                     </button>
                                     <div class="ms-Panel-contentInner">
-                                        <p class="ms-Panel-headerText">Help</p>
+										<p class="ms-Panel-headerText">@SharedLocalizer.GetLocalizedHtmlString("Help")</p>
                                         <div class="ms-Panel-content">
-                                            <ul class="rightPanel">
-                                                <li class="ms-font-m"> <a href="mailto:prpadalw@microsoft.com"> Feedback/Support </a>  </li>
+											<ul class="rightPanel">
+												<li class="ms-font-m"> <a href="mailto:prpadalw@microsoft.com"> @SharedLocalizer.GetLocalizedHtmlString("Feedback") / @SharedLocalizer.GetLocalizedHtmlString("Support") </a>  </li>
+												@if (@System.Threading.Thread.CurrentThread.CurrentUICulture.ToString() == "ja")
+												{
+													<li class="ms-font-m"> <a href="#" target="popup" onclick="window.open('../about-ja.html', 'name', 'width=600,height=400')"> @SharedLocalizer.GetLocalizedHtmlString("About") </a>  </li>
+												}
+												else
+												{
+													<li class="ms-font-m"> <a href="#" target="popup" onclick="window.open('../about.html', 'name', 'width=600,height=400')"> @SharedLocalizer.GetLocalizedHtmlString("About") </a>  </li>
+												}
 
-                                                <li class="ms-font-m"> <a href="#" target="popup" onclick="window.open('../about.html', 'name', 'width=600,height=400')"> About </a>  </li>
-
-                                            </ul>
+											</ul>
                                         </div>
                                     </div>
                                 </div>
@@ -242,16 +249,21 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
-        <script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
+        @*<script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>*@
 
-        <script src="~/js/PickaDate.js"></script>
         @{
         var requestCulture = Context.Features.Get<IRequestCultureFeature>();
-        if (requestCulture.RequestCulture.UICulture.Name == "ja-JP")
+        if (requestCulture.RequestCulture.UICulture.Name == "ja-JP" || requestCulture.RequestCulture.UICulture.Name == "ja")
         {
+            <script src="~/js/fabric.JP.js"></script>
+            <script src="~/js/picker.js"></script>
+            <script src="~/js/PickaDate.js"></script>
             <script src="~/js/ja_JP.js"></script>
-        }
-        }
+        }else{
+        <script src="~/js/fabric.min.js"></script>
+        <script src="~/js/picker.js"></script>
+        <script src="~/js/PickaDate.js"></script>
+        }}
         <script src="~/js/timetracker.js" asp-append-version="true"></script>
         <script src="~/js/office-fabric.js" asp-append-version="true"></script>
         <script src="~/js/Exportfiles.js"></script>
@@ -277,15 +289,16 @@
         </script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
-        <script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
+        @*<script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>*@
+        <script src="~/js/fabric.min.js"></script>
         <script src="~/js/timepicki.js"></script>
         <script src="~/js/PickaDate.js"></script>
         @{
-            var requestMyCulture = Context.Features.Get<IRequestCultureFeature>();
-            if (requestMyCulture.RequestCulture.UICulture.Name == "ja-JP")
-            {
-                <script src="~/js/ja_JP.js"></script>
-            }
+        var requestMyCulture = Context.Features.Get<IRequestCultureFeature>();
+        if (requestMyCulture.RequestCulture.UICulture.Name == "ja-JP" || requestMyCulture.RequestCulture.UICulture.Name == "ja-JP")
+        {
+            <script src="~/js/ja_JP.js"></script>
+    }
         }
         <script src="~/js/timetracker.js" asp-append-version="true"></script>
         <script src="~/js/office-fabric.js" asp-append-version="true"></script>

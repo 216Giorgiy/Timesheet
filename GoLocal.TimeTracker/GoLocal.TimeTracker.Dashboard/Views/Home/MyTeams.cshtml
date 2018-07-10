@@ -10,7 +10,8 @@
 }
 
 <link href="~/css/MonthPicker.min.css" rel="stylesheet" />
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+@*<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>*@
+<script src="~/js/jquery-ui.min.js"></script>
 <script src="https://cdn.rawgit.com/digitalBush/jquery.maskedinput/1.4.1/dist/jquery.maskedinput.min.js"></script>
 
 <script src="~/js/MonthPicker.min.js"></script>
@@ -47,7 +48,7 @@
 
                 </div>
                 <div class="ms-Grid-col ms-sm12 ms-md4 ms-lg3 pull-right pr15">
-					<label class="ms-Label searchlabel">@SharedLocalizer.GetLocalizedHtmlString("Export")</label>
+					<label class="ms-Label searchlabel">@SharedLocalizer.GetLocalizedHtmlString("Search")</label>
 
 
                     <div class="ms-SearchBox myteamSearch pull-right">
@@ -80,9 +81,9 @@
                         <th>@SharedLocalizer.GetLocalizedHtmlString("Name")</th>
                         @*<th>@SharedLocalizer.GetLocalizedHtmlString("CalculatedHours")</th>*@
                         <th>@SharedLocalizer.GetLocalizedHtmlString("TotalHours")</th>
-                        <th>@SharedLocalizer.GetLocalizedHtmlString("objectIdentifier")</th>
-                        <th>@SharedLocalizer.GetLocalizedHtmlString("id")</th>
-                        <th>@SharedLocalizer.GetLocalizedHtmlString("date")</th>
+                        <th>@SharedLocalizer.GetLocalizedHtmlString("ObjectIdentifier")</th>
+                        <th>@SharedLocalizer.GetLocalizedHtmlString("Id")</th>
+                        <th>@SharedLocalizer.GetLocalizedHtmlString("Date")</th>
                         <th>@SharedLocalizer.GetLocalizedHtmlString("Status")</th>
                         <th>@SharedLocalizer.GetLocalizedHtmlString("Action") </th>
 
@@ -127,9 +128,9 @@
            {
                 <button class="ms-Button docs-DialogExample-button ms-Button--primary font-white" disabled="disabled" id="SubmitToHRBtn">@SharedLocalizer.GetLocalizedHtmlString("SubmitToHR")</button>
                 <p class="font12 hidden" id="SubmitOnMsg">
-                <font id="submittedOnMsg">
-                    @SharedLocalizer.GetLocalizedHtmlString("SubmitSuccess")
-                </font>&nbsp;<font id="submittedDate"></font>
+                    <font id="submittedOnMsg">
+                        @SharedLocalizer.GetLocalizedHtmlString("SubmitSuccess")
+                    </font>&nbsp;<font id="submittedDate"></font>
                 </p>
            }
 
@@ -246,8 +247,26 @@
 
         </div>
     </div>
+    <div class="hiddenfields" style="display:none;">
+        <label id="Jan">@SharedLocalizer.GetLocalizedHtmlString("Jan")</label>
+        <label id="Feb">@SharedLocalizer.GetLocalizedHtmlString("Feb")</label>
+        <label id="Mar">@SharedLocalizer.GetLocalizedHtmlString("Mar")</label>
+        <label id="Apr">@SharedLocalizer.GetLocalizedHtmlString("Apr")</label>
+        <label id="May">@SharedLocalizer.GetLocalizedHtmlString("May")</label>
+        <label id="June">@SharedLocalizer.GetLocalizedHtmlString("June")</label>
+        <label id="July">@SharedLocalizer.GetLocalizedHtmlString("July")</label>
+        <label id="Aug">@SharedLocalizer.GetLocalizedHtmlString("Aug")</label>
+        <label id="Sep">@SharedLocalizer.GetLocalizedHtmlString("Sep")</label>
+        <label id="Oct">@SharedLocalizer.GetLocalizedHtmlString("Oct")</label>
+        <label id="Nov">@SharedLocalizer.GetLocalizedHtmlString("Nov")</label>
+        <label id="Dec">@SharedLocalizer.GetLocalizedHtmlString("Dec")</label>
+        <label id="Jump">@SharedLocalizer.GetLocalizedHtmlString("Jump")</label>
+        <label id="Year">@SharedLocalizer.GetLocalizedHtmlString("Year")</label>
+    </div>
     <script type="text/javascript">
+        var monthlabel = [];
         $(document).ready(function () {
+            monthlabel = [$('#Jan').text(), $('#Feb').text(), $('#Mar').text(), $('#Apr').text(), $('#May').text(), $('#June').text(), $('#July').text(), $('#Aug').text(), $('#Sep').text(), $('#Oct').text(), $('#Nov').text(), $('#Dec').text()];
             $('#tblMyTeam').dataTable({
             "processing": false,
             "serverSide": true,
@@ -277,6 +296,9 @@
                             $("#submittedDate").text(json.submittedDate);
                         }
                     }
+                    if (json.submittedDate == "0001/01/01") {
+                        $("#SubmitOnMsg").addClass('hidden').show();
+                    }
                     return json.data;
                 }
             },
@@ -289,13 +311,20 @@
                 { "data": "date", "visible": false },
                 { "data": "status", "orderable": false },
                 { "data": "action", "orderable": false }
-            ],
+                ],
+                "language": {
+                    "emptyTable": '@SharedLocalizer.GetLocalizedHtmlString("DatableEmptyMessage")' + $('#txtMonthlyDate').val(),
+                    "paginate": {
+                        "next": '@SharedLocalizer.GetLocalizedHtmlString("Next")', // or '→'
+                        "previous": '@SharedLocalizer.GetLocalizedHtmlString("Previous")' // or '←' 
+                    }
+                },
             "order": [[0, "asc"]],
             "dom": 'frtipB',
             "buttons": [
                 {
                     "extend": 'csv',
-                    "text": '@SharedLocalizer.GetLocalizedHtmlString("Search")',
+                    "text": '@SharedLocalizer.GetLocalizedHtmlString("Export")',
                     "exportOptions": {
                         "columns": [0, 1, 5]
                     }
@@ -309,9 +338,9 @@
                 }
             ]
         });
-
         $(document).on("keypress", "#txtMyTeamSearch", function (e) {
             if (e.which == 13) {
+                $("#SubmitOnMsg").addClass('hidden');
                 $("#tblMyTeam").dataTable().fnDestroy();
                 $('#tblMyTeam tbody').empty();
                 $("#tblMyTeam").dataTable({
@@ -342,9 +371,12 @@
                             } else {
                                 $("#SubmitToHRBtn").prop("disabled", true);
                                 if (json.submittedDate != "" && json.submittedDate != "1/1/0001") {
-                                    $("#SubmitOnMsg").addClass('hidden').show();
-                                    $("#submittedDate").text('');
+                                    $("#SubmitOnMsg").removeClass('hidden').show();
+                                    $("#submittedDate").text(json.submittedDate);
                                 }
+                            }
+                            if (json.submittedDate == "0001/01/01") {
+                                $("#SubmitOnMsg").addClass('hidden').show();
                             }
                             return json.data;
                         }
@@ -361,6 +393,13 @@
                     ],
                     "order": [[0, "asc"]],
                     "dom": 'frtipB',
+                    "language": {
+                        "emptyTable": '@SharedLocalizer.GetLocalizedHtmlString("DatableEmptyMessage")' + $('#txtMonthlyDate').val(),
+                    "paginate": {
+                        "next": '@SharedLocalizer.GetLocalizedHtmlString("Next")', // or '→'
+                        "previous": '@SharedLocalizer.GetLocalizedHtmlString("Previous")' // or '←' 
+                      }
+                    },
                     "buttons": [
                         {
                             "extend": 'csv',
@@ -389,7 +428,6 @@
         $(".divDispMsg").hide();
 
         $('#tblMyTeam tbody').on('click', '.editHrs', function () {
-            debugger;
             var data = $('#tblMyTeam').row($(this).parents('tr')).data();
             $("#dispEmpNameImg").html(data[0]);
             var adjHrs = data[2].replace('h', '').replace('m', '').split(' ');
@@ -439,7 +477,6 @@
                 type: 'post',
                 data: reviseRequestObj,
                 success: function (data) {
-                    debugger;
                     if (data.responseCode > 0) {
                         $(".btnReviseRequest").attr("disabled", true);
                         $("#loadingEdit").addClass("hidden");
@@ -489,6 +526,12 @@
         });
 
         $('#txtTeamMonthlyDate').MonthPicker({
+            IsRTL: true,
+            i18n: {
+                year: $('#Year').text(),
+                jumpYears:$('#Jump').text(),
+                months: monthlabel
+            },
             MaxMonth: -1,
             Button: false,
             MonthFormat: 'M, yy',
@@ -576,7 +619,6 @@
                 type: 'post',
                 data: submiMonth,
                 success: function (data) {
-                    debugger;
                     if (data.responseCode > 0) {
                         $("#loadingSubmit").addClass("hidden");
                         $("#FailedToSubmitMsg").hide();

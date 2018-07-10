@@ -121,7 +121,7 @@
     <value>キャンセル</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>輸出する</value>
+    <value>エクスポートする</value>
   </data>
   <data name="LastMonth" xml:space="preserve">
     <value>先月</value>
@@ -142,7 +142,7 @@
     <value>従業員の割合</value>
   </data>
   <data name="NoOvertimeReported" xml:space="preserve">
-    <value>過労を報告した従業員はいません</value>
+    <value>過労を報告している従業員はいません</value>
   </data>
   <data name="NoofEmployees" xml:space="preserve">
     <value>従業員の数</value>
@@ -166,7 +166,7 @@
     <value>セーブ</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>サーチ</value>
+    <value>検索</value>
   </data>
   <data name="SubmitToHR" xml:space="preserve">
     <value>人事部に提出する</value>
@@ -315,8 +315,8 @@
   <data name="h" xml:space="preserve">
     <value>h</value>
   </data>
-  <data name="m" xml:space="preserve">
-    <value>m</value>
+  <data name="Mo" xml:space="preserve">
+    <value>月</value>
   </data>
   <data name="RegularHrs" xml:space="preserve">
     <value>正規の時間</value>
@@ -370,10 +370,10 @@
     <value>- に提出</value>
   </data>
   <data name="Continue" xml:space="preserve">
-    <value>持続する</value>
+    <value>はい</value>
   </data>
   <data name="DoYouWantToContinue" xml:space="preserve">
-    <value>続けたいですか？</value>
+    <value>よろしいですか？</value>
   </data>
   <data name="EditWorkHoursUpdatedFailureMsg" xml:space="preserve">
     <value>作業時間の更新に失敗しました。もう一度お試しください。</value>
@@ -421,7 +421,7 @@
     <value>改訂のために送信された時間。</value>
   </data>
   <data name="NoNotifications" xml:space="preserve">
-    <value>通知がありません</value>
+    <value>通知はありません</value>
   </data>
   <data name="InvalidTimeFormatMessage" xml:space="preserve">
     <value>時間をhh：mm形式で入力します（例：01：05）</value>
@@ -526,7 +526,7 @@
     <value>成功を提出</value>
   </data>
   <data name="Analytics" xml:space="preserve">
-    <value>アナリティクス</value>
+    <value>分析</value>
   </data>
   <data name="ReportHours" xml:space="preserve">
     <value />
@@ -538,13 +538,13 @@
     <value>更新</value>
   </data>
   <data name="Analyticslegend" xml:space="preserve">
-    <value>過労した従業員</value>
+    <value>超過労働の従業員</value>
   </data>
   <data name="lblAnalytics" xml:space="preserve">
-    <value>アナリティクス</value>
+    <value>分析</value>
   </data>
   <data name="lblexport" xml:space="preserve">
-    <value>輸出する</value>
+    <value>エクスポートする</value>
   </data>
   <data name="lblPrint" xml:space="preserve">
     <value>印刷</value>
@@ -562,9 +562,126 @@
     <value>サインアウト</value>
   </data>
   <data name="Submitted" xml:space="preserve">
-    <value>提出された</value>
+    <value>提出済み</value>
   </data>
   <data name="SubmittedBySystem" xml:space="preserve">
     <value>システムによって提出された</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>完了</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>前へ</value>
+  </data>
+  <data name="hour" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="minute" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>次へ</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>約</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>フィードバック</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>助けて</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>サポート</value>
+  </data>
+  <data name="Apr" xml:space="preserve">
+    <value>4月</value>
+  </data>
+  <data name="Aug" xml:space="preserve">
+    <value>8月</value>
+  </data>
+  <data name="Dec" xml:space="preserve">
+    <value>12月</value>
+  </data>
+  <data name="Feb" xml:space="preserve">
+    <value>2月</value>
+  </data>
+  <data name="Jan" xml:space="preserve">
+    <value>1月</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>7月</value>
+  </data>
+  <data name="Jump" xml:space="preserve">
+    <value>ジャンプ年</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>6月</value>
+  </data>
+  <data name="Mar" xml:space="preserve">
+    <value>3月</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>5月</value>
+  </data>
+  <data name="Nov" xml:space="preserve">
+    <value>11月</value>
+  </data>
+  <data name="Oct" xml:space="preserve">
+    <value>10月</value>
+  </data>
+  <data name="Sep" xml:space="preserve">
+    <value>9月</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>年</value>
+  </data>
+  <data name="DatableEmptyMessage" xml:space="preserve">
+    <value>のデータがありません</value>
+  </data>
+  <data name="Fr" xml:space="preserve">
+    <value>金</value>
+  </data>
+  <data name="Sa" xml:space="preserve">
+    <value>土</value>
+  </data>
+  <data name="Su" xml:space="preserve">
+    <value>太陽</value>
+  </data>
+  <data name="Th" xml:space="preserve">
+    <value>木</value>
+  </data>
+  <data name="Tu" xml:space="preserve">
+    <value>火</value>
+  </data>
+  <data name="W" xml:space="preserve">
+    <value>我々</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>4月</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>8月</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>12月</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>2月</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>1月</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>3月</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>11月</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>10月</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>9月</value>
   </data>
 </root>

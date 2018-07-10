@@ -139,7 +139,7 @@
     <value>Report Hours</value>
   </data>
   <data name="NoOvertimeReported" xml:space="preserve">
-    <value>No employees reported overtime in</value>
+    <value>There are no employees reporting overwork in</value>
   </data>
   <data name="lblAnalytics" xml:space="preserve">
     <value>Analytics</value>
@@ -220,7 +220,7 @@
     <value>Employee Name</value>
   </data>
   <data name="FRI" xml:space="preserve">
-    <value>FRI</value>
+    <value>Fri</value>
   </data>
   <data name="Goal" xml:space="preserve">
     <value>Goal</value>
@@ -238,7 +238,7 @@
     <value>Meeting Hours</value>
   </data>
   <data name="MON" xml:space="preserve">
-    <value>MON</value>
+    <value>Mon</value>
   </data>
   <data name="Month" xml:space="preserve">
     <value>Month</value>
@@ -271,7 +271,7 @@
     <value>Reject Reason</value>
   </data>
   <data name="SAT" xml:space="preserve">
-    <value>SAT</value>
+    <value>Sat</value>
   </data>
   <data name="SelectDate" xml:space="preserve">
     <value>Select Date</value>
@@ -286,10 +286,10 @@
     <value>Submitted to manager</value>
   </data>
   <data name="SUN" xml:space="preserve">
-    <value>SUN</value>
+    <value>Sun</value>
   </data>
   <data name="THU" xml:space="preserve">
-    <value>THU</value>
+    <value>Thu</value>
   </data>
   <data name="TimeAdjusted" xml:space="preserve">
     <value>Time adjusted</value>
@@ -298,10 +298,10 @@
     <value>Total Hours</value>
   </data>
   <data name="TUE" xml:space="preserve">
-    <value>TUE</value>
+    <value>Tue</value>
   </data>
   <data name="WED" xml:space="preserve">
-    <value>WED</value>
+    <value>Wed</value>
   </data>
   <data name="Week1" xml:space="preserve">
     <value>Week1</value>
@@ -354,7 +354,7 @@
   <data name="Reason" xml:space="preserve">
     <value>Reason</value>
   </data>
-  <data name="h" xml:space="preserve">
+  <data name="hour" xml:space="preserve">
     <value>h</value>
   </data>
   <data name="m" xml:space="preserve">
@@ -566,5 +566,125 @@
   </data>
   <data name="SubmittedBySystem" xml:space="preserve">
     <value>Submitted By System</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="minute" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>id</value>
+  </data>
+  <data name="NoAction" xml:space="preserve">
+    <value>No Action</value>
+  </data>
+  <data name="ObjectIdentifier" xml:space="preserve">
+    <value>objectIdentifier</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="Apr" xml:space="preserve">
+    <value>Apr</value>
+  </data>
+  <data name="Aug" xml:space="preserve">
+    <value>Aug</value>
+  </data>
+  <data name="Dec" xml:space="preserve">
+    <value>Dec</value>
+  </data>
+  <data name="Feb" xml:space="preserve">
+    <value>Feb</value>
+  </data>
+  <data name="Jan" xml:space="preserve">
+    <value>Jan</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>July</value>
+  </data>
+  <data name="Jump" xml:space="preserve">
+    <value>Jump Years</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>June</value>
+  </data>
+  <data name="Mar" xml:space="preserve">
+    <value>Mar</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="Nov" xml:space="preserve">
+    <value>Nov</value>
+  </data>
+  <data name="Oct" xml:space="preserve">
+    <value>Oct</value>
+  </data>
+  <data name="Sep" xml:space="preserve">
+    <value>Sep</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="DatableEmptyMessage" xml:space="preserve">
+    <value>No data available in table for</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>August</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>February</value>
+  </data>
+  <data name="Fr" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>January</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="Mo" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>October</value>
+  </data>
+  <data name="Sa" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="Su" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Th" xml:space="preserve">
+    <value>T</value>
+  </data>
+  <data name="Tu" xml:space="preserve">
+    <value>T</value>
+  </data>
+  <data name="W" xml:space="preserve">
+    <value>W</value>
   </data>
 </root>
