@@ -142,7 +142,7 @@
     <value>従業員の割合</value>
   </data>
   <data name="NoOvertimeReported" xml:space="preserve">
-    <value>過労を報告している従業員はいません</value>
+    <value>時間外労働を報告している従業員はいません</value>
   </data>
   <data name="NoofEmployees" xml:space="preserve">
     <value>従業員の数</value>
@@ -208,10 +208,10 @@
     <value>編集時間</value>
   </data>
   <data name="EmailHours" xml:space="preserve">
-    <value>Eメールの時間</value>
+    <value>メールの時間</value>
   </data>
   <data name="EmployeeID" xml:space="preserve">
-    <value>従業員ID</value>
+    <value>従業員#</value>
   </data>
   <data name="EmployeeName" xml:space="preserve">
     <value>従業員名</value>
@@ -229,7 +229,7 @@
     <value>土曜日</value>
   </data>
   <data name="SignINmethodcalled" xml:space="preserve">
-    <value>SignINメソッドが呼び出されました</value>
+    <value>サインインメソッドが呼び出されました</value>
   </data>
   <data name="SUN" xml:space="preserve">
     <value>日曜日</value>
@@ -337,10 +337,13 @@
     <value>このアプリケーションにアクセスすることはできません</value>
   </data>
   <data name="Copyurl" xml:space="preserve">
-    <value>URLをコピー</value>
+    <value>リンクをコピー
+リンク
+リンク</value>
   </data>
   <data name="HaveAdminAccount" xml:space="preserve">
-    <value>管理者アカウントをお持ちですか？権限を与えるにはこのURLにアクセスしてください</value>
+    <value>管理者アカウントをお持ちですか？権限を与えるにはこの
+リンクにアクセスしてください</value>
   </data>
   <data name="DevMode" xml:space="preserve">
     <value>開発モード</value>
@@ -358,7 +361,7 @@
     <value>メッセージ</value>
   </data>
   <data name="RequestId" xml:space="preserve">
-    <value>リクエストID</value>
+    <value>リクエスト#</value>
   </data>
   <data name="SwappingToDev" xml:space="preserve">
     <value>開発環境にスワップすると、発生したエラーに関する詳細情報が表示されます</value>
@@ -430,7 +433,7 @@
     <value>選択した週</value>
   </data>
   <data name="TotalHrsExceedErrorMessage" xml:space="preserve">
-    <value>1日の合計時間は24時間を超えることはできません</value>
+    <value>日の合計時間は時間を超えることはできません</value>
   </data>
   <data name="Week" xml:space="preserve">
     <value>週</value>
@@ -502,7 +505,7 @@
     <value>今月の勤務時間</value>
   </data>
   <data name="CalculatedEmailHours" xml:space="preserve">
-    <value>計算されたEメールの時間</value>
+    <value>計算されたメールの時間</value>
   </data>
   <data name="CalculatedMeetingHours" xml:space="preserve">
     <value>計算された会議の時間</value>
@@ -526,7 +529,7 @@
     <value>分析</value>
   </data>
   <data name="ReportHours" xml:space="preserve">
-    <value />
+    <value>報告時間</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>読み込み中</value>
