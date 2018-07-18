@@ -260,6 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 /GoLocal.TimeTracker/GoLocal.TimeTracker.UX
-/GoLocal.TimeTracker/GoLocal.TimeTracker.MiddleTier/Services/AppContext
 /GoLocal.TimeTracker/GoLocal.TimeWise.AzureFunction
 /GoLocal.TimeTracker/GoLocal.TimeWise.AzureFunctions/Properties/PublishProfiles
